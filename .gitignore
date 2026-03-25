@@ -1,6 +1,7 @@
 Builds
+build
 resources
+sources/3rd_party
 .vscode
+.vs
 Tools
-assimp.dll
-imgui.ini
