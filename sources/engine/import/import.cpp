@@ -8,8 +8,39 @@
 #include "glad/glad.h"
 
 #include "import/model.h"
+#include "application/character.h"
 
-MeshPtr create_mesh(const aiMesh *mesh)
+inline glm::mat4 to_mat4(const aiMatrix4x4& from)
+{
+	glm::mat4 to;
+	to[0][0] = from.a1; to[1][0] = from.a2; to[2][0] = from.a3; to[3][0] = from.a4;
+	to[0][1] = from.b1; to[1][1] = from.b2; to[2][1] = from.b3; to[3][1] = from.b4;
+	to[0][2] = from.c1; to[1][2] = from.c2; to[2][2] = from.c3; to[3][2] = from.c4;
+	to[0][3] = from.d1; to[1][3] = from.d2; to[2][3] = from.d3; to[3][3] = from.d4;
+	return to;
+}
+
+void extract_skeleton(Skeleton& skeleton, const aiNode* node, int parent_idx)
+{
+	int current_idx = skeleton.bones.size();
+	Bone bone;
+	bone.name = node->mName.C_Str();
+	bone.parent_idx = parent_idx;
+	bone.local_transform = to_mat4(node->mTransformation);
+	skeleton.bones.push_back(bone);
+
+	if (parent_idx != -1)
+	{
+		skeleton.bones[parent_idx].children_indices.push_back(current_idx);
+	}
+
+	for (uint32_t i = 0; i < node->mNumChildren; i++)
+	{
+		extract_skeleton(skeleton, node->mChildren[i], current_idx);
+	}
+}
+
+MeshPtr create_mesh(const aiMesh *mesh, Skeleton& skeleton)
 {
   std::vector<uint32_t> indices;
   std::vector<vec3> vertices;
@@ -62,7 +93,15 @@ MeshPtr create_mesh(const aiMesh *mesh)
     for (int i = 0; i < numBones; i++)
     {
       const aiBone *bone = mesh->mBones[i];
-      // bonesMap[std::string(bone->mName.C_Str())] = i;
+      
+	  for (int bone_idx = 0; bone_idx < skeleton.bones.size(); ++bone_idx)
+	  {
+		  if (skeleton.bones[bone_idx].name == bone->mName.C_Str())
+		  {
+			  skeleton.bones[bone_idx].offset_matrix = to_mat4(bone->mOffsetMatrix);
+			  break;
+		  }
+	  }
 
       for (unsigned j = 0; j < bone->mNumWeights; j++)
       {
@@ -83,7 +122,7 @@ MeshPtr create_mesh(const aiMesh *mesh)
   return create_mesh(mesh->mName.C_Str(), indices, vertices, normals, uv, weights, weightsIndex);
 }
 
-ModelAsset load_model(const char *path)
+ModelAsset load_model(const char *path, Skeleton& skeleton)
 {
 
   Assimp::Importer importer;
@@ -102,10 +141,12 @@ ModelAsset load_model(const char *path)
     return model;
   }
 
+  extract_skeleton(skeleton, scene->mRootNode, -1);
+
   model.meshes.resize(scene->mNumMeshes);
   for (uint32_t i = 0; i < scene->mNumMeshes; i++)
   {
-    model.meshes[i] = create_mesh(scene->mMeshes[i]);
+    model.meshes[i] = create_mesh(scene->mMeshes[i], skeleton);
   }
 
   engine::log("Model \"%s\" loaded", path);

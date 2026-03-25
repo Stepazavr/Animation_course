@@ -42,27 +42,26 @@ void application_init(Scene &scene)
 
   material->set_property("mainTex", create_texture2d("resources/MotusMan_v55/MCG_diff.jpg"));
 
-  ModelAsset motusMan = load_model("resources/MotusMan_v55/MotusMan_v55.fbx");
-  ModelAsset ruby = load_model("resources/sketchfab/ruby.fbx");
+  Character motusManCharacter;
+  motusManCharacter.name = "MotusMan_v55";
+  motusManCharacter.transform = glm::identity<glm::mat4>();
+  motusManCharacter.material = std::move(material);
+  ModelAsset motusMan = load_model("resources/MotusMan_v55/MotusMan_v55.fbx", motusManCharacter.skeleton);
+  motusManCharacter.meshes = motusMan.meshes;
 
-  scene.characters.emplace_back(Character{
-    "MotusMan_v55",
-    glm::identity<glm::mat4>(),
-    motusMan.meshes,
-    std::move(material)
-  });
-
+  Character rubyCharacter;
+  rubyCharacter.name = "Ruby";
+  rubyCharacter.transform = glm::translate(glm::identity<glm::mat4>(), glm::vec3(2.f, 0.f, 0.f));
   auto whiteMaterial = make_material("character", "sources/shaders/character_vs.glsl", "sources/shaders/character_ps.glsl");
-
-  const uint8_t whiteColor[4] = {255, 255, 255, 255};
+  const uint8_t whiteColor[4] = { 255, 255, 255, 255 };
   whiteMaterial->set_property("mainTex", create_texture2d(whiteColor, 1, 1, 4));
+  rubyCharacter.material = std::move(whiteMaterial);
+  ModelAsset ruby = load_model("resources/sketchfab/ruby.fbx", rubyCharacter.skeleton);
+  rubyCharacter.meshes = ruby.meshes;
 
-  scene.characters.emplace_back(Character{
-   "Ruby",
-    glm::translate(glm::identity<glm::mat4>(), glm::vec3(2.f, 0.f, 0.f)),
-    ruby.meshes,
-    std::move(whiteMaterial)
-  });
+
+  scene.characters.push_back(std::move(motusManCharacter));
+  scene.characters.push_back(std::move(rubyCharacter));
 
   scene.models.push_back(std::move(motusMan));
   scene.models.push_back(std::move(ruby));

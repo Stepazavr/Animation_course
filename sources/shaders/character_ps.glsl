@@ -4,14 +4,12 @@ struct VsOutput
   vec3 EyespaceNormal;
   vec3 WorldPosition;
   vec2 UV;
-  vec3 BoneColor;
 };
 
 uniform vec3 CameraPosition;
 uniform vec3 LightDirection;
 uniform vec3 AmbientLight;
 uniform vec3 SunLight;
-uniform bool visualizeBoneWeights;
 
 in VsOutput vsOutput;
 out vec4 FragColor;
@@ -37,16 +35,9 @@ vec3 LightedColor(
 
 void main()
 {
-  if (visualizeBoneWeights)
-  {
-    FragColor = vec4(vsOutput.BoneColor, 1.0);
-  }
-  else
-  {
-    float shininess = 1.3;
-    float metallness = 0.4;
-    vec3 color = texture(mainTex, vsOutput.UV).rgb ;
-    color = LightedColor(color, shininess, metallness, vsOutput.WorldPosition, vsOutput.EyespaceNormal, LightDirection, CameraPosition);
-    FragColor = vec4(color, 1.0);
-  }
+  float shininess = 1.3;
+  float metallness = 0.4;
+  vec3 color = texture(mainTex, vsOutput.UV).rgb ;
+  color = LightedColor(color, shininess, metallness, vsOutput.WorldPosition, vsOutput.EyespaceNormal, LightDirection, CameraPosition);
+  FragColor = vec4(color, 1.0);
 }

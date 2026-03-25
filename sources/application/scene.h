@@ -16,3 +16,4 @@ struct Scene
 };
 
 extern bool g_visualizeBoneWeights;
+extern bool g_visualizeSkeleton;
