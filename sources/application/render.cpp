@@ -86,6 +86,7 @@ void render_character(const Character &character, const mat4 &cameraProjView, ve
   shader.set_vec3("LightDirection", glm::normalize(light.lightDirection));
   shader.set_vec3("AmbientLight", light.ambient);
   shader.set_vec3("SunLight", light.lightColor);
+  shader.set_int("visualizeBoneWeights", g_visualizeBoneWeights ? 1 : 0);
 
   for (const MeshPtr &mesh : character.meshes)
     render(mesh);
@@ -104,7 +105,7 @@ void application_render(Scene &scene)
   const glm::mat4 &transform = scene.userCamera.transform;
   mat4 projView = projection * inverse(transform);
 
-  for (Character &character : scene.characters)
+  for (const Character &character : scene.characters)
     render_character(character, projView, glm::vec3(transform[3]), scene.light);
 
   if (g_visualizeSkeleton)
