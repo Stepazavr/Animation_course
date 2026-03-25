@@ -67,7 +67,6 @@ static void show_characters(Scene &scene)
       manipulate_character(character, scene.userCamera);
     }
 
-    // Визуализация весов костей
     ImGui::Separator();
     ImGui::Checkbox("Visualize Bone Weights", &g_visualizeBoneWeights);
   }

@@ -20,15 +20,11 @@ layout(location = 4) in uvec4 BoneIndex;
 
 out VsOutput vsOutput;
 
-// Генерирует уникальный цвет для каждой кости на основе её индекса
 vec3 getBoneColor(uint boneIndex)
 {
-  // Псевдо-случайный хеш для генерации Hue
-  float h = fract(sin(float(boneIndex) * 12.9898) * 43758.5453); // Hue [0..1]
-  float s = 0.8;  // Saturation
-  float v = 0.9;  // Value
-  
-  // HSV to RGB conversion
+  float h = fract(sin(float(boneIndex) * 12.9898) * 43758.5453);
+  float s = 0.8;
+  float v = 0.9;
   float c = v * s;
   float x = c * (1.0 - abs(mod(h * 6.0, 2.0) - 1.0));
   float m = v - c;
@@ -61,7 +57,6 @@ void main()
 
   vsOutput.UV = UV;
 
-  // Вычисляем цвет вершины как смешивание цветов костей по их весам
   vec3 boneColor = vec3(0.0);
   if (BoneWeights.x > 0.0)
     boneColor += BoneWeights.x * getBoneColor(BoneIndex.x);

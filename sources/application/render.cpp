@@ -1,7 +1,6 @@
 
 #include "scene.h"
 
-// Флаг для визуализации весов костей
 bool g_visualizeBoneWeights = false;
 
 void render_character(const Character &character, const mat4 &cameraProjView, vec3 cameraPosition, const DirectionLight &light)

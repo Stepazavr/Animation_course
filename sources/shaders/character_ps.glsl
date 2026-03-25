@@ -39,12 +39,10 @@ void main()
 {
   if (visualizeBoneWeights)
   {
-    // Режим визуализации весов костей
     FragColor = vec4(vsOutput.BoneColor, 1.0);
   }
   else
   {
-    // Обычный режим рендеринга с текстурой и освещением
     float shininess = 1.3;
     float metallness = 0.4;
     vec3 color = texture(mainTex, vsOutput.UV).rgb ;
