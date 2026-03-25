@@ -70,6 +70,7 @@ static void show_characters(Scene &scene)
     ImGui::Separator();
     ImGui::Checkbox("Visualize Bone Weights", &g_visualizeBoneWeights);
     ImGui::Checkbox("Visualize Skeleton", &g_visualizeSkeleton);
+    ImGui::Checkbox("Visualize Node Transforms", &g_visualizeNodeTransforms);
   }
   ImGui::End();
 }
