@@ -1,0 +1,1315 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeDetermineSystem.cmake:212 (message)"
+      - "CMakeLists.txt:7 (project)"
+    message: |
+      The system is: Windows - 6.2.9200 - AMD64
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:462 (find_file)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:500 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:7 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCCompilerId.c.in"
+    candidate_directories:
+      - "C:/mingw64/share/cmake-4.1/Modules/"
+    found: "C:/mingw64/share/cmake-4.1/Modules/CMakeCCompilerId.c.in"
+    search_context:
+      ENV{PATH}:
+        - "c:\\Users\\stepa\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        - "c:\\Users\\stepa\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
+        - "D:\\Program Files\\Microsoft VS Code"
+        - "D:\\VulkanSDK\\1.4.328.1\\Bin"
+        - "C:\\ProgramData\\Oracle\\Java\\javapath"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\mingw64\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\WireGuard\\"
+        - "D:\\MATLAB\\R2023b\\runtime\\win64"
+        - "D:\\MATLAB\\R2023b\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python310\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python312\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Launcher\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Program Files\\Microsoft VS Code\\bin"
+        - "D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\Llvm\\bin"
+        - "D:\\MyGames\\Steam\\steamapps\\common\\Blender"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:7 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler:  
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      ╨Т╨╡╤А╤Б╨╕╤П MSBuild 17.14.23+b0019275e ╨┤╨╗╤П .NET Framework
+      ╨б╨▒╨╛╤А╨║╨░ ╨╜╨░╤З╨░╤В╨░ 25.03.2026 16:06:14.
+      
+      ╨Я╤А╨╛╨╡╨║╤В "D:\\Magistracy\\Animations\\Animations2025\\build\\CMakeFiles\\4.1.0\\CompilerIdC\\CompilerIdC.vcxproj" ╨▓ ╤Г╨╖╨╗╨╡ 1 (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+      PrepareForBuild:
+        ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "Debug\\".
+        ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "Debug\\CompilerIdC.tlog\\".
+      InitializeBuildStatus:
+        ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ "Debug\\CompilerIdC.tlog\\unsuccessfulbuild", ╤В╨░╨║ ╨║╨░╨║ ╨▒╤Л╨╗╨╛ ╨╖╨░╨┤╨░╨╜╨╛ "AlwaysCreate".
+        ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "Debug\\CompilerIdC.tlog\\unsuccessfulbuild".
+      ClCompile:
+        D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.34.31933\\bin\\HostX64\\x64\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TC /FC /errorReport:queue CMakeCCompilerId.c
+        CMakeCCompilerId.c
+      Link:
+        D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.34.31933\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdC.lib" /MACHINE:X64 Debug\\CMakeCCompilerId.obj
+        CompilerIdC.vcxproj -> D:\\Magistracy\\Animations\\Animations2025\\build\\CMakeFiles\\4.1.0\\CompilerIdC\\CompilerIdC.exe
+      PostBuildEvent:
+        for %%i in (cl.exe) do @echo CMAKE_C_COMPILER=%%~$PATH:i
+        :VCEnd
+        CMAKE_C_COMPILER=D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.34.31933\\bin\\Hostx64\\x64\\cl.exe
+      FinalizeBuildStatus:
+        ╨д╨░╨╣╨╗ "Debug\\CompilerIdC.tlog\\unsuccessfulbuild" ╤Г╨┤╨░╨╗╤П╨╡╤В╤Б╤П.
+        ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "Debug\\CompilerIdC.tlog\\CompilerIdC.lastbuildstate".
+      ╨б╨▒╨╛╤А╨║╨░ ╨┐╤А╨╛╨╡╨║╤В╨░ "D:\\Magistracy\\Animations\\Animations2025\\build\\CMakeFiles\\4.1.0\\CompilerIdC\\CompilerIdC.vcxproj" ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░ (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+      
+      ╨б╨▒╨╛╤А╨║╨░ ╤Г╤Б╨┐╨╡╤И╨╜╨╛ ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░.
+          ╨Я╤А╨╡╨┤╤Г╨┐╤А╨╡╨╢╨┤╨╡╨╜╨╕╨╣: 0
+          ╨Ю╤И╨╕╨▒╨╛╨║: 0
+      
+      ╨Я╤А╨╛╤И╨╗╨╛ ╨▓╤А╨╡╨╝╨╡╨╜╨╕ 00:00:00.81
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.vcxproj"
+      
+      The C compiler identification is MSVC, found in:
+        D:/Magistracy/Animations/Animations2025/build/CMakeFiles/4.1.0/CompilerIdC/CompilerIdC.exe
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:37 (find_program)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:65 (__resolve_tool_path)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:103 (__resolve_linker_path)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:7 (project)"
+    mode: "program"
+    variable: "_CMAKE_TOOL_WITH_PATH"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "link"
+    candidate_directories:
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx64/x64/"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
+      - "D:/Program Files/Microsoft VS Code/"
+      - "D:/VulkanSDK/1.4.328.1/Bin/"
+      - "C:/ProgramData/Oracle/Java/javapath/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/mingw64/bin/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/WireGuard/"
+      - "D:/MATLAB/R2023b/runtime/win64/"
+      - "D:/MATLAB/R2023b/bin/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/Scripts/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/Scripts/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Launcher/"
+      - "C:/Users/stepa/AppData/Local/Microsoft/WindowsApps/"
+      - "D:/Program Files/Microsoft VS Code/bin/"
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/Llvm/bin/"
+      - "D:/MyGames/Steam/steamapps/common/Blender/"
+    searched_directories:
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx64/x64/link.com"
+    found: "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx64/x64/link.exe"
+    search_context:
+      ENV{PATH}:
+        - "c:\\Users\\stepa\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        - "c:\\Users\\stepa\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
+        - "D:\\Program Files\\Microsoft VS Code"
+        - "D:\\VulkanSDK\\1.4.328.1\\Bin"
+        - "C:\\ProgramData\\Oracle\\Java\\javapath"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\mingw64\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\WireGuard\\"
+        - "D:\\MATLAB\\R2023b\\runtime\\win64"
+        - "D:\\MATLAB\\R2023b\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python310\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python312\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Launcher\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Program Files\\Microsoft VS Code\\bin"
+        - "D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\Llvm\\bin"
+        - "D:\\MyGames\\Steam\\steamapps\\common\\Blender"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:37 (find_program)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:65 (__resolve_tool_path)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:104 (__resolve_linker_path)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:7 (project)"
+    mode: "program"
+    variable: "_CMAKE_TOOL_WITH_PATH"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "lld-link"
+    candidate_directories:
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx64/x64/"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
+      - "D:/Program Files/Microsoft VS Code/"
+      - "D:/VulkanSDK/1.4.328.1/Bin/"
+      - "C:/ProgramData/Oracle/Java/javapath/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/mingw64/bin/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/WireGuard/"
+      - "D:/MATLAB/R2023b/runtime/win64/"
+      - "D:/MATLAB/R2023b/bin/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/Scripts/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/Scripts/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Launcher/"
+      - "C:/Users/stepa/AppData/Local/Microsoft/WindowsApps/"
+      - "D:/Program Files/Microsoft VS Code/bin/"
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/Llvm/bin/"
+      - "D:/MyGames/Steam/steamapps/common/Blender/"
+    searched_directories:
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx64/x64/lld-link.com"
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx64/x64/lld-link.exe"
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx64/x64/lld-link"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/lld-link.com"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/lld-link.exe"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/lld-link"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/lld-link.com"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/lld-link.exe"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/lld-link"
+      - "D:/Program Files/Microsoft VS Code/lld-link.com"
+      - "D:/Program Files/Microsoft VS Code/lld-link.exe"
+      - "D:/Program Files/Microsoft VS Code/lld-link"
+      - "D:/VulkanSDK/1.4.328.1/Bin/lld-link.com"
+      - "D:/VulkanSDK/1.4.328.1/Bin/lld-link.exe"
+      - "D:/VulkanSDK/1.4.328.1/Bin/lld-link"
+      - "C:/ProgramData/Oracle/Java/javapath/lld-link.com"
+      - "C:/ProgramData/Oracle/Java/javapath/lld-link.exe"
+      - "C:/ProgramData/Oracle/Java/javapath/lld-link"
+      - "C:/Windows/System32/lld-link.com"
+      - "C:/Windows/System32/lld-link.exe"
+      - "C:/Windows/System32/lld-link"
+      - "C:/Windows/lld-link.com"
+      - "C:/Windows/lld-link.exe"
+      - "C:/Windows/lld-link"
+      - "C:/Windows/System32/wbem/lld-link.com"
+      - "C:/Windows/System32/wbem/lld-link.exe"
+      - "C:/Windows/System32/wbem/lld-link"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link"
+      - "C:/Windows/System32/OpenSSH/lld-link.com"
+      - "C:/Windows/System32/OpenSSH/lld-link.exe"
+      - "C:/Windows/System32/OpenSSH/lld-link"
+      - "C:/mingw64/bin/lld-link.com"
+      - "C:/mingw64/bin/lld-link.exe"
+      - "C:/mingw64/bin/lld-link"
+      - "C:/Program Files/Git/cmd/lld-link.com"
+      - "C:/Program Files/Git/cmd/lld-link.exe"
+      - "C:/Program Files/Git/cmd/lld-link"
+      - "C:/Program Files/WireGuard/lld-link.com"
+      - "C:/Program Files/WireGuard/lld-link.exe"
+      - "C:/Program Files/WireGuard/lld-link"
+      - "D:/MATLAB/R2023b/runtime/win64/lld-link.com"
+      - "D:/MATLAB/R2023b/runtime/win64/lld-link.exe"
+      - "D:/MATLAB/R2023b/runtime/win64/lld-link"
+      - "D:/MATLAB/R2023b/bin/lld-link.com"
+      - "D:/MATLAB/R2023b/bin/lld-link.exe"
+      - "D:/MATLAB/R2023b/bin/lld-link"
+      - "C:/Program Files/CMake/bin/lld-link.com"
+      - "C:/Program Files/CMake/bin/lld-link.exe"
+      - "C:/Program Files/CMake/bin/lld-link"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/lld-link.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/lld-link.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/lld-link"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/Scripts/lld-link.com"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/Scripts/lld-link.exe"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/Scripts/lld-link"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/lld-link.com"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/lld-link.exe"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/lld-link"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/Scripts/lld-link.com"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/Scripts/lld-link.exe"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/Scripts/lld-link"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/lld-link.com"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/lld-link.exe"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/lld-link"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Launcher/lld-link.com"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Launcher/lld-link.exe"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Launcher/lld-link"
+      - "C:/Users/stepa/AppData/Local/Microsoft/WindowsApps/lld-link.com"
+      - "C:/Users/stepa/AppData/Local/Microsoft/WindowsApps/lld-link.exe"
+      - "C:/Users/stepa/AppData/Local/Microsoft/WindowsApps/lld-link"
+      - "D:/Program Files/Microsoft VS Code/bin/lld-link.com"
+      - "D:/Program Files/Microsoft VS Code/bin/lld-link.exe"
+      - "D:/Program Files/Microsoft VS Code/bin/lld-link"
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/Llvm/bin/lld-link.com"
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/Llvm/bin/lld-link.exe"
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/Llvm/bin/lld-link"
+      - "D:/MyGames/Steam/steamapps/common/Blender/lld-link.com"
+      - "D:/MyGames/Steam/steamapps/common/Blender/lld-link.exe"
+      - "D:/MyGames/Steam/steamapps/common/Blender/lld-link"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "c:\\Users\\stepa\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        - "c:\\Users\\stepa\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
+        - "D:\\Program Files\\Microsoft VS Code"
+        - "D:\\VulkanSDK\\1.4.328.1\\Bin"
+        - "C:\\ProgramData\\Oracle\\Java\\javapath"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\mingw64\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\WireGuard\\"
+        - "D:\\MATLAB\\R2023b\\runtime\\win64"
+        - "D:\\MATLAB\\R2023b\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python310\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python312\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Launcher\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Program Files\\Microsoft VS Code\\bin"
+        - "D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\Llvm\\bin"
+        - "D:\\MyGames\\Steam\\steamapps\\common\\Blender"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:238 (find_program)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:7 (project)"
+    mode: "program"
+    variable: "CMAKE_LINKER"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "link"
+    candidate_directories:
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx64/x64/"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
+      - "D:/Program Files/Microsoft VS Code/"
+      - "D:/VulkanSDK/1.4.328.1/Bin/"
+      - "C:/ProgramData/Oracle/Java/javapath/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/mingw64/bin/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/WireGuard/"
+      - "D:/MATLAB/R2023b/runtime/win64/"
+      - "D:/MATLAB/R2023b/bin/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/Scripts/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/Scripts/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Launcher/"
+      - "C:/Users/stepa/AppData/Local/Microsoft/WindowsApps/"
+      - "D:/Program Files/Microsoft VS Code/bin/"
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/Llvm/bin/"
+      - "D:/MyGames/Steam/steamapps/common/Blender/"
+    searched_directories:
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx64/x64/link.com"
+    found: "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx64/x64/link.exe"
+    search_context:
+      ENV{PATH}:
+        - "c:\\Users\\stepa\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        - "c:\\Users\\stepa\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
+        - "D:\\Program Files\\Microsoft VS Code"
+        - "D:\\VulkanSDK\\1.4.328.1\\Bin"
+        - "C:\\ProgramData\\Oracle\\Java\\javapath"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\mingw64\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\WireGuard\\"
+        - "D:\\MATLAB\\R2023b\\runtime\\win64"
+        - "D:\\MATLAB\\R2023b\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python310\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python312\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Launcher\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Program Files\\Microsoft VS Code\\bin"
+        - "D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\Llvm\\bin"
+        - "D:\\MyGames\\Steam\\steamapps\\common\\Blender"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:238 (find_program)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:7 (project)"
+    mode: "program"
+    variable: "CMAKE_MT"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "mt"
+    candidate_directories:
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx64/x64/"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
+      - "D:/Program Files/Microsoft VS Code/"
+      - "D:/VulkanSDK/1.4.328.1/Bin/"
+      - "C:/ProgramData/Oracle/Java/javapath/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/mingw64/bin/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/WireGuard/"
+      - "D:/MATLAB/R2023b/runtime/win64/"
+      - "D:/MATLAB/R2023b/bin/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/Scripts/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/Scripts/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Launcher/"
+      - "C:/Users/stepa/AppData/Local/Microsoft/WindowsApps/"
+      - "D:/Program Files/Microsoft VS Code/bin/"
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/Llvm/bin/"
+      - "D:/MyGames/Steam/steamapps/common/Blender/"
+    searched_directories:
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx64/x64/mt.com"
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx64/x64/mt.exe"
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx64/x64/mt"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/mt.com"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/mt.exe"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/mt"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/mt.com"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/mt.exe"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/mt"
+      - "D:/Program Files/Microsoft VS Code/mt.com"
+      - "D:/Program Files/Microsoft VS Code/mt.exe"
+      - "D:/Program Files/Microsoft VS Code/mt"
+      - "D:/VulkanSDK/1.4.328.1/Bin/mt.com"
+      - "D:/VulkanSDK/1.4.328.1/Bin/mt.exe"
+      - "D:/VulkanSDK/1.4.328.1/Bin/mt"
+      - "C:/ProgramData/Oracle/Java/javapath/mt.com"
+      - "C:/ProgramData/Oracle/Java/javapath/mt.exe"
+      - "C:/ProgramData/Oracle/Java/javapath/mt"
+      - "C:/Windows/System32/mt.com"
+      - "C:/Windows/System32/mt.exe"
+      - "C:/Windows/System32/mt"
+      - "C:/Windows/mt.com"
+      - "C:/Windows/mt.exe"
+      - "C:/Windows/mt"
+      - "C:/Windows/System32/wbem/mt.com"
+      - "C:/Windows/System32/wbem/mt.exe"
+      - "C:/Windows/System32/wbem/mt"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/mt.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/mt.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/mt"
+      - "C:/Windows/System32/OpenSSH/mt.com"
+      - "C:/Windows/System32/OpenSSH/mt.exe"
+      - "C:/Windows/System32/OpenSSH/mt"
+      - "C:/mingw64/bin/mt.com"
+      - "C:/mingw64/bin/mt.exe"
+      - "C:/mingw64/bin/mt"
+      - "C:/Program Files/Git/cmd/mt.com"
+      - "C:/Program Files/Git/cmd/mt.exe"
+      - "C:/Program Files/Git/cmd/mt"
+      - "C:/Program Files/WireGuard/mt.com"
+      - "C:/Program Files/WireGuard/mt.exe"
+      - "C:/Program Files/WireGuard/mt"
+      - "D:/MATLAB/R2023b/runtime/win64/mt.com"
+      - "D:/MATLAB/R2023b/runtime/win64/mt.exe"
+      - "D:/MATLAB/R2023b/runtime/win64/mt"
+      - "D:/MATLAB/R2023b/bin/mt.com"
+      - "D:/MATLAB/R2023b/bin/mt.exe"
+      - "D:/MATLAB/R2023b/bin/mt"
+      - "C:/Program Files/CMake/bin/mt.com"
+      - "C:/Program Files/CMake/bin/mt.exe"
+      - "C:/Program Files/CMake/bin/mt"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/mt.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/mt.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/mt"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/Scripts/mt.com"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/Scripts/mt.exe"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/Scripts/mt"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/mt.com"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/mt.exe"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/mt"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/Scripts/mt.com"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/Scripts/mt.exe"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/Scripts/mt"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/mt.com"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/mt.exe"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/mt"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Launcher/mt.com"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Launcher/mt.exe"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Launcher/mt"
+      - "C:/Users/stepa/AppData/Local/Microsoft/WindowsApps/mt.com"
+      - "C:/Users/stepa/AppData/Local/Microsoft/WindowsApps/mt.exe"
+      - "C:/Users/stepa/AppData/Local/Microsoft/WindowsApps/mt"
+      - "D:/Program Files/Microsoft VS Code/bin/mt.com"
+      - "D:/Program Files/Microsoft VS Code/bin/mt.exe"
+      - "D:/Program Files/Microsoft VS Code/bin/mt"
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/Llvm/bin/mt.com"
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/Llvm/bin/mt.exe"
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/Llvm/bin/mt"
+      - "D:/MyGames/Steam/steamapps/common/Blender/mt.com"
+      - "D:/MyGames/Steam/steamapps/common/Blender/mt.exe"
+      - "D:/MyGames/Steam/steamapps/common/Blender/mt"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "c:\\Users\\stepa\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        - "c:\\Users\\stepa\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
+        - "D:\\Program Files\\Microsoft VS Code"
+        - "D:\\VulkanSDK\\1.4.328.1\\Bin"
+        - "C:\\ProgramData\\Oracle\\Java\\javapath"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\mingw64\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\WireGuard\\"
+        - "D:\\MATLAB\\R2023b\\runtime\\win64"
+        - "D:\\MATLAB\\R2023b\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python310\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python312\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Launcher\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Program Files\\Microsoft VS Code\\bin"
+        - "D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\Llvm\\bin"
+        - "D:\\MyGames\\Steam\\steamapps\\common\\Blender"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:238 (find_program)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:7 (project)"
+    mode: "program"
+    variable: "CMAKE_AR"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "lib"
+    candidate_directories:
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx64/x64/"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
+      - "D:/Program Files/Microsoft VS Code/"
+      - "D:/VulkanSDK/1.4.328.1/Bin/"
+      - "C:/ProgramData/Oracle/Java/javapath/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/mingw64/bin/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/WireGuard/"
+      - "D:/MATLAB/R2023b/runtime/win64/"
+      - "D:/MATLAB/R2023b/bin/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/Scripts/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/Scripts/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Launcher/"
+      - "C:/Users/stepa/AppData/Local/Microsoft/WindowsApps/"
+      - "D:/Program Files/Microsoft VS Code/bin/"
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/Llvm/bin/"
+      - "D:/MyGames/Steam/steamapps/common/Blender/"
+    searched_directories:
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx64/x64/lib.com"
+    found: "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx64/x64/lib.exe"
+    search_context:
+      ENV{PATH}:
+        - "c:\\Users\\stepa\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        - "c:\\Users\\stepa\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
+        - "D:\\Program Files\\Microsoft VS Code"
+        - "D:\\VulkanSDK\\1.4.328.1\\Bin"
+        - "C:\\ProgramData\\Oracle\\Java\\javapath"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\mingw64\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\WireGuard\\"
+        - "D:\\MATLAB\\R2023b\\runtime\\win64"
+        - "D:\\MATLAB\\R2023b\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python310\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python312\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Launcher\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Program Files\\Microsoft VS Code\\bin"
+        - "D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\Llvm\\bin"
+        - "D:\\MyGames\\Steam\\steamapps\\common\\Blender"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:462 (find_file)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:500 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:7 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCXXCompilerId.cpp.in"
+    candidate_directories:
+      - "C:/mingw64/share/cmake-4.1/Modules/"
+    found: "C:/mingw64/share/cmake-4.1/Modules/CMakeCXXCompilerId.cpp.in"
+    search_context:
+      ENV{PATH}:
+        - "c:\\Users\\stepa\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        - "c:\\Users\\stepa\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
+        - "D:\\Program Files\\Microsoft VS Code"
+        - "D:\\VulkanSDK\\1.4.328.1\\Bin"
+        - "C:\\ProgramData\\Oracle\\Java\\javapath"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\mingw64\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\WireGuard\\"
+        - "D:\\MATLAB\\R2023b\\runtime\\win64"
+        - "D:\\MATLAB\\R2023b\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python310\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python312\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Launcher\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Program Files\\Microsoft VS Code\\bin"
+        - "D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\Llvm\\bin"
+        - "D:\\MyGames\\Steam\\steamapps\\common\\Blender"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:7 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler:  
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      ╨Т╨╡╤А╤Б╨╕╤П MSBuild 17.14.23+b0019275e ╨┤╨╗╤П .NET Framework
+      ╨б╨▒╨╛╤А╨║╨░ ╨╜╨░╤З╨░╤В╨░ 25.03.2026 16:06:15.
+      
+      ╨Я╤А╨╛╨╡╨║╤В "D:\\Magistracy\\Animations\\Animations2025\\build\\CMakeFiles\\4.1.0\\CompilerIdCXX\\CompilerIdCXX.vcxproj" ╨▓ ╤Г╨╖╨╗╨╡ 1 (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+      PrepareForBuild:
+        ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "Debug\\".
+        ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "Debug\\CompilerIdCXX.tlog\\".
+      InitializeBuildStatus:
+        ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild", ╤В╨░╨║ ╨║╨░╨║ ╨▒╤Л╨╗╨╛ ╨╖╨░╨┤╨░╨╜╨╛ "AlwaysCreate".
+        ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild".
+      ClCompile:
+        D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.34.31933\\bin\\HostX64\\x64\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TP /FC /errorReport:queue CMakeCXXCompilerId.cpp
+        CMakeCXXCompilerId.cpp
+      Link:
+        D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.34.31933\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X64 Debug\\CMakeCXXCompilerId.obj
+        CompilerIdCXX.vcxproj -> D:\\Magistracy\\Animations\\Animations2025\\build\\CMakeFiles\\4.1.0\\CompilerIdCXX\\CompilerIdCXX.exe
+      PostBuildEvent:
+        for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
+        :VCEnd
+        CMAKE_CXX_COMPILER=D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.34.31933\\bin\\Hostx64\\x64\\cl.exe
+      FinalizeBuildStatus:
+        ╨д╨░╨╣╨╗ "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild" ╤Г╨┤╨░╨╗╤П╨╡╤В╤Б╤П.
+        ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.lastbuildstate".
+      ╨б╨▒╨╛╤А╨║╨░ ╨┐╤А╨╛╨╡╨║╤В╨░ "D:\\Magistracy\\Animations\\Animations2025\\build\\CMakeFiles\\4.1.0\\CompilerIdCXX\\CompilerIdCXX.vcxproj" ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░ (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+      
+      ╨б╨▒╨╛╤А╨║╨░ ╤Г╤Б╨┐╨╡╤И╨╜╨╛ ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░.
+          ╨Я╤А╨╡╨┤╤Г╨┐╤А╨╡╨╢╨┤╨╡╨╜╨╕╨╣: 0
+          ╨Ю╤И╨╕╨▒╨╛╨║: 0
+      
+      ╨Я╤А╨╛╤И╨╗╨╛ ╨▓╤А╨╡╨╝╨╡╨╜╨╕ 00:00:00.63
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
+      
+      The CXX compiler identification is MSVC, found in:
+        D:/Magistracy/Animations/Animations2025/build/CMakeFiles/4.1.0/CompilerIdCXX/CompilerIdCXX.exe
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:37 (find_program)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:65 (__resolve_tool_path)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:104 (__resolve_linker_path)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:7 (project)"
+    mode: "program"
+    variable: "_CMAKE_TOOL_WITH_PATH"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "lld-link"
+    candidate_directories:
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx64/x64/"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
+      - "D:/Program Files/Microsoft VS Code/"
+      - "D:/VulkanSDK/1.4.328.1/Bin/"
+      - "C:/ProgramData/Oracle/Java/javapath/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/mingw64/bin/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/WireGuard/"
+      - "D:/MATLAB/R2023b/runtime/win64/"
+      - "D:/MATLAB/R2023b/bin/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/Scripts/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/Scripts/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Launcher/"
+      - "C:/Users/stepa/AppData/Local/Microsoft/WindowsApps/"
+      - "D:/Program Files/Microsoft VS Code/bin/"
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/Llvm/bin/"
+      - "D:/MyGames/Steam/steamapps/common/Blender/"
+    searched_directories:
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx64/x64/lld-link.com"
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx64/x64/lld-link.exe"
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx64/x64/lld-link"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/lld-link.com"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/lld-link.exe"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/lld-link"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/lld-link.com"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/lld-link.exe"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/lld-link"
+      - "D:/Program Files/Microsoft VS Code/lld-link.com"
+      - "D:/Program Files/Microsoft VS Code/lld-link.exe"
+      - "D:/Program Files/Microsoft VS Code/lld-link"
+      - "D:/VulkanSDK/1.4.328.1/Bin/lld-link.com"
+      - "D:/VulkanSDK/1.4.328.1/Bin/lld-link.exe"
+      - "D:/VulkanSDK/1.4.328.1/Bin/lld-link"
+      - "C:/ProgramData/Oracle/Java/javapath/lld-link.com"
+      - "C:/ProgramData/Oracle/Java/javapath/lld-link.exe"
+      - "C:/ProgramData/Oracle/Java/javapath/lld-link"
+      - "C:/Windows/System32/lld-link.com"
+      - "C:/Windows/System32/lld-link.exe"
+      - "C:/Windows/System32/lld-link"
+      - "C:/Windows/lld-link.com"
+      - "C:/Windows/lld-link.exe"
+      - "C:/Windows/lld-link"
+      - "C:/Windows/System32/wbem/lld-link.com"
+      - "C:/Windows/System32/wbem/lld-link.exe"
+      - "C:/Windows/System32/wbem/lld-link"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link"
+      - "C:/Windows/System32/OpenSSH/lld-link.com"
+      - "C:/Windows/System32/OpenSSH/lld-link.exe"
+      - "C:/Windows/System32/OpenSSH/lld-link"
+      - "C:/mingw64/bin/lld-link.com"
+      - "C:/mingw64/bin/lld-link.exe"
+      - "C:/mingw64/bin/lld-link"
+      - "C:/Program Files/Git/cmd/lld-link.com"
+      - "C:/Program Files/Git/cmd/lld-link.exe"
+      - "C:/Program Files/Git/cmd/lld-link"
+      - "C:/Program Files/WireGuard/lld-link.com"
+      - "C:/Program Files/WireGuard/lld-link.exe"
+      - "C:/Program Files/WireGuard/lld-link"
+      - "D:/MATLAB/R2023b/runtime/win64/lld-link.com"
+      - "D:/MATLAB/R2023b/runtime/win64/lld-link.exe"
+      - "D:/MATLAB/R2023b/runtime/win64/lld-link"
+      - "D:/MATLAB/R2023b/bin/lld-link.com"
+      - "D:/MATLAB/R2023b/bin/lld-link.exe"
+      - "D:/MATLAB/R2023b/bin/lld-link"
+      - "C:/Program Files/CMake/bin/lld-link.com"
+      - "C:/Program Files/CMake/bin/lld-link.exe"
+      - "C:/Program Files/CMake/bin/lld-link"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/lld-link.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/lld-link.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/lld-link"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/Scripts/lld-link.com"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/Scripts/lld-link.exe"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/Scripts/lld-link"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/lld-link.com"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/lld-link.exe"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/lld-link"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/Scripts/lld-link.com"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/Scripts/lld-link.exe"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/Scripts/lld-link"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/lld-link.com"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/lld-link.exe"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/lld-link"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Launcher/lld-link.com"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Launcher/lld-link.exe"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Launcher/lld-link"
+      - "C:/Users/stepa/AppData/Local/Microsoft/WindowsApps/lld-link.com"
+      - "C:/Users/stepa/AppData/Local/Microsoft/WindowsApps/lld-link.exe"
+      - "C:/Users/stepa/AppData/Local/Microsoft/WindowsApps/lld-link"
+      - "D:/Program Files/Microsoft VS Code/bin/lld-link.com"
+      - "D:/Program Files/Microsoft VS Code/bin/lld-link.exe"
+      - "D:/Program Files/Microsoft VS Code/bin/lld-link"
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/Llvm/bin/lld-link.com"
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/Llvm/bin/lld-link.exe"
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/Llvm/bin/lld-link"
+      - "D:/MyGames/Steam/steamapps/common/Blender/lld-link.com"
+      - "D:/MyGames/Steam/steamapps/common/Blender/lld-link.exe"
+      - "D:/MyGames/Steam/steamapps/common/Blender/lld-link"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "c:\\Users\\stepa\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        - "c:\\Users\\stepa\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
+        - "D:\\Program Files\\Microsoft VS Code"
+        - "D:\\VulkanSDK\\1.4.328.1\\Bin"
+        - "C:\\ProgramData\\Oracle\\Java\\javapath"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\mingw64\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\WireGuard\\"
+        - "D:\\MATLAB\\R2023b\\runtime\\win64"
+        - "D:\\MATLAB\\R2023b\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python310\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python312\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Launcher\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Program Files\\Microsoft VS Code\\bin"
+        - "D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\Llvm\\bin"
+        - "D:\\MyGames\\Steam\\steamapps\\common\\Blender"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeDetermineRCCompiler.cmake:40 (find_program)"
+      - "C:/mingw64/share/cmake-4.1/Modules/Platform/Windows-MSVC.cmake:574 (enable_language)"
+      - "C:/mingw64/share/cmake-4.1/Modules/Platform/Windows-MSVC.cmake:547 (__windows_compiler_msvc_enable_rc)"
+      - "C:/mingw64/share/cmake-4.1/Modules/Platform/Windows-MSVC-C.cmake:5 (__windows_compiler_msvc)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeCInformation.cmake:48 (include)"
+      - "CMakeLists.txt:7 (project)"
+    mode: "program"
+    variable: "CMAKE_RC_COMPILER"
+    description: "RC compiler"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "rc"
+    candidate_directories:
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/"
+      - "D:/Program Files/Microsoft VS Code/"
+      - "D:/VulkanSDK/1.4.328.1/Bin/"
+      - "C:/ProgramData/Oracle/Java/javapath/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/mingw64/bin/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/WireGuard/"
+      - "D:/MATLAB/R2023b/runtime/win64/"
+      - "D:/MATLAB/R2023b/bin/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/Scripts/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/Scripts/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Launcher/"
+      - "C:/Users/stepa/AppData/Local/Microsoft/WindowsApps/"
+      - "D:/Program Files/Microsoft VS Code/bin/"
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/Llvm/bin/"
+      - "D:/MyGames/Steam/steamapps/common/Blender/"
+      - "C:/Program Files/bin/"
+      - "C:/Program Files/sbin/"
+      - "C:/Program Files/"
+      - "C:/Program Files (x86)/bin/"
+      - "C:/Program Files (x86)/sbin/"
+      - "C:/Program Files (x86)/"
+      - "C:/mingw64/bin/"
+      - "C:/mingw64/sbin/"
+      - "C:/mingw64/"
+      - "C:/Program Files/animations/bin/"
+      - "C:/Program Files/animations/sbin/"
+      - "C:/Program Files/animations/"
+    searched_directories:
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/rc.com"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/rc.exe"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/debugCommand/rc"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/rc.com"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/rc.exe"
+      - "C:/Users/stepa/AppData/Roaming/Code/User/globalStorage/github.copilot-chat/copilotCli/rc"
+      - "D:/Program Files/Microsoft VS Code/rc.com"
+      - "D:/Program Files/Microsoft VS Code/rc.exe"
+      - "D:/Program Files/Microsoft VS Code/rc"
+      - "D:/VulkanSDK/1.4.328.1/Bin/rc.com"
+      - "D:/VulkanSDK/1.4.328.1/Bin/rc.exe"
+      - "D:/VulkanSDK/1.4.328.1/Bin/rc"
+      - "C:/ProgramData/Oracle/Java/javapath/rc.com"
+      - "C:/ProgramData/Oracle/Java/javapath/rc.exe"
+      - "C:/ProgramData/Oracle/Java/javapath/rc"
+      - "C:/Windows/System32/rc.com"
+      - "C:/Windows/System32/rc.exe"
+      - "C:/Windows/System32/rc"
+      - "C:/Windows/rc.com"
+      - "C:/Windows/rc.exe"
+      - "C:/Windows/rc"
+      - "C:/Windows/System32/wbem/rc.com"
+      - "C:/Windows/System32/wbem/rc.exe"
+      - "C:/Windows/System32/wbem/rc"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/rc.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/rc.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/rc"
+      - "C:/Windows/System32/OpenSSH/rc.com"
+      - "C:/Windows/System32/OpenSSH/rc.exe"
+      - "C:/Windows/System32/OpenSSH/rc"
+      - "C:/mingw64/bin/rc.com"
+      - "C:/mingw64/bin/rc.exe"
+      - "C:/mingw64/bin/rc"
+      - "C:/Program Files/Git/cmd/rc.com"
+      - "C:/Program Files/Git/cmd/rc.exe"
+      - "C:/Program Files/Git/cmd/rc"
+      - "C:/Program Files/WireGuard/rc.com"
+      - "C:/Program Files/WireGuard/rc.exe"
+      - "C:/Program Files/WireGuard/rc"
+      - "D:/MATLAB/R2023b/runtime/win64/rc.com"
+      - "D:/MATLAB/R2023b/runtime/win64/rc.exe"
+      - "D:/MATLAB/R2023b/runtime/win64/rc"
+      - "D:/MATLAB/R2023b/bin/rc.com"
+      - "D:/MATLAB/R2023b/bin/rc.exe"
+      - "D:/MATLAB/R2023b/bin/rc"
+      - "C:/Program Files/CMake/bin/rc.com"
+      - "C:/Program Files/CMake/bin/rc.exe"
+      - "C:/Program Files/CMake/bin/rc"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/rc.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/rc.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/rc"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/Scripts/rc.com"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/Scripts/rc.exe"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/Scripts/rc"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/rc.com"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/rc.exe"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python310/rc"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/Scripts/rc.com"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/Scripts/rc.exe"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/Scripts/rc"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/rc.com"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/rc.exe"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Python312/rc"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Launcher/rc.com"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Launcher/rc.exe"
+      - "C:/Users/stepa/AppData/Local/Programs/Python/Launcher/rc"
+      - "C:/Users/stepa/AppData/Local/Microsoft/WindowsApps/rc.com"
+      - "C:/Users/stepa/AppData/Local/Microsoft/WindowsApps/rc.exe"
+      - "C:/Users/stepa/AppData/Local/Microsoft/WindowsApps/rc"
+      - "D:/Program Files/Microsoft VS Code/bin/rc.com"
+      - "D:/Program Files/Microsoft VS Code/bin/rc.exe"
+      - "D:/Program Files/Microsoft VS Code/bin/rc"
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/Llvm/bin/rc.com"
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/Llvm/bin/rc.exe"
+      - "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/Llvm/bin/rc"
+      - "D:/MyGames/Steam/steamapps/common/Blender/rc.com"
+      - "D:/MyGames/Steam/steamapps/common/Blender/rc.exe"
+      - "D:/MyGames/Steam/steamapps/common/Blender/rc"
+      - "C:/Program Files/bin/rc.com"
+      - "C:/Program Files/bin/rc.exe"
+      - "C:/Program Files/bin/rc"
+      - "C:/Program Files/sbin/rc.com"
+      - "C:/Program Files/sbin/rc.exe"
+      - "C:/Program Files/sbin/rc"
+      - "C:/Program Files/rc.com"
+      - "C:/Program Files/rc.exe"
+      - "C:/Program Files/rc"
+      - "C:/Program Files (x86)/bin/rc.com"
+      - "C:/Program Files (x86)/bin/rc.exe"
+      - "C:/Program Files (x86)/bin/rc"
+      - "C:/Program Files (x86)/sbin/rc.com"
+      - "C:/Program Files (x86)/sbin/rc.exe"
+      - "C:/Program Files (x86)/sbin/rc"
+      - "C:/Program Files (x86)/rc.com"
+      - "C:/Program Files (x86)/rc.exe"
+      - "C:/Program Files (x86)/rc"
+      - "C:/mingw64/bin/rc.com"
+      - "C:/mingw64/bin/rc.exe"
+      - "C:/mingw64/bin/rc"
+      - "C:/mingw64/sbin/rc.com"
+      - "C:/mingw64/sbin/rc.exe"
+      - "C:/mingw64/sbin/rc"
+      - "C:/mingw64/rc.com"
+      - "C:/mingw64/rc.exe"
+      - "C:/mingw64/rc"
+      - "C:/Program Files/animations/bin/rc.com"
+      - "C:/Program Files/animations/bin/rc.exe"
+      - "C:/Program Files/animations/bin/rc"
+      - "C:/Program Files/animations/sbin/rc.com"
+      - "C:/Program Files/animations/sbin/rc.exe"
+      - "C:/Program Files/animations/sbin/rc"
+      - "C:/Program Files/animations/rc.com"
+      - "C:/Program Files/animations/rc.exe"
+      - "C:/Program Files/animations/rc"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "c:\\Users\\stepa\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\debugCommand"
+        - "c:\\Users\\stepa\\AppData\\Roaming\\Code\\User\\globalStorage\\github.copilot-chat\\copilotCli"
+        - "D:\\Program Files\\Microsoft VS Code"
+        - "D:\\VulkanSDK\\1.4.328.1\\Bin"
+        - "C:\\ProgramData\\Oracle\\Java\\javapath"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\mingw64\\bin"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\WireGuard\\"
+        - "D:\\MATLAB\\R2023b\\runtime\\win64"
+        - "D:\\MATLAB\\R2023b\\bin"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python310\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Python312\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Programs\\Python\\Launcher\\"
+        - "C:\\Users\\stepa\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Program Files\\Microsoft VS Code\\bin"
+        - "D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\Llvm\\bin"
+        - "D:\\MyGames\\Steam\\steamapps\\common\\Blender"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files/animations"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "C:/Program Files"
+        - "C:/Program Files (x86)"
+        - "C:/mingw64"
+        - "C:/Program Files/animations"
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:7 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "D:/Magistracy/Animations/Animations2025/build/CMakeFiles/CMakeScratch/TryCompile-900kjl"
+      binary: "D:/Magistracy/Animations/Animations2025/build/CMakeFiles/CMakeScratch/TryCompile-900kjl"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/Magistracy/Animations/Animations2025/build/CMakeFiles/CMakeScratch/TryCompile-900kjl'
+        
+        Run Build Command(s): "D:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_6e29d.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        ╨Т╨╡╤А╤Б╨╕╤П MSBuild 17.14.23+b0019275e ╨┤╨╗╤П .NET Framework
+        ╨б╨▒╨╛╤А╨║╨░ ╨╜╨░╤З╨░╤В╨░ 25.03.2026 16:06:16.
+        
+        ╨Я╤А╨╛╨╡╨║╤В "D:\\Magistracy\\Animations\\Animations2025\\build\\CMakeFiles\\CMakeScratch\\TryCompile-900kjl\\cmTC_6e29d.vcxproj" ╨▓ ╤Г╨╖╨╗╨╡ 1 (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+        PrepareForBuild:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_6e29d.dir\\Debug\\".
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "D:\\Magistracy\\Animations\\Animations2025\\build\\CMakeFiles\\CMakeScratch\\TryCompile-900kjl\\Debug\\".
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_6e29d.dir\\Debug\\cmTC_6e29d.tlog\\".
+        InitializeBuildStatus:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ "cmTC_6e29d.dir\\Debug\\cmTC_6e29d.tlog\\unsuccessfulbuild", ╤В╨░╨║ ╨║╨░╨║ ╨▒╤Л╨╗╨╛ ╨╖╨░╨┤╨░╨╜╨╛ "AlwaysCreate".
+          ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "cmTC_6e29d.dir\\Debug\\cmTC_6e29d.tlog\\unsuccessfulbuild".
+        ClCompile:
+          D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.34.31933\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Fo"cmTC_6e29d.dir\\Debug\\\\" /Fd"cmTC_6e29d.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\\mingw64\\share\\cmake-4.1\\Modules\\CMakeCCompilerABI.c"
+          ╨Ю╨┐╤В╨╕╨╝╨╕╨╖╨╕╤А╤Г╤О╤Й╨╕╨╣ ╨║╨╛╨╝╨┐╨╕╨╗╤П╤В╨╛╤А Microsoft (R) C/C++ ╨▓╨╡╤А╤Б╨╕╨╕ 19.34.31948 ╨┤╨╗╤П x64
+          CMakeCCompilerABI.c
+          (C) ╨Ъ╨╛╤А╨┐╨╛╤А╨░╤Ж╨╕╤П ╨Ь╨░╨╣╨║╤А╨╛╤Б╨╛╤Д╤В (Microsoft Corporation).  ╨Т╤Б╨╡ ╨┐╤А╨░╨▓╨░ ╨╖╨░╤Й╨╕╤Й╨╡╨╜╤Л.
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Fo"cmTC_6e29d.dir\\Debug\\\\" /Fd"cmTC_6e29d.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\\mingw64\\share\\cmake-4.1\\Modules\\CMakeCCompilerABI.c"
+        Link:
+          D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.34.31933\\bin\\HostX64\\x64\\link.exe /OUT:"D:\\Magistracy\\Animations\\Animations2025\\build\\CMakeFiles\\CMakeScratch\\TryCompile-900kjl\\Debug\\cmTC_6e29d.exe" /INCREMENTAL /ILK:"cmTC_6e29d.dir\\Debug\\cmTC_6e29d.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Magistracy/Animations/Animations2025/build/CMakeFiles/CMakeScratch/TryCompile-900kjl/Debug/cmTC_6e29d.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"D:/Magistracy/Animations/Animations2025/build/CMakeFiles/CMakeScratch/TryCompile-900kjl/Debug/cmTC_6e29d.lib" /MACHINE:X64  /machine:x64 cmTC_6e29d.dir\\Debug\\CMakeCCompilerABI.obj
+          cmTC_6e29d.vcxproj -> D:\\Magistracy\\Animations\\Animations2025\\build\\CMakeFiles\\CMakeScratch\\TryCompile-900kjl\\Debug\\cmTC_6e29d.exe
+        FinalizeBuildStatus:
+          ╨д╨░╨╣╨╗ "cmTC_6e29d.dir\\Debug\\cmTC_6e29d.tlog\\unsuccessfulbuild" ╤Г╨┤╨░╨╗╤П╨╡╤В╤Б╤П.
+          ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "cmTC_6e29d.dir\\Debug\\cmTC_6e29d.tlog\\cmTC_6e29d.lastbuildstate".
+        ╨б╨▒╨╛╤А╨║╨░ ╨┐╤А╨╛╨╡╨║╤В╨░ "D:\\Magistracy\\Animations\\Animations2025\\build\\CMakeFiles\\CMakeScratch\\TryCompile-900kjl\\cmTC_6e29d.vcxproj" ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░ (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+        
+        ╨б╨▒╨╛╤А╨║╨░ ╤Г╤Б╨┐╨╡╤И╨╜╨╛ ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░.
+            ╨Я╤А╨╡╨┤╤Г╨┐╤А╨╡╨╢╨┤╨╡╨╜╨╕╨╣: 0
+            ╨Ю╤И╨╕╨▒╨╛╨║: 0
+        
+        ╨Я╤А╨╛╤И╨╗╨╛ ╨▓╤А╨╡╨╝╨╡╨╜╨╕ 00:00:00.57
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:7 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'C': D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/HostX64/x64/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/mingw64/share/cmake-4.1/Modules/Internal/CMakeDetermineLinkerId.cmake:36 (message)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeDetermineCompilerABI.cmake:299 (cmake_determine_linker_id)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:7 (project)"
+    message: |
+      Running the C compiler's linker: "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/HostX64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.34.31948.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:7 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "D:/Magistracy/Animations/Animations2025/build/CMakeFiles/CMakeScratch/TryCompile-uptu5b"
+      binary: "D:/Magistracy/Animations/Animations2025/build/CMakeFiles/CMakeScratch/TryCompile-uptu5b"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/Magistracy/Animations/Animations2025/build/CMakeFiles/CMakeScratch/TryCompile-uptu5b'
+        
+        Run Build Command(s): "D:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_fe078.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        ╨Т╨╡╤А╤Б╨╕╤П MSBuild 17.14.23+b0019275e ╨┤╨╗╤П .NET Framework
+        ╨б╨▒╨╛╤А╨║╨░ ╨╜╨░╤З╨░╤В╨░ 25.03.2026 16:06:17.
+        
+        ╨Я╤А╨╛╨╡╨║╤В "D:\\Magistracy\\Animations\\Animations2025\\build\\CMakeFiles\\CMakeScratch\\TryCompile-uptu5b\\cmTC_fe078.vcxproj" ╨▓ ╤Г╨╖╨╗╨╡ 1 (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+        PrepareForBuild:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_fe078.dir\\Debug\\".
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "D:\\Magistracy\\Animations\\Animations2025\\build\\CMakeFiles\\CMakeScratch\\TryCompile-uptu5b\\Debug\\".
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ ╨║╨░╤В╨░╨╗╨╛╨│╨░ "cmTC_fe078.dir\\Debug\\cmTC_fe078.tlog\\".
+        InitializeBuildStatus:
+          ╨б╨╛╨╖╨┤╨░╨╜╨╕╨╡ "cmTC_fe078.dir\\Debug\\cmTC_fe078.tlog\\unsuccessfulbuild", ╤В╨░╨║ ╨║╨░╨║ ╨▒╤Л╨╗╨╛ ╨╖╨░╨┤╨░╨╜╨╛ "AlwaysCreate".
+          ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "cmTC_fe078.dir\\Debug\\cmTC_fe078.tlog\\unsuccessfulbuild".
+        ClCompile:
+          D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.34.31933\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_fe078.dir\\Debug\\\\" /Fd"cmTC_fe078.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\mingw64\\share\\cmake-4.1\\Modules\\CMakeCXXCompilerABI.cpp"
+          ╨Ю╨┐╤В╨╕╨╝╨╕╨╖╨╕╤А╤Г╤О╤Й╨╕╨╣ ╨║╨╛╨╝╨┐╨╕╨╗╤П╤В╨╛╤А Microsoft (R) C/C++ ╨▓╨╡╤А╤Б╨╕╨╕ 19.34.31948 ╨┤╨╗╤П x64
+          CMakeCXXCompilerABI.cpp
+          (C) ╨Ъ╨╛╤А╨┐╨╛╤А╨░╤Ж╨╕╤П ╨Ь╨░╨╣╨║╤А╨╛╤Б╨╛╤Д╤В (Microsoft Corporation).  ╨Т╤Б╨╡ ╨┐╤А╨░╨▓╨░ ╨╖╨░╤Й╨╕╤Й╨╡╨╜╤Л.
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_fe078.dir\\Debug\\\\" /Fd"cmTC_fe078.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\mingw64\\share\\cmake-4.1\\Modules\\CMakeCXXCompilerABI.cpp"
+        Link:
+          D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.34.31933\\bin\\HostX64\\x64\\link.exe /OUT:"D:\\Magistracy\\Animations\\Animations2025\\build\\CMakeFiles\\CMakeScratch\\TryCompile-uptu5b\\Debug\\cmTC_fe078.exe" /INCREMENTAL /ILK:"cmTC_fe078.dir\\Debug\\cmTC_fe078.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/Magistracy/Animations/Animations2025/build/CMakeFiles/CMakeScratch/TryCompile-uptu5b/Debug/cmTC_fe078.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"D:/Magistracy/Animations/Animations2025/build/CMakeFiles/CMakeScratch/TryCompile-uptu5b/Debug/cmTC_fe078.lib" /MACHINE:X64  /machine:x64 cmTC_fe078.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_fe078.vcxproj -> D:\\Magistracy\\Animations\\Animations2025\\build\\CMakeFiles\\CMakeScratch\\TryCompile-uptu5b\\Debug\\cmTC_fe078.exe
+        FinalizeBuildStatus:
+          ╨д╨░╨╣╨╗ "cmTC_fe078.dir\\Debug\\cmTC_fe078.tlog\\unsuccessfulbuild" ╤Г╨┤╨░╨╗╤П╨╡╤В╤Б╤П.
+          ╨Ю╨▒╤А╨░╤Й╨╡╨╜╨╕╨╡ ╨║ "cmTC_fe078.dir\\Debug\\cmTC_fe078.tlog\\cmTC_fe078.lastbuildstate".
+        ╨б╨▒╨╛╤А╨║╨░ ╨┐╤А╨╛╨╡╨║╤В╨░ "D:\\Magistracy\\Animations\\Animations2025\\build\\CMakeFiles\\CMakeScratch\\TryCompile-uptu5b\\cmTC_fe078.vcxproj" ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░ (╤Ж╨╡╨╗╨╡╨▓╤Л╨╡ ╨╛╨▒╤К╨╡╨║╤В╤Л ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О).
+        
+        ╨б╨▒╨╛╤А╨║╨░ ╤Г╤Б╨┐╨╡╤И╨╜╨╛ ╨╖╨░╨▓╨╡╤А╤И╨╡╨╜╨░.
+            ╨Я╤А╨╡╨┤╤Г╨┐╤А╨╡╨╢╨┤╨╡╨╜╨╕╨╣: 0
+            ╨Ю╤И╨╕╨▒╨╛╨║: 0
+        
+        ╨Я╤А╨╛╤И╨╗╨╛ ╨▓╤А╨╡╨╝╨╡╨╜╨╕ 00:00:00.58
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:7 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'CXX': D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/HostX64/x64/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/mingw64/share/cmake-4.1/Modules/Internal/CMakeDetermineLinkerId.cmake:36 (message)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeDetermineCompilerABI.cmake:299 (cmake_determine_linker_id)"
+      - "C:/mingw64/share/cmake-4.1/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:7 (project)"
+    message: |
+      Running the CXX compiler's linker: "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/HostX64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.34.31948.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+...

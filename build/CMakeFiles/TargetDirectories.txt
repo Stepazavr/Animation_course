@@ -1,0 +1,3 @@
+D:/Magistracy/Animations/Animations2025/build/CMakeFiles/animations.dir
+D:/Magistracy/Animations/Animations2025/build/CMakeFiles/ALL_BUILD.dir
+D:/Magistracy/Animations/Animations2025/build/CMakeFiles/ZERO_CHECK.dir

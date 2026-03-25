@@ -1,0 +1,397 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6A5F22A8-234B-3A36-A830-0B937728B484}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>animations</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Magistracy\Animations\Animations2025\build\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">animations.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">animations</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Magistracy\Animations\Animations2025\build\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">animations.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">animations</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Magistracy\Animations\Animations2025\build\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">animations.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">animations</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Magistracy\Animations\Animations2025\build\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">animations.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">animations</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Magistracy\Animations\Animations2025\sources;D:\Magistracy\Animations\Animations2025\sources\engine;D:\Magistracy\Animations\Animations2025\sources\3rd_party;D:\Magistracy\Animations\Animations2025\sources\3rd_party\ozz\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /w</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Magistracy\Animations\Animations2025\sources;D:\Magistracy\Animations\Animations2025\sources\engine;D:\Magistracy\Animations\Animations2025\sources\3rd_party;D:\Magistracy\Animations\Animations2025\sources\3rd_party\ozz\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Magistracy\Animations\Animations2025\sources;D:\Magistracy\Animations\Animations2025\sources\engine;D:\Magistracy\Animations\Animations2025\sources\3rd_party;D:\Magistracy\Animations\Animations2025\sources\3rd_party\ozz\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>winmm.lib;Version.lib;Setupapi.lib;SDL2.lib;imm32.lib;assimp.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>D:/Magistracy/Animations/Animations2025/build/Debug/animations.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>D:/Magistracy/Animations/Animations2025/build/Debug/animations.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Magistracy\Animations\Animations2025\sources;D:\Magistracy\Animations\Animations2025\sources\engine;D:\Magistracy\Animations\Animations2025\sources\3rd_party;D:\Magistracy\Animations\Animations2025\sources\3rd_party\ozz\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /w</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);NDEBUG;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Magistracy\Animations\Animations2025\sources;D:\Magistracy\Animations\Animations2025\sources\engine;D:\Magistracy\Animations\Animations2025\sources\3rd_party;D:\Magistracy\Animations\Animations2025\sources\3rd_party\ozz\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Magistracy\Animations\Animations2025\sources;D:\Magistracy\Animations\Animations2025\sources\engine;D:\Magistracy\Animations\Animations2025\sources\3rd_party;D:\Magistracy\Animations\Animations2025\sources\3rd_party\ozz\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>winmm.lib;Version.lib;Setupapi.lib;SDL2.lib;imm32.lib;assimp.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>D:/Magistracy/Animations/Animations2025/build/Release/animations.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>D:/Magistracy/Animations/Animations2025/build/Release/animations.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Magistracy\Animations\Animations2025\sources;D:\Magistracy\Animations\Animations2025\sources\engine;D:\Magistracy\Animations\Animations2025\sources\3rd_party;D:\Magistracy\Animations\Animations2025\sources\3rd_party\ozz\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /w</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);NDEBUG;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Magistracy\Animations\Animations2025\sources;D:\Magistracy\Animations\Animations2025\sources\engine;D:\Magistracy\Animations\Animations2025\sources\3rd_party;D:\Magistracy\Animations\Animations2025\sources\3rd_party\ozz\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Magistracy\Animations\Animations2025\sources;D:\Magistracy\Animations\Animations2025\sources\engine;D:\Magistracy\Animations\Animations2025\sources\3rd_party;D:\Magistracy\Animations\Animations2025\sources\3rd_party\ozz\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>winmm.lib;Version.lib;Setupapi.lib;SDL2-NOTFOUND;imm32.lib;assimp-NOTFOUND;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>D:/Magistracy/Animations/Animations2025/build/MinSizeRel/animations.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>D:/Magistracy/Animations/Animations2025/build/MinSizeRel/animations.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Magistracy\Animations\Animations2025\sources;D:\Magistracy\Animations\Animations2025\sources\engine;D:\Magistracy\Animations\Animations2025\sources\3rd_party;D:\Magistracy\Animations\Animations2025\sources\3rd_party\ozz\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /w</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);NDEBUG;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Magistracy\Animations\Animations2025\sources;D:\Magistracy\Animations\Animations2025\sources\engine;D:\Magistracy\Animations\Animations2025\sources\3rd_party;D:\Magistracy\Animations\Animations2025\sources\3rd_party\ozz\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Magistracy\Animations\Animations2025\sources;D:\Magistracy\Animations\Animations2025\sources\engine;D:\Magistracy\Animations\Animations2025\sources\3rd_party;D:\Magistracy\Animations\Animations2025\sources\3rd_party\ozz\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>winmm.lib;Version.lib;Setupapi.lib;SDL2.lib;imm32.lib;assimp.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>D:/Magistracy/Animations/Animations2025/build/RelWithDebInfo/animations.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>D:/Magistracy/Animations/Animations2025/build/RelWithDebInfo/animations.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Magistracy\Animations\Animations2025\sources\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/Magistracy/Animations/Animations2025/sources/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+C:\mingw64\bin\cmake.exe -SD:/Magistracy/Animations/Animations2025/sources -BD:/Magistracy/Animations/Animations2025/build --check-stamp-file D:/Magistracy/Animations/Animations2025/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\mingw64\share\cmake-4.1\Modules\CMakeCInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeCXXInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeCommonLanguageInclude.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeGenericSystem.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeInitializeConfigs.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeLanguageInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeRCInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeSystemSpecificInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeSystemSpecificInitialize.cmake;C:\mingw64\share\cmake-4.1\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\mingw64\share\cmake-4.1\Modules\Compiler\MSVC-C.cmake;C:\mingw64\share\cmake-4.1\Modules\Compiler\MSVC-CXX.cmake;C:\mingw64\share\cmake-4.1\Modules\Compiler\MSVC.cmake;C:\mingw64\share\cmake-4.1\Modules\Internal\CMakeCLinkerInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\Linker\MSVC-C.cmake;C:\mingw64\share\cmake-4.1\Modules\Linker\MSVC-CXX.cmake;C:\mingw64\share\cmake-4.1\Modules\Linker\MSVC.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Windows-Initialize.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Windows-MSVC-C.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Windows-MSVC-CXX.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Windows-MSVC.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Windows.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\WindowsPaths.cmake;D:\Magistracy\Animations\Animations2025\build\CMakeFiles\4.1.0\CMakeCCompiler.cmake;D:\Magistracy\Animations\Animations2025\build\CMakeFiles\4.1.0\CMakeCXXCompiler.cmake;D:\Magistracy\Animations\Animations2025\build\CMakeFiles\4.1.0\CMakeRCCompiler.cmake;D:\Magistracy\Animations\Animations2025\build\CMakeFiles\4.1.0\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Magistracy\Animations\Animations2025\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/Magistracy/Animations/Animations2025/sources/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+C:\mingw64\bin\cmake.exe -SD:/Magistracy/Animations/Animations2025/sources -BD:/Magistracy/Animations/Animations2025/build --check-stamp-file D:/Magistracy/Animations/Animations2025/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\mingw64\share\cmake-4.1\Modules\CMakeCInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeCXXInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeCommonLanguageInclude.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeGenericSystem.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeInitializeConfigs.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeLanguageInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeRCInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeSystemSpecificInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeSystemSpecificInitialize.cmake;C:\mingw64\share\cmake-4.1\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\mingw64\share\cmake-4.1\Modules\Compiler\MSVC-C.cmake;C:\mingw64\share\cmake-4.1\Modules\Compiler\MSVC-CXX.cmake;C:\mingw64\share\cmake-4.1\Modules\Compiler\MSVC.cmake;C:\mingw64\share\cmake-4.1\Modules\Internal\CMakeCLinkerInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\Linker\MSVC-C.cmake;C:\mingw64\share\cmake-4.1\Modules\Linker\MSVC-CXX.cmake;C:\mingw64\share\cmake-4.1\Modules\Linker\MSVC.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Windows-Initialize.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Windows-MSVC-C.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Windows-MSVC-CXX.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Windows-MSVC.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Windows.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\WindowsPaths.cmake;D:\Magistracy\Animations\Animations2025\build\CMakeFiles\4.1.0\CMakeCCompiler.cmake;D:\Magistracy\Animations\Animations2025\build\CMakeFiles\4.1.0\CMakeCXXCompiler.cmake;D:\Magistracy\Animations\Animations2025\build\CMakeFiles\4.1.0\CMakeRCCompiler.cmake;D:\Magistracy\Animations\Animations2025\build\CMakeFiles\4.1.0\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Magistracy\Animations\Animations2025\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule D:/Magistracy/Animations/Animations2025/sources/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+C:\mingw64\bin\cmake.exe -SD:/Magistracy/Animations/Animations2025/sources -BD:/Magistracy/Animations/Animations2025/build --check-stamp-file D:/Magistracy/Animations/Animations2025/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\mingw64\share\cmake-4.1\Modules\CMakeCInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeCXXInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeCommonLanguageInclude.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeGenericSystem.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeInitializeConfigs.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeLanguageInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeRCInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeSystemSpecificInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeSystemSpecificInitialize.cmake;C:\mingw64\share\cmake-4.1\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\mingw64\share\cmake-4.1\Modules\Compiler\MSVC-C.cmake;C:\mingw64\share\cmake-4.1\Modules\Compiler\MSVC-CXX.cmake;C:\mingw64\share\cmake-4.1\Modules\Compiler\MSVC.cmake;C:\mingw64\share\cmake-4.1\Modules\Internal\CMakeCLinkerInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\Linker\MSVC-C.cmake;C:\mingw64\share\cmake-4.1\Modules\Linker\MSVC-CXX.cmake;C:\mingw64\share\cmake-4.1\Modules\Linker\MSVC.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Windows-Initialize.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Windows-MSVC-C.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Windows-MSVC-CXX.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Windows-MSVC.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Windows.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\WindowsPaths.cmake;D:\Magistracy\Animations\Animations2025\build\CMakeFiles\4.1.0\CMakeCCompiler.cmake;D:\Magistracy\Animations\Animations2025\build\CMakeFiles\4.1.0\CMakeCXXCompiler.cmake;D:\Magistracy\Animations\Animations2025\build\CMakeFiles\4.1.0\CMakeRCCompiler.cmake;D:\Magistracy\Animations\Animations2025\build\CMakeFiles\4.1.0\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Magistracy\Animations\Animations2025\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule D:/Magistracy/Animations/Animations2025/sources/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+C:\mingw64\bin\cmake.exe -SD:/Magistracy/Animations/Animations2025/sources -BD:/Magistracy/Animations/Animations2025/build --check-stamp-file D:/Magistracy/Animations/Animations2025/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\mingw64\share\cmake-4.1\Modules\CMakeCInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeCXXInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeCommonLanguageInclude.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeGenericSystem.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeInitializeConfigs.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeLanguageInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeRCInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeSystemSpecificInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\CMakeSystemSpecificInitialize.cmake;C:\mingw64\share\cmake-4.1\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\mingw64\share\cmake-4.1\Modules\Compiler\MSVC-C.cmake;C:\mingw64\share\cmake-4.1\Modules\Compiler\MSVC-CXX.cmake;C:\mingw64\share\cmake-4.1\Modules\Compiler\MSVC.cmake;C:\mingw64\share\cmake-4.1\Modules\Internal\CMakeCLinkerInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\mingw64\share\cmake-4.1\Modules\Linker\MSVC-C.cmake;C:\mingw64\share\cmake-4.1\Modules\Linker\MSVC-CXX.cmake;C:\mingw64\share\cmake-4.1\Modules\Linker\MSVC.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Windows-Initialize.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Windows-MSVC-C.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Windows-MSVC-CXX.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Windows-MSVC.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\Windows.cmake;C:\mingw64\share\cmake-4.1\Modules\Platform\WindowsPaths.cmake;D:\Magistracy\Animations\Animations2025\build\CMakeFiles\4.1.0\CMakeCCompiler.cmake;D:\Magistracy\Animations\Animations2025\build\CMakeFiles\4.1.0\CMakeCXXCompiler.cmake;D:\Magistracy\Animations\Animations2025\build\CMakeFiles\4.1.0\CMakeRCCompiler.cmake;D:\Magistracy\Animations\Animations2025\build\CMakeFiles\4.1.0\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Magistracy\Animations\Animations2025\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="D:\Magistracy\Animations\Animations2025\sources\application\application.cpp" />
+    <ClCompile Include="D:\Magistracy\Animations\Animations2025\sources\application\arcball_camera.cpp" />
+    <ClCompile Include="D:\Magistracy\Animations\Animations2025\sources\application\init.cpp" />
+    <ClCompile Include="D:\Magistracy\Animations\Animations2025\sources\application\render.cpp" />
+    <ClCompile Include="D:\Magistracy\Animations\Animations2025\sources\application\ui.cpp" />
+    <ClCompile Include="D:\Magistracy\Animations\Animations2025\sources\application\update.cpp" />
+    <ClCompile Include="D:\Magistracy\Animations\Animations2025\sources\engine\import\import.cpp" />
+    <ClCompile Include="D:\Magistracy\Animations\Animations2025\sources\engine\log.cpp" />
+    <ClCompile Include="D:\Magistracy\Animations\Animations2025\sources\engine\main.cpp" />
+    <ClCompile Include="D:\Magistracy\Animations\Animations2025\sources\engine\render\debug_arrow.cpp" />
+    <ClCompile Include="D:\Magistracy\Animations\Animations2025\sources\engine\render\material.cpp" />
+    <ClCompile Include="D:\Magistracy\Animations\Animations2025\sources\engine\render\mesh.cpp" />
+    <ClCompile Include="D:\Magistracy\Animations\Animations2025\sources\engine\render\shader.cpp" />
+    <ClCompile Include="D:\Magistracy\Animations\Animations2025\sources\engine\render\texture2d.cpp" />
+    <ClCompile Include="D:\Magistracy\Animations\Animations2025\sources\engine\time.cpp" />
+    <ClCompile Include="D:\Magistracy\Animations\Animations2025\sources\3rd_party\imgui\ImGuizmo.cpp" />
+    <ClCompile Include="D:\Magistracy\Animations\Animations2025\sources\3rd_party\imgui\imgui.cpp" />
+    <ClCompile Include="D:\Magistracy\Animations\Animations2025\sources\3rd_party\imgui\imgui_demo.cpp" />
+    <ClCompile Include="D:\Magistracy\Animations\Animations2025\sources\3rd_party\imgui\imgui_draw.cpp" />
+    <ClCompile Include="D:\Magistracy\Animations\Animations2025\sources\3rd_party\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="D:\Magistracy\Animations\Animations2025\sources\3rd_party\imgui\imgui_impl_sdl.cpp" />
+    <ClCompile Include="D:\Magistracy\Animations\Animations2025\sources\3rd_party\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="D:\Magistracy\Animations\Animations2025\sources\3rd_party\glad\glad.c" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="D:\Magistracy\Animations\Animations2025\build\ZERO_CHECK.vcxproj">
+      <Project>{4720F069-07E5-37FA-98C1-423B2AE8F9DF}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

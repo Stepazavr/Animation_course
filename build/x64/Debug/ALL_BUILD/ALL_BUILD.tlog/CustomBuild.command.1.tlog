@@ -1,0 +1,10 @@
+^D:\MAGISTRACY\ANIMATIONS\ANIMATIONS2025\SOURCES\CMAKELISTS.TXT
+setlocal
+C:\mingw64\bin\cmake.exe -SD:/Magistracy/Animations/Animations2025/sources -BD:/Magistracy/Animations/Animations2025/build --check-stamp-file D:/Magistracy/Animations/Animations2025/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
