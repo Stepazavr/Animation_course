@@ -1,6 +1,9 @@
 
 #include "scene.h"
 
+// Флаг для визуализации весов костей
+bool g_visualizeBoneWeights = false;
+
 void render_character(const Character &character, const mat4 &cameraProjView, vec3 cameraPosition, const DirectionLight &light)
 {
   const Material &material = *character.material;
@@ -14,6 +17,7 @@ void render_character(const Character &character, const mat4 &cameraProjView, ve
   shader.set_vec3("LightDirection", glm::normalize(light.lightDirection));
   shader.set_vec3("AmbientLight", light.ambient);
   shader.set_vec3("SunLight", light.lightColor);
+  shader.set_int("visualizeBoneWeights", g_visualizeBoneWeights ? 1 : 0);
 
   for (const MeshPtr &mesh : character.meshes)
     render(mesh);

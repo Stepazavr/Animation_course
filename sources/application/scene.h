@@ -14,3 +14,6 @@ struct Scene
 
   std::vector<Character> characters;
 };
+
+// Глобальный флаг для режима визуализации весов костей
+extern bool g_visualizeBoneWeights;
