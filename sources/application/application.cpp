@@ -46,6 +46,11 @@ void game_terminate()
         ozz::Delete(character.ozz_animation);
         character.ozz_animation = nullptr;
       }
+      if (character.sampling_context)
+      {
+        delete character.sampling_context;
+        character.sampling_context = nullptr;
+      }
     }
   }
   scene.reset();

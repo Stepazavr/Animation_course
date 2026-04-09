@@ -7,6 +7,7 @@
 #include "engine/api.h"
 #include "glad/glad.h"
 #include "engine/animation/ozz_converter.h"
+#include <ozz/animation/runtime/sampling_job.h>
 
 #include "import/model.h"
 #include "application/character.h"
@@ -168,6 +169,9 @@ ModelAsset load_model(const char *path, Character& character)
       // Initialize animation data containers
       character.local_transforms.resize(character.ozz_skeleton->num_joints());
       character.model_space_matrices.resize(character.ozz_skeleton->num_joints());
+      
+      // Create sampling context for animation
+      character.sampling_context = new ozz::animation::SamplingJob::Context(character.ozz_skeleton->num_joints());
     }
     else
     {

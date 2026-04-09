@@ -6,6 +6,7 @@
 #include <string>
 #include <ozz/animation/runtime/skeleton.h>
 #include <ozz/animation/runtime/animation.h>
+#include <ozz/animation/runtime/sampling_job.h>
 #include <ozz/base/containers/vector.h>
 #include <ozz/base/maths/soa_transform.h>
 #include <ozz/base/memory/allocator.h>
@@ -37,6 +38,7 @@ struct Character
 	Skeleton skeleton;
 	ozz::animation::Skeleton* ozz_skeleton = nullptr;
 	ozz::animation::Animation* ozz_animation = nullptr;
+	ozz::animation::SamplingJob::Context* sampling_context = nullptr;
 
 	float animation_time = 0.f;
 	ozz::vector<ozz::math::SoaTransform> local_transforms;

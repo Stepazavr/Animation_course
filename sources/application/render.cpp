@@ -49,17 +49,30 @@ void render_skeleton(const Character& character, const mat4& cameraProjView)
 
 	glDisable(GL_DEPTH_TEST);
 
-	// Get joint transforms using LocalToModelJob
-	ozz::animation::LocalToModelJob job;
-	job.skeleton = character.ozz_skeleton;
-	job.input = character.ozz_skeleton->joint_rest_poses();
-
-	ozz::vector<ozz::math::Float4x4> models;
-	models.resize(character.ozz_skeleton->num_joints());
-	job.output = ozz::make_span(models);
-
-	if (!job.Run())
-		return;
+	// Use animated model_space_matrices if available, otherwise use rest poses
+	const ozz::vector<ozz::math::Float4x4>* models = nullptr;
+	if (character.ozz_animation)
+	{
+		// Use current animation pose
+		models = &character.model_space_matrices;
+	}
+	else
+	{
+		// Fall back to rest pose
+		static ozz::vector<ozz::math::Float4x4> rest_models;
+		rest_models.clear();
+	
+		ozz::animation::LocalToModelJob job;
+		job.skeleton = character.ozz_skeleton;
+		job.input = character.ozz_skeleton->joint_rest_poses();
+		rest_models.resize(character.ozz_skeleton->num_joints());
+		job.output = ozz::make_span(rest_models);
+		
+		if (!job.Run())
+			return;
+		
+		models = &rest_models;
+	}
 
 	// Get joint parent indices
 	const ozz::span<const int16_t> parents = character.ozz_skeleton->joint_parents();
@@ -71,8 +84,8 @@ void render_skeleton(const Character& character, const mat4& cameraProjView)
 		if (parent_idx != -1)
 		{
 			// Extract positions from Float4x4 matrices
-			glm::vec3 parent_pos = extract_position(models[parent_idx]);
-			glm::vec3 child_pos = extract_position(models[i]);
+			glm::vec3 parent_pos = extract_position((*models)[parent_idx]);
+			glm::vec3 child_pos = extract_position((*models)[i]);
 
 			points.push_back(parent_pos);
 			points.push_back(child_pos);
@@ -114,17 +127,30 @@ void render_skeleton_transforms(const Character& character, const mat4& cameraPr
 
 	glDisable(GL_DEPTH_TEST);
 
-	// Get joint transforms using LocalToModelJob
-	ozz::animation::LocalToModelJob job;
-	job.skeleton = character.ozz_skeleton;
-	job.input = character.ozz_skeleton->joint_rest_poses();
-
-	ozz::vector<ozz::math::Float4x4> models;
-	models.resize(character.ozz_skeleton->num_joints());
-	job.output = ozz::make_span(models);
-
-	if (!job.Run())
-		return;
+	// Use animated model_space_matrices if available, otherwise use rest poses
+	const ozz::vector<ozz::math::Float4x4>* models = nullptr;
+	if (character.ozz_animation)
+	{
+		// Use current animation pose
+		models = &character.model_space_matrices;
+	}
+	else
+	{
+		// Fall back to rest pose
+		static ozz::vector<ozz::math::Float4x4> rest_models;
+		rest_models.clear();
+	
+		ozz::animation::LocalToModelJob job;
+		job.skeleton = character.ozz_skeleton;
+		job.input = character.ozz_skeleton->joint_rest_poses();
+		rest_models.resize(character.ozz_skeleton->num_joints());
+		job.output = ozz::make_span(rest_models);
+		
+		if (!job.Run())
+			return;
+		
+		models = &rest_models;
+	}
 
 	struct Vertex {
 		glm::vec3 pos;
@@ -136,12 +162,12 @@ void render_skeleton_transforms(const Character& character, const mat4& cameraPr
 	for (int i = 0; i < character.ozz_skeleton->num_joints(); ++i)
 	{
 		// Extract position from Float4x4 matrix
-		glm::vec3 origin = extract_position(models[i]);
+		glm::vec3 origin = extract_position((*models)[i]);
 
 		// Extract and normalize axes from matrix columns
-		glm::vec3 x_axis = glm::normalize(extract_axis(models[i], 0)) * axis_length;
-		glm::vec3 y_axis = glm::normalize(extract_axis(models[i], 1)) * axis_length;
-		glm::vec3 z_axis = glm::normalize(extract_axis(models[i], 2)) * axis_length;
+		glm::vec3 x_axis = glm::normalize(extract_axis((*models)[i], 0)) * axis_length;
+		glm::vec3 y_axis = glm::normalize(extract_axis((*models)[i], 1)) * axis_length;
+		glm::vec3 z_axis = glm::normalize(extract_axis((*models)[i], 2)) * axis_length;
 
 		points.push_back({ origin, glm::vec3(1, 0, 0) });
 		points.push_back({ origin + x_axis, glm::vec3(1, 0, 0) });

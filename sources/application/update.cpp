@@ -16,8 +16,7 @@ void update_animations(Scene& scene, float dt) {
 			// Samples animation at t = animation_time.
 			ozz::animation::SamplingJob sampling_job;
 			sampling_job.animation = character.ozz_animation;
-			ozz::animation::SamplingJob::Context context;
-			sampling_job.context = &context;
+			sampling_job.context = character.sampling_context;
 			sampling_job.ratio = character.animation_time / character.ozz_animation->duration();
 			sampling_job.output = ozz::make_span(character.local_transforms);
 			if (!sampling_job.Run()) {
@@ -31,7 +30,9 @@ void update_animations(Scene& scene, float dt) {
 			ltm_job.output = ozz::make_span(character.model_space_matrices);
 			if (!ltm_job.Run()) {
 				return;
-			}
+			}		
+			// Skeleton is now updated with current animation pose
+			// character.model_space_matrices contains the animated joint transforms
 		}
 	}
 }
