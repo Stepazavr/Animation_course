@@ -4,10 +4,25 @@
 #include <ozz/animation/runtime/local_to_model_job.h>
 #include <ozz/base/containers/vector.h>
 #include <ozz/base/maths/soa_transform.h>
+#include <immintrin.h>
 
 bool g_visualizeBoneWeights = false;
 bool g_visualizeSkeleton = false;
 bool g_visualizeNodeTransforms = false;
+
+// Helper function to extract position from ozz::math::Float4x4
+inline glm::vec3 extract_position(const ozz::math::Float4x4& matrix) {
+	alignas(16) float values[4];
+	_mm_storeu_ps(values, matrix.cols[3]);
+	return glm::vec3(values[0], values[1], values[2]);
+}
+
+// Helper function to extract axis from ozz::math::Float4x4
+inline glm::vec3 extract_axis(const ozz::math::Float4x4& matrix, int col_index) {
+	alignas(16) float values[4];
+	_mm_storeu_ps(values, matrix.cols[col_index]);
+	return glm::vec3(values[0], values[1], values[2]);
+}
 
 void update_bone_matrices(std::vector<glm::mat4>& bone_matrices, const Skeleton& skeleton, const Bone& bone, const glm::mat4& parent_transform)
 {
@@ -24,6 +39,8 @@ void update_bone_matrices(std::vector<glm::mat4>& bone_matrices, const Skeleton&
 
 void render_skeleton(const Character& character, const mat4& cameraProjView)
 {
+	if (!character.ozz_skeleton) return;
+
 	static ShaderPtr line_shader = compile_shader("line", "sources/shaders/line_vs.glsl", "sources/shaders/line_ps.glsl");
 	if (!line_shader) return;
 	line_shader->use();
@@ -32,23 +49,33 @@ void render_skeleton(const Character& character, const mat4& cameraProjView)
 
 	glDisable(GL_DEPTH_TEST);
 
+	// Get joint transforms using LocalToModelJob
+	ozz::animation::LocalToModelJob job;
+	job.skeleton = character.ozz_skeleton;
+	job.input = character.ozz_skeleton->joint_rest_poses();
+
+	ozz::vector<ozz::math::Float4x4> models;
+	models.resize(character.ozz_skeleton->num_joints());
+	job.output = ozz::make_span(models);
+
+	if (!job.Run())
+		return;
+
+	// Get joint parent indices
+	const ozz::span<const int16_t> parents = character.ozz_skeleton->joint_parents();
+
 	std::vector<glm::vec3> points;
-	for (const auto& bone : character.skeleton.bones)
+	for (int i = 0; i < character.ozz_skeleton->num_joints(); ++i)
 	{
-		if (bone.parent_idx != -1)
+		int16_t parent_idx = parents[i];
+		if (parent_idx != -1)
 		{
-			glm::mat4 parent_transform = glm::mat4(1.0f);
-			int parent_idx = bone.parent_idx;
-			while (parent_idx != -1)
-			{
-				parent_transform = character.skeleton.bones[parent_idx].local_transform * parent_transform;
-				parent_idx = character.skeleton.bones[parent_idx].parent_idx;
-			}
+			// Extract positions from Float4x4 matrices
+			glm::vec3 parent_pos = extract_position(models[parent_idx]);
+			glm::vec3 child_pos = extract_position(models[i]);
 
-			glm::mat4 bone_transform = parent_transform * bone.local_transform;
-
-			points.push_back(glm::vec3(parent_transform[3]));
-			points.push_back(glm::vec3(bone_transform[3]));
+			points.push_back(parent_pos);
+			points.push_back(child_pos);
 		}
 	}
 
@@ -78,6 +105,8 @@ void render_skeleton(const Character& character, const mat4& cameraProjView)
 
 void render_skeleton_transforms(const Character& character, const mat4& cameraProjView)
 {
+	if (!character.ozz_skeleton) return;
+
 	static ShaderPtr shader = compile_shader("colored_line", "sources/shaders/colored_line_vs.glsl", "sources/shaders/colored_line_ps.glsl");
 	if (!shader) return;
 	shader->use();
@@ -85,27 +114,34 @@ void render_skeleton_transforms(const Character& character, const mat4& cameraPr
 
 	glDisable(GL_DEPTH_TEST);
 
+	// Get joint transforms using LocalToModelJob
+	ozz::animation::LocalToModelJob job;
+	job.skeleton = character.ozz_skeleton;
+	job.input = character.ozz_skeleton->joint_rest_poses();
+
+	ozz::vector<ozz::math::Float4x4> models;
+	models.resize(character.ozz_skeleton->num_joints());
+	job.output = ozz::make_span(models);
+
+	if (!job.Run())
+		return;
+
 	struct Vertex {
 		glm::vec3 pos;
 		glm::vec3 color;
 	};
 	std::vector<Vertex> points;
 
-	for (const auto& bone : character.skeleton.bones)
+	float axis_length = 0.1f;
+	for (int i = 0; i < character.ozz_skeleton->num_joints(); ++i)
 	{
-		glm::mat4 global_transform = glm::mat4(1.0f);
-		int current_idx = &bone - &character.skeleton.bones[0];
-		while (current_idx != -1)
-		{
-			global_transform = character.skeleton.bones[current_idx].local_transform * global_transform;
-			current_idx = character.skeleton.bones[current_idx].parent_idx;
-		}
+		// Extract position from Float4x4 matrix
+		glm::vec3 origin = extract_position(models[i]);
 
-		glm::vec3 origin = glm::vec3(global_transform[3]);
-		float axis_length = 0.1f;
-		glm::vec3 x_axis = glm::normalize(glm::vec3(global_transform[0])) * axis_length;
-		glm::vec3 y_axis = glm::normalize(glm::vec3(global_transform[1])) * axis_length;
-		glm::vec3 z_axis = glm::normalize(glm::vec3(global_transform[2])) * axis_length;
+		// Extract and normalize axes from matrix columns
+		glm::vec3 x_axis = glm::normalize(extract_axis(models[i], 0)) * axis_length;
+		glm::vec3 y_axis = glm::normalize(extract_axis(models[i], 1)) * axis_length;
+		glm::vec3 z_axis = glm::normalize(extract_axis(models[i], 2)) * axis_length;
 
 		points.push_back({ origin, glm::vec3(1, 0, 0) });
 		points.push_back({ origin + x_axis, glm::vec3(1, 0, 0) });
