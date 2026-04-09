@@ -4,6 +4,11 @@
 #include "engine/render/mesh.h"
 #include <vector>
 #include <string>
+#include <ozz/animation/runtime/skeleton.h>
+#include <ozz/animation/runtime/animation.h>
+#include <ozz/base/containers/vector.h>
+#include <ozz/base/maths/soa_transform.h>
+#include <ozz/base/memory/allocator.h>
 
 struct Mesh;
 struct Material;
@@ -30,4 +35,10 @@ struct Character
 	std::vector<MeshPtr> meshes;
 	MaterialPtr material;
 	Skeleton skeleton;
+	ozz::animation::Skeleton* ozz_skeleton = nullptr;
+	ozz::animation::Animation* ozz_animation;
+
+	float animation_time = 0.f;
+	ozz::vector<ozz::math::SoaTransform> local_transforms;
+	ozz::vector<ozz::math::Float4x4> model_space_matrices;
 };

@@ -1,5 +1,5 @@
 #include "scene.h"
-
+#include "engine/animation/ozz_converter.h"
 
 static glm::mat4 get_projective_matrix()
 {
@@ -46,25 +46,23 @@ void application_init(Scene &scene)
   motusManCharacter.name = "MotusMan_v55";
   motusManCharacter.transform = glm::identity<glm::mat4>();
   motusManCharacter.material = std::move(material);
-  ModelAsset motusMan = load_model("resources/MotusMan_v55/MotusMan_v55.fbx", motusManCharacter.skeleton);
+  ModelAsset motusMan = load_model("resources/MotusMan_v55/MotusMan_v55.fbx", motusManCharacter);
   motusManCharacter.meshes = motusMan.meshes;
+  scene.characters.push_back(motusManCharacter);
+
+  auto white_material = make_material("character", "sources/shaders/character_vs.glsl", "sources/shaders/character_ps.glsl");
+  white_material->set_property("mainTex", create_texture2d("resources/sketchfab/color.png"));
 
   Character rubyCharacter;
-  rubyCharacter.name = "Ruby";
-  rubyCharacter.transform = glm::translate(glm::identity<glm::mat4>(), glm::vec3(2.f, 0.f, 0.f));
-  auto whiteMaterial = make_material("character", "sources/shaders/character_vs.glsl", "sources/shaders/character_ps.glsl");
-  const uint8_t whiteColor[4] = { 255, 255, 255, 255 };
-  whiteMaterial->set_property("mainTex", create_texture2d(whiteColor, 1, 1, 4));
-  rubyCharacter.material = std::move(whiteMaterial);
-  ModelAsset ruby = load_model("resources/sketchfab/ruby.fbx", rubyCharacter.skeleton);
-  rubyCharacter.meshes = ruby.meshes;
-
-
-  scene.characters.push_back(std::move(motusManCharacter));
-  scene.characters.push_back(std::move(rubyCharacter));
+  rubyCharacter.name = "ruby";
+  rubyCharacter.transform = glm::translate(glm::mat4(1.f), glm::vec3(1, 0, 0));
+  rubyCharacter.material = std::move(white_material);
+  ModelAsset rubyModel = load_model("resources/sketchfab/ruby.fbx", rubyCharacter);
+  rubyCharacter.meshes = rubyModel.meshes;
+  scene.characters.push_back(rubyCharacter);
 
   scene.models.push_back(std::move(motusMan));
-  scene.models.push_back(std::move(ruby));
+  scene.models.push_back(std::move(rubyModel));
 
   std::fflush(stdout);
 }

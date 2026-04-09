@@ -14,7 +14,7 @@ set(CMAKE_CXX_STANDARD 20)
 if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     set(CMAKE_CXX_FLAGS "-m64 -Wall -Wno-pragma-pack -Wno-deprecated-declarations -Wno-deprecated-copy -g")
 else()
-    set(CMAKE_CXX_FLAGS "/w /Zi")
+    set(CMAKE_CXX_FLAGS "/w /Zi /EHsc")
 endif()
 
 
@@ -76,7 +76,15 @@ include_directories(${SRC_ROOT}/engine)
 include_directories(${SRC_ROOT}/3rd_party)
 include_directories(${SRC_ROOT}/3rd_party/ozz/include)
 
+# Add ozz as a subdirectory to build it
+set(ozz_build_gltf OFF CACHE BOOL "Build gltf tools" FORCE)
+set(ozz_build_tests OFF CACHE BOOL "Build tests" FORCE)
+set(ozz_build_samples OFF CACHE BOOL "Build samples" FORCE)
+set(ozz_build_howtos OFF CACHE BOOL "Build howtos" FORCE) 
+add_subdirectory(${SRC_ROOT}/3rd_party/ozz ozz_build)
+
 add_executable(${EXE_NAME} ${EXE_SOURCES})
 
-target_link_libraries(${EXE_NAME} ${ADDITIONAL_LIBS})
+target_link_libraries(${EXE_NAME} ${ADDITIONAL_LIBS} ozz_animation ozz_animation_offline ozz_geometry ozz_base)
+
 

@@ -1,8 +1,9 @@
 #pragma once
 #include "render/mesh.h"
 #include <vector>
+#include <string>
 
-struct Skeleton;
+struct Character;
 
 struct ModelAsset
 {
@@ -10,4 +11,4 @@ struct ModelAsset
   std::vector<MeshPtr> meshes;
 };
 
-ModelAsset load_model(const char *path, Skeleton& skeleton);
+ModelAsset load_model(const char *path, Character& character);

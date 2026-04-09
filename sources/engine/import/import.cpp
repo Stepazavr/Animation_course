@@ -6,6 +6,7 @@
 #include <assimp/postprocess.h>
 #include "engine/api.h"
 #include "glad/glad.h"
+#include "engine/animation/ozz_converter.h"
 
 #include "import/model.h"
 #include "application/character.h"
@@ -122,9 +123,9 @@ MeshPtr create_mesh(const aiMesh *mesh, Skeleton& skeleton)
   return create_mesh(mesh->mName.C_Str(), indices, vertices, normals, uv, weights, weightsIndex);
 }
 
-ModelAsset load_model(const char *path, Skeleton& skeleton)
+ModelAsset load_model(const char *path, Character& character)
 {
-
+  Skeleton& skeleton = character.skeleton;
   Assimp::Importer importer;
   importer.SetPropertyBool(AI_CONFIG_IMPORT_FBX_PRESERVE_PIVOTS, false);
   importer.SetPropertyFloat(AI_CONFIG_GLOBAL_SCALE_FACTOR_KEY, 1.f);
@@ -143,12 +144,14 @@ ModelAsset load_model(const char *path, Skeleton& skeleton)
 
   extract_skeleton(skeleton, scene->mRootNode, -1);
 
-  model.meshes.resize(scene->mNumMeshes);
   for (uint32_t i = 0; i < scene->mNumMeshes; i++)
   {
-    model.meshes[i] = create_mesh(scene->mMeshes[i], skeleton);
+    model.meshes.push_back(create_mesh(scene->mMeshes[i], skeleton));
   }
 
+  character.ozz_skeleton = ozz_converter::convert_skeleton(skeleton);
+
   engine::log("Model \"%s\" loaded", path);
+
   return model;
 }

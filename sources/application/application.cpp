@@ -32,5 +32,16 @@ void game_imgui_render()
 
 void game_terminate()
 {
+  if (scene)
+  {
+    for (auto& character : scene->characters)
+    {
+      if (character.ozz_skeleton)
+      {
+        ozz::Delete(character.ozz_skeleton);
+        character.ozz_skeleton = nullptr;
+      }
+    }
+  }
   scene.reset();
 }

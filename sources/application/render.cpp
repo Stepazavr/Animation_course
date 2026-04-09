@@ -1,6 +1,9 @@
 #include "scene.h"
 #include "engine/render/shader.h"
 #include "engine/render/material.h"
+#include <ozz/animation/runtime/local_to_model_job.h>
+#include <ozz/base/containers/vector.h>
+#include <ozz/base/maths/soa_transform.h>
 
 bool g_visualizeBoneWeights = false;
 bool g_visualizeSkeleton = false;
@@ -145,6 +148,31 @@ void render_character(const Character &character, const mat4 &cameraProjView, ve
 
   shader.use();
   material.bind_uniforms_to_shader();
+
+  if (character.ozz_skeleton)
+  {
+    ozz::animation::LocalToModelJob job;
+    job.skeleton = character.ozz_skeleton;
+    job.input = character.ozz_skeleton->joint_rest_poses();
+    
+    ozz::vector<ozz::math::Float4x4> models;
+    models.resize(character.ozz_skeleton->num_joints());
+    job.output = ozz::make_span(models);
+
+    if (job.Run())
+    {
+        std::vector<glm::mat4> bone_matrices;
+        bone_matrices.resize(character.ozz_skeleton->num_joints());
+
+        for (int i = 0; i < character.ozz_skeleton->num_joints(); ++i)
+        {
+          // For T-pose, use identity matrices (no skinning)
+          bone_matrices[i] = glm::identity<glm::mat4>();
+        }
+        shader.set_mat4x4_array("bone_matrices", bone_matrices.data(), bone_matrices.size());
+    }
+  }
+
   shader.set_mat4x4("Transform", character.transform);
   shader.set_mat4x4("ViewProjection", cameraProjView);
   shader.set_vec3("CameraPosition", cameraPosition);
