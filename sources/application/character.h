@@ -36,7 +36,7 @@ struct Character
 	MaterialPtr material;
 	Skeleton skeleton;
 	ozz::animation::Skeleton* ozz_skeleton = nullptr;
-	ozz::animation::Animation* ozz_animation;
+	ozz::animation::Animation* ozz_animation = nullptr;
 
 	float animation_time = 0.f;
 	ozz::vector<ozz::math::SoaTransform> local_transforms;

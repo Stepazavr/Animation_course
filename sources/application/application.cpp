@@ -41,6 +41,11 @@ void game_terminate()
         ozz::Delete(character.ozz_skeleton);
         character.ozz_skeleton = nullptr;
       }
+      if (character.ozz_animation)
+      {
+        ozz::Delete(character.ozz_animation);
+        character.ozz_animation = nullptr;
+      }
     }
   }
   scene.reset();

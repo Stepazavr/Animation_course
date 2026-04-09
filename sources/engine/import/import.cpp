@@ -151,6 +151,34 @@ ModelAsset load_model(const char *path, Character& character)
 
   character.ozz_skeleton = ozz_converter::convert_skeleton(skeleton);
 
+  // Load and convert animations
+  if (character.ozz_skeleton && scene->mNumAnimations > 0)
+  {
+    // Load the first animation
+    const aiAnimation* first_animation = scene->mAnimations[0];
+    character.ozz_animation = ozz_converter::convert_animation(first_animation, *character.ozz_skeleton);
+    
+    if (character.ozz_animation)
+    {
+      engine::log("Character '%s': Animation \"%s\" loaded and converted (duration: %.2fs)", 
+        character.name.c_str(),
+        first_animation->mName.C_Str(), 
+        static_cast<float>(first_animation->mDuration / first_animation->mTicksPerSecond));
+      
+      // Initialize animation data containers
+      character.local_transforms.resize(character.ozz_skeleton->num_joints());
+      character.model_space_matrices.resize(character.ozz_skeleton->num_joints());
+    }
+    else
+    {
+      engine::log("Failed to convert animation \"%s\"", first_animation->mName.C_Str());
+    }
+  }
+  else
+  {
+    engine::log("No animations found in model \"%s\"", path);
+  }
+
   engine::log("Model \"%s\" loaded", path);
 
   return model;

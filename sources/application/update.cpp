@@ -13,7 +13,6 @@ void update_animations(Scene& scene, float dt) {
 			if (character.animation_time > character.ozz_animation->duration()) {
 				character.animation_time = fmod(character.animation_time, character.ozz_animation->duration());
 			}
-
 			// Samples animation at t = animation_time.
 			ozz::animation::SamplingJob sampling_job;
 			sampling_job.animation = character.ozz_animation;
@@ -45,5 +44,5 @@ void application_update(Scene &scene)
   arcball_camera_update(scene.userCamera.arcballCamera, scene.userCamera.transform, dt);
   
   // Update animations
-  //update_animations(scene, dt);
+  update_animations(scene, dt);
 }
