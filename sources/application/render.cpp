@@ -247,6 +247,74 @@ void render_character(const Character &character, const mat4 &cameraProjView, ve
     render(mesh);
 }
 
+void render_grid(const Character &character, const Scene &scene, const mat4 &cameraProjView)
+{
+  static ShaderPtr grid_shader = compile_shader("character_grid", 
+    "sources/shaders/character_grid_vs.glsl", 
+    "sources/shaders/character_grid_ps.glsl");
+  if (!grid_shader) return;
+  
+  static GLuint VAO = 0, VBO = 0, EBO = 0;
+  
+  // Create grid plane once
+  if (VAO == 0)
+  {
+    float size = 50.0f;
+    struct Vertex {
+      glm::vec3 pos;
+      glm::vec2 uv;
+    };
+    
+    std::vector<Vertex> vertices = {
+      { glm::vec3(-size, 0.0f, -size), glm::vec2(0.0f, 0.0f) },
+      { glm::vec3(size, 0.0f, -size), glm::vec2(1.0f, 0.0f) },
+      { glm::vec3(size, 0.0f, size), glm::vec2(1.0f, 1.0f) },
+      { glm::vec3(-size, 0.0f, size), glm::vec2(0.0f, 1.0f) }
+    };
+    
+    std::vector<unsigned int> indices = { 0, 1, 2, 0, 2, 3 };
+    
+    glGenVertexArrays(1, &VAO);
+    glGenBuffers(1, &VBO);
+    glGenBuffers(1, &EBO);
+    
+    glBindVertexArray(VAO);
+    
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), vertices.data(), GL_STATIC_DRAW);
+    
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), indices.data(), GL_STATIC_DRAW);
+    
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)0);
+    
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, uv));
+    
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+  }
+  
+  grid_shader->use();
+  
+  glm::mat4 grid_model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+  
+  grid_shader->set_mat4x4("uModel", grid_model);
+  grid_shader->set_mat4x4("uView", inverse(scene.userCamera.transform));
+  grid_shader->set_mat4x4("uProjection", scene.userCamera.projection);
+  grid_shader->set_int("scale_0", 100);
+  grid_shader->set_int("scale_1", 20);
+  grid_shader->set_float("line_scale_0", 0.1f);
+  grid_shader->set_float("line_scale_1", 0.05f);
+  grid_shader->set_vec4("color_0", glm::vec4(1.f, 0.65f, 0.f, 1.f));
+  grid_shader->set_vec4("color_1", glm::vec4(1.f, 1.f, 1.f, 1.f));
+  
+  glBindVertexArray(VAO);
+  glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+  glBindVertexArray(0);
+}
+
 void application_render(Scene &scene)
 {
   glEnable(GL_DEPTH_TEST);
@@ -263,6 +331,7 @@ void application_render(Scene &scene)
   for (const Character &character : scene.characters)
   {
     render_character(character, get_view_projection(), scene.userCamera.transform[3], scene.light);
+    render_grid(character, scene, get_view_projection());
 	if (g_visualizeSkeleton)
 		render_skeleton(character, get_view_projection());
 	if (g_visualizeNodeTransforms)
