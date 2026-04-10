@@ -6,13 +6,23 @@
 static ImGuizmo::OPERATION mCurrentGizmoOperation(ImGuizmo::TRANSLATE);
 static ImGuizmo::MODE mCurrentGizmoMode(ImGuizmo::WORLD);
 
-static void show_info()
+static void show_info(const Scene& scene)
 {
   if (ImGui::Begin("Info"))
   {
     ImGui::Text("ESC - exit");
     ImGui::Text("F5 - recompile shaders");
     ImGui::Text("Left Mouse Button and Wheel - controll camera");
+    
+    ImGui::Separator();
+    if (!scene.use_t_pose) {
+      ImGui::Text("Animation Controls (Keyboard):");
+      ImGui::Text("W - Walk Forward");
+      ImGui::Text("W + Shift - Jog Forward");
+      ImGui::Text("(nothing) - Idle");
+    } else {
+      ImGui::Text("T-Pose Mode - skeleton in rest pose");
+    }
   }
   ImGui::End();
 }
@@ -59,29 +69,6 @@ static void show_characters(Scene &scene)
         ImGui::Text("Meshes: %zu", character.meshes.size());
         ImGui::Text("Animations: %zu", character.animation_states.size());
         
-        // Animation selector combobox
-        if (!character.animation_states.empty())
-        {
-          if (ImGui::BeginCombo("##animation_select", character.animation_states[character.current_animation_index].name.c_str()))
-          {
-            for (size_t anim_idx = 0; anim_idx < character.animation_states.size(); anim_idx++)
-            {
-              bool is_selected = (character.current_animation_index == anim_idx);
-              if (ImGui::Selectable(character.animation_states[anim_idx].name.c_str(), is_selected))
-              {
-                const_cast<Character&>(character).current_animation_index = anim_idx;
-                auto* anim_state = const_cast<Character&>(character).get_current_animation_state();
-                if (anim_state) {
-                  anim_state->animation_time = 0.f;
-                }
-              }
-              if (is_selected)
-                ImGui::SetItemDefaultFocus();
-            }
-            ImGui::EndCombo();
-          }
-        }
-        
         ImGui::Unindent(INDENT);
       }
       ImGui::PopID();
@@ -93,6 +80,7 @@ static void show_characters(Scene &scene)
     }
 
     ImGui::Separator();
+    ImGui::Checkbox("T-Pose Mode", &scene.use_t_pose);
     ImGui::Checkbox("Visualize Bone Weights", &g_visualizeBoneWeights);
     ImGui::Checkbox("Visualize Skeleton", &g_visualizeSkeleton);
     ImGui::Checkbox("Visualize Node Transforms", &g_visualizeNodeTransforms);
@@ -165,7 +153,7 @@ void application_imgui_render(Scene &scene)
 {
   render_imguizmo(mCurrentGizmoOperation, mCurrentGizmoMode);
 
-  show_info();
+  show_info(scene);
   show_characters(scene);
   show_models(scene);
 }

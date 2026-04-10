@@ -52,7 +52,7 @@ struct Character
 	
 	// Animation states (each animation has its own state)
 	std::vector<AnimationState> animation_states;
-	int current_animation_index = 0;
+	int current_animation_index = 1;  // Start with Idle (index 0 is Rest Pose)
 	
 	std::vector<glm::mat4> inverse_bind_matrices;
 	

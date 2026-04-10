@@ -39,7 +39,7 @@ void update_bone_matrices(std::vector<glm::mat4>& bone_matrices, const Skeleton&
 	}
 }
 
-void render_skeleton(const Character& character, const mat4& cameraProjView)
+void render_skeleton(const Character& character, const Scene &scene, const mat4& cameraProjView)
 {
 	if (!character.ozz_skeleton) return;
 
@@ -51,13 +51,11 @@ void render_skeleton(const Character& character, const mat4& cameraProjView)
 
 	glDisable(GL_DEPTH_TEST);
 
-	// Use animated model_space_matrices if available, otherwise use rest poses
+	// Use Rest Pose (index 0) if T-pose mode is enabled, otherwise use current animation
 	const ozz::vector<ozz::math::Float4x4>* models = nullptr;
-	auto* anim_state = character.get_current_animation_state();
-	if (anim_state && anim_state->animation)
-	{
-		// Use current animation pose
-		models = &anim_state->model_space_matrices;
+	int pose_index = scene.use_t_pose ? 0 : character.current_animation_index;
+	if (pose_index >= 0 && pose_index < character.animation_states.size()) {
+		models = &character.animation_states[pose_index].model_space_matrices;
 	}
 	else
 	{
@@ -207,7 +205,7 @@ void render_skeleton_transforms(const Character& character, const mat4& cameraPr
 	glEnable(GL_DEPTH_TEST);
 }
 
-void render_character(const Character &character, const mat4 &cameraProjView, vec3 cameraPosition, const DirectionLight &light)
+void render_character(const Character &character, const Scene &scene, const mat4 &cameraProjView, vec3 cameraPosition, const DirectionLight &light)
 {
   const Material &material = *character.material;
   const Shader &shader = material.get_shader();
@@ -215,9 +213,15 @@ void render_character(const Character &character, const mat4 &cameraProjView, ve
   shader.use();
   material.bind_uniforms_to_shader();
 
-  // Use animation state for skinning matrices
-  auto* anim_state = character.get_current_animation_state();
-  if (character.ozz_skeleton && !character.inverse_bind_matrices.empty() && anim_state && !anim_state->model_space_matrices.empty())
+  // Determine which animation state to use
+  int pose_index = scene.use_t_pose ? 0 : character.current_animation_index;
+  if (pose_index < 0 || pose_index >= character.animation_states.size()) {
+    pose_index = 0; // Fallback to rest pose
+  }
+  
+  const AnimationState* anim_state = &character.animation_states[pose_index];
+  
+  if (character.ozz_skeleton && !character.inverse_bind_matrices.empty() && !anim_state->model_space_matrices.empty())
   {
     const auto& ozz_matrices = anim_state->model_space_matrices;
     const int nj = character.ozz_skeleton->num_joints();
@@ -334,10 +338,10 @@ void application_render(Scene &scene)
 
   for (const Character &character : scene.characters)
   {
-    render_character(character, get_view_projection(), scene.userCamera.transform[3], scene.light);
+    render_character(character, scene, get_view_projection(), scene.userCamera.transform[3], scene.light);
     render_grid(character, scene, get_view_projection());
 	if (g_visualizeSkeleton)
-		render_skeleton(character, get_view_projection());
+		render_skeleton(character, scene, get_view_projection());
 	if (g_visualizeNodeTransforms)
 		render_skeleton_transforms(character, get_view_projection());
   }

@@ -13,6 +13,9 @@ struct Scene
   UserCamera userCamera;
 
   std::vector<Character> characters;
+  
+  // Animation mode: true = t-pose, false = dynamic (keyboard controlled)
+  bool use_t_pose = false;
 };
 
 extern bool g_visualizeBoneWeights;
