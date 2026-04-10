@@ -191,6 +191,14 @@ void application_update(Scene &scene)
       // Apply rotation based on WASD input
       glm::mat4 rotationY = glm::rotate(glm::mat4(1.0f), glm::radians(scene.characterRotationY), glm::vec3(0, 1, 0));
       scene.characters[0].transform = glm::translate(glm::mat4(1.0f), characterPos) * rotationY;
+      
+      // Update third person camera to follow character
+      third_person_camera_update(
+        scene.thirdPersonController,
+        scene.userCamera.transform,
+        characterPos,
+        scene.characterRotationY,
+        dt);
     }
   } else {
     // Reset character rotation to normal when not in third person mode

@@ -1,34 +1,36 @@
 #include "third_person_controller.h"
-#include "engine/api.h"
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
-void third_person_controller_mouse_move_handler(
-  const SDL_MouseMotionEvent& e,
-  ThirdPersonController& controller)
+void third_person_camera_update(
+  ThirdPersonController& controller,
+  glm::mat4& transform,
+  const glm::vec3& characterPosition,
+  float characterRotationY,
+  float dt)
 {
-  if (controller.rotationEnable)
-  {
-    float pixToRad = DegToRad * controller.mouseSensitivity;
-    controller.yaw -= e.xrel * pixToRad;
-    controller.pitch += e.yrel * pixToRad;
-    
-    // Clamp pitch to avoid gimbal lock
-    controller.pitch = glm::clamp(controller.pitch, -89.f, 89.f);
-  }
+  // Get model's global position
+  glm::vec3 modelPosition = characterPosition;
+  
+  // Fixed camera offset from model
+  glm::vec3 cameraOffset = glm::vec3(0.f, controller.height, controller.distance);
+  
+  // Calculate target camera position
+  controller.targetPosition = modelPosition + cameraOffset;
+  
+  // Smoothly interpolate camera to target position
+  float lerpFactor = glm::min(1.f, controller.lerpSpeed * dt);
+  controller.currentPosition = glm::mix(controller.currentPosition, controller.targetPosition, lerpFactor);
+  
+  // Calculate look-at target (slightly above character's center)
+  glm::vec3 lookAtTarget = modelPosition + glm::vec3(0.f, controller.height + 0.2f, 0.f);
+  
+  // Create view matrix (camera looking at character)
+  glm::vec3 up = glm::vec3(0.f, 1.f, 0.f);
+  glm::mat4 viewMatrix = glm::lookAt(controller.currentPosition, lookAtTarget, up);
+  
+  // Return the inverse of view matrix (camera's transform)
+  transform = glm::inverse(viewMatrix);
 }
 
-void third_person_controller_mouse_click_handler(
-  const SDL_MouseButtonEvent& e,
-  ThirdPersonController& controller)
-{
-  if (e.button == SDL_BUTTON_RIGHT)
-  {
-    controller.rotationEnable = e.type == SDL_MOUSEBUTTONDOWN;
-  }
-}
 
-void third_person_controller_mouse_wheel_handler(
-  const SDL_MouseWheelEvent& e,
-  ThirdPersonController& controller)
-{
-  controller.distance = glm::clamp(controller.distance - float(e.y) * 0.5f, 1.f, 10.f);
-}

@@ -98,27 +98,15 @@ void application_init(Scene &scene)
   scene.userCamera.transform = calculate_transform(scene.userCamera.arcballCamera);
 
   
-  // Setup event handlers for both camera systems
+  // Setup event handlers for arcball camera
   engine::onMouseButtonEvent += [&](const SDL_MouseButtonEvent &e) { 
-    if (scene.use_third_person_camera) {
-      third_person_controller_mouse_click_handler(e, scene.thirdPersonController);
-    } else {
-      arccam_mouse_click_handler(e, scene.userCamera.arcballCamera);
-    }
+    arccam_mouse_click_handler(e, scene.userCamera.arcballCamera);
   };
   engine::onMouseMotionEvent += [&](const SDL_MouseMotionEvent &e) { 
-    if (scene.use_third_person_camera) {
-      third_person_controller_mouse_move_handler(e, scene.thirdPersonController);
-    } else {
-      arccam_mouse_move_handler(e, scene.userCamera.arcballCamera, scene.userCamera.transform);
-    }
+    arccam_mouse_move_handler(e, scene.userCamera.arcballCamera, scene.userCamera.transform);
   };
   engine::onMouseWheelEvent += [&](const SDL_MouseWheelEvent &e) { 
-    if (scene.use_third_person_camera) {
-      third_person_controller_mouse_wheel_handler(e, scene.thirdPersonController);
-    } else {
-      arccam_mouse_wheel_handler(e, scene.userCamera.arcballCamera);
-    }
+    arccam_mouse_wheel_handler(e, scene.userCamera.arcballCamera);
   };
 
   engine::onKeyboardEvent += [](const SDL_KeyboardEvent &e) { if (e.keysym.sym == SDLK_F5 && e.state == SDL_RELEASED) recompile_all_shaders(); };
