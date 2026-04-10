@@ -9,6 +9,32 @@ static glm::mat4 get_projective_matrix()
   return glm::perspective(fovY, engine::get_aspect_ratio(), zNear, zFar);
 }
 
+// Helper function to initialize a character with model and animation
+void initialize_character(
+    Scene& scene,
+    const char* characterName,
+    const char* modelPath,
+    const char* animationPath,
+    const char* texturePath,
+    const glm::mat4& transform
+) {
+    auto material = make_material("character", "sources/shaders/character_vs.glsl", "sources/shaders/character_ps.glsl");
+    material->set_property("mainTex", create_texture2d(texturePath));
+    
+    Character character;
+    character.name = characterName;
+    character.transform = transform;
+    character.material = std::move(material);
+    
+    ModelAsset model = load_model(modelPath, character);
+    character.meshes = model.meshes;
+    
+    load_animation(animationPath, character);
+    
+    scene.characters.push_back(character);
+    scene.models.push_back(std::move(model));
+}
+
 void application_init(Scene &scene)
 {
   scene.light.lightDirection = glm::normalize(glm::vec3(-1, -1, 0));
@@ -37,34 +63,25 @@ void application_init(Scene &scene)
 
   engine::onKeyboardEvent += [](const SDL_KeyboardEvent &e) { if (e.keysym.sym == SDLK_F5 && e.state == SDL_RELEASED) recompile_all_shaders(); };
 
+  // Initialize MotusMan character
+  initialize_character(
+      scene,
+      "MotusMan_v55",
+      "resources/MotusMan_v55/MotusMan_v55.fbx",
+      "resources/Animations/IPC/MOB1_Walk_F_Loop_IPC.fbx",
+      "resources/MotusMan_v55/MCG_diff.jpg",
+      glm::identity<glm::mat4>()
+  );
 
-  auto material = make_material("character", "sources/shaders/character_vs.glsl", "sources/shaders/character_ps.glsl");
-
-  material->set_property("mainTex", create_texture2d("resources/MotusMan_v55/MCG_diff.jpg"));
-
-  Character motusManCharacter;
-  motusManCharacter.name = "MotusMan_v55";
-  motusManCharacter.transform = glm::identity<glm::mat4>();
-  motusManCharacter.material = std::move(material);
-  ModelAsset motusMan = load_model("resources/MotusMan_v55/MotusMan_v55.fbx", motusManCharacter);
-  motusManCharacter.meshes = motusMan.meshes;
-  // Load animation from separate file
-  load_animation("resources/Animations/IPC/MOB1_Walk_F_Loop_IPC.fbx", motusManCharacter);
-  scene.characters.push_back(motusManCharacter);
-
-  auto white_material = make_material("character", "sources/shaders/character_vs.glsl", "sources/shaders/character_ps.glsl");
-  white_material->set_property("mainTex", create_texture2d("resources/sketchfab/color.png"));
-
-  Character rubyCharacter;
-  rubyCharacter.name = "ruby";
-  rubyCharacter.transform = glm::translate(glm::mat4(1.f), glm::vec3(1, 0, 0));
-  rubyCharacter.material = std::move(white_material);
-  ModelAsset rubyModel = load_model("resources/sketchfab/ruby.fbx", rubyCharacter);
-  rubyCharacter.meshes = rubyModel.meshes;
-  scene.characters.push_back(rubyCharacter);
-
-  scene.models.push_back(std::move(motusMan));
-  scene.models.push_back(std::move(rubyModel));
+  // Initialize Ruby character
+  initialize_character(
+      scene,
+      "ruby",
+      "resources/sketchfab/ruby.fbx",
+      "resources/sketchfab/ruby.fbx",
+      "resources/sketchfab/color.png",
+      glm::translate(glm::mat4(1.f), glm::vec3(1, 0, 0))
+  );
 
   std::fflush(stdout);
 }

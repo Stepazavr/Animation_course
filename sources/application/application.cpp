@@ -48,7 +48,7 @@ void game_terminate()
       }
       if (character.sampling_context)
       {
-        delete character.sampling_context;
+        ozz::Delete(character.sampling_context);
         character.sampling_context = nullptr;
       }
     }
