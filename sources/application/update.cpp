@@ -24,21 +24,28 @@ void update_animations(Scene& scene, float dt) {
 		// Index 3: Jog
 		//
 		// Keyboard controls:
-		// W + Shift -> Jog (index 3)
-		// W only -> Walk (index 2)
+		// WASD + Shift -> Jog (index 3)
+		// WASD only -> Walk (index 2)
 		// Nothing -> Idle (index 1)
 		
 		bool w_pressed = keyboard_state[SDL_SCANCODE_W];
+		bool a_pressed = keyboard_state[SDL_SCANCODE_A];
+		bool s_pressed = keyboard_state[SDL_SCANCODE_S];
+		bool d_pressed = keyboard_state[SDL_SCANCODE_D];
 		bool shift_pressed = keyboard_state[SDL_SCANCODE_LSHIFT] || keyboard_state[SDL_SCANCODE_RSHIFT];
+		
+		bool anyMovementKeyPressed = w_pressed || a_pressed || s_pressed || d_pressed;
 		
 		int target_animation = 1; // Default to Idle (index 1)
 		
-		if (w_pressed && shift_pressed) {
-			// W + Shift -> Jog
-			target_animation = 3;
-		} else if (w_pressed) {
-			// W only -> Walk
-			target_animation = 2;
+		if (anyMovementKeyPressed) {
+			if (shift_pressed) {
+				// WASD + Shift -> Jog
+				target_animation = 3;
+			} else {
+				// WASD only -> Walk
+				target_animation = 2;
+			}
 		}
 		// else target_animation stays 1 (Idle)
 		
@@ -160,6 +167,26 @@ void application_update(Scene &scene)
     if (!scene.characters.empty()) {
       // Extract position from character transform
       glm::vec3 characterPos = glm::vec3(scene.characters[0].transform[3]);
+      
+      // Calculate movement based on WASD input
+      // Movement is always forward in local character space (local +Z)
+      bool anyKeyPressed = w_pressed || a_pressed || s_pressed || d_pressed;
+      float baseSpeed = 2.f;  // Base movement speed (units per second)
+      bool shift_pressed = keyboard_state[SDL_SCANCODE_LSHIFT] || keyboard_state[SDL_SCANCODE_RSHIFT];
+      float speedMultiplier = shift_pressed ? 1.5f : 1.f;
+      float speed = baseSpeed * speedMultiplier;
+      
+      if (anyKeyPressed) {
+        // Movement is always forward in local space (rotate to world space)
+        glm::vec3 localMovement = glm::vec3(0.f, 0.f, 1.f);  // Forward in local space
+        
+        // Transform local movement to world space using character's Y rotation
+        glm::mat4 rotationMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(scene.characterRotationY), glm::vec3(0, 1, 0));
+        glm::vec3 worldMovement = glm::vec3(rotationMatrix * glm::vec4(localMovement, 0.f));
+        
+        // Apply movement
+        characterPos += worldMovement * speed * dt;
+      }
       
       // Apply rotation based on WASD input
       glm::mat4 rotationY = glm::rotate(glm::mat4(1.0f), glm::radians(scene.characterRotationY), glm::vec3(0, 1, 0));
