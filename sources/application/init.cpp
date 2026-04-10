@@ -97,14 +97,6 @@ void application_init(Scene &scene)
 
   scene.userCamera.transform = calculate_transform(scene.userCamera.arcballCamera);
 
-  // Initialize third person controller for first character
-  scene.thirdPersonController.targetPosition = glm::vec3(0.f, 0.f, 0.f);
-  scene.thirdPersonController.distance = 4.f;
-  scene.thirdPersonController.height = -4.5f;
-  scene.thirdPersonController.yaw = 0.f;
-  scene.thirdPersonController.pitch = 50.f;
-  scene.thirdPersonController.lerpSpeed = 5.f;
-  scene.thirdPersonController.mouseSensitivity = 0.5f;
   
   // Setup event handlers for both camera systems
   engine::onMouseButtonEvent += [&](const SDL_MouseButtonEvent &e) { 

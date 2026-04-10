@@ -4,7 +4,7 @@
 struct ThirdPersonController
 {
   glm::vec3 targetPosition = glm::vec3(0.f);  // Position of the character (focus point)
-  glm::vec3 cameraOffset = glm::vec3(0.f, -4.5f, 4.f);  // Relative offset from target
+  glm::vec3 cameraOffset = glm::vec3(0.f);  // Relative offset from target
   
   float distance = 4.f;  // Distance behind the character
   float height = -4.5f;    // Height offset from character center
@@ -20,13 +20,6 @@ struct ThirdPersonController
   
   bool rotationEnable = false;
 };
-
-glm::mat4 third_person_controller_calculate_transform(const ThirdPersonController& controller);
-
-void third_person_controller_update(
-  ThirdPersonController& controller,
-  glm::mat4& transform,
-  float dt);
 
 #include "engine/api.h"
 
