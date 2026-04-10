@@ -6,6 +6,6 @@
 
 ![Пример визуализации](pictures/gif_1.gif)
 
-# Third Camera Controller
+# Third-Person Camera Controller
 
 ![Пример визуализации](pictures/gif_2.gif)
