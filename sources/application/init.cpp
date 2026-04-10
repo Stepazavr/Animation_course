@@ -1,5 +1,6 @@
 #include "scene.h"
 #include "engine/animation/ozz_converter.h"
+#include <ozz/animation/runtime/local_to_model_job.h>
 
 static glm::mat4 get_projective_matrix()
 {
@@ -9,12 +10,12 @@ static glm::mat4 get_projective_matrix()
   return glm::perspective(fovY, engine::get_aspect_ratio(), zNear, zFar);
 }
 
-// Helper function to initialize a character with model and animation
-void initialize_character(
+// Helper function to initialize a character with model and multiple animations
+void initialize_character_with_animations(
     Scene& scene,
     const char* characterName,
     const char* modelPath,
-    const char* animationPath,
+    const std::vector<std::pair<const char*, const char*>>& animations,
     const char* texturePath,
     const glm::mat4& transform
 ) {
@@ -29,10 +30,49 @@ void initialize_character(
     ModelAsset model = load_model(modelPath, character);
     character.meshes = model.meshes;
     
-    load_animation(animationPath, character);
+    // Load multiple animations and create state for each
+    for (const auto& anim_pair : animations) {
+        auto* animation = load_animation_only(anim_pair.first, character.ozz_skeleton, &character.skeleton);
+        if (animation) {
+            AnimationState state;
+            state.animation = animation;
+            state.name = anim_pair.second;
+            
+            // Initialize animation data containers for this state
+            state.local_transforms.resize(character.ozz_skeleton->num_joints());
+            state.model_space_matrices.resize(character.ozz_skeleton->num_joints());
+            
+            // Initialize with rest pose so skeleton is visible even before first animation frame
+            ozz::animation::LocalToModelJob ltm_job;
+            ltm_job.skeleton = character.ozz_skeleton;
+            ltm_job.input = character.ozz_skeleton->joint_rest_poses();
+            ltm_job.output = ozz::make_span(state.model_space_matrices);
+            ltm_job.Run();
+            
+            // Create sampling context for this animation state
+            state.sampling_context = ozz::New<ozz::animation::SamplingJob::Context>(character.ozz_skeleton->num_joints());
+            
+            character.animation_states.push_back(state);
+        }
+    }
     
     scene.characters.push_back(character);
     scene.models.push_back(std::move(model));
+}
+
+// Helper function to initialize a character with single animation (for backward compatibility)
+void initialize_character(
+    Scene& scene,
+    const char* characterName,
+    const char* modelPath,
+    const char* animationPath,
+    const char* texturePath,
+    const glm::mat4& transform
+) {
+    std::vector<std::pair<const char*, const char*>> animations = {
+        {animationPath, "Default"}
+    };
+    initialize_character_with_animations(scene, characterName, modelPath, animations, texturePath, transform);
 }
 
 void application_init(Scene &scene)
@@ -63,12 +103,16 @@ void application_init(Scene &scene)
 
   engine::onKeyboardEvent += [](const SDL_KeyboardEvent &e) { if (e.keysym.sym == SDLK_F5 && e.state == SDL_RELEASED) recompile_all_shaders(); };
 
-  // Initialize MotusMan character
-  initialize_character(
+  // Initialize MotusMan character with multiple animations
+  initialize_character_with_animations(
       scene,
       "MotusMan_v55",
       "resources/MotusMan_v55/MotusMan_v55.fbx",
-      "resources/Animations/IPC/MOB1_Walk_F_Loop_IPC.fbx",
+      {
+          {"resources/Animations/IPC/MOB1_Walk_F_Loop_IPC.fbx", "Walk Forward"},
+          {"resources/Animations/IPC/MOB1_Walk_F_Loop_IPC.fbx", "Walk Backward"},
+          {"resources/Animations/IPC/MOB1_Walk_F_Loop_IPC.fbx", "Idle"}
+      },
       "resources/MotusMan_v55/MCG_diff.jpg",
       glm::identity<glm::mat4>()
   );

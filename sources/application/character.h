@@ -29,6 +29,18 @@ struct Skeleton
 	std::vector<glm::mat4> bone_matrices;
 };
 
+// State for a single animation within a character
+struct AnimationState
+{
+	ozz::animation::Animation* animation = nullptr;
+	std::string name;
+	
+	float animation_time = 0.f;
+	ozz::vector<ozz::math::SoaTransform> local_transforms;
+	ozz::vector<ozz::math::Float4x4> model_space_matrices;
+	ozz::animation::SamplingJob::Context* sampling_context = nullptr;
+};
+
 struct Character
 {
 	std::string name;
@@ -37,11 +49,25 @@ struct Character
 	MaterialPtr material;
 	Skeleton skeleton;
 	ozz::animation::Skeleton* ozz_skeleton = nullptr;
-	ozz::animation::Animation* ozz_animation = nullptr;
-	ozz::animation::SamplingJob::Context* sampling_context = nullptr;
-
-	float animation_time = 0.f;
-	ozz::vector<ozz::math::SoaTransform> local_transforms;
-	ozz::vector<ozz::math::Float4x4> model_space_matrices;
+	
+	// Animation states (each animation has its own state)
+	std::vector<AnimationState> animation_states;
+	int current_animation_index = 0;
+	
 	std::vector<glm::mat4> inverse_bind_matrices;
+	
+	// Helper to get current animation state
+	AnimationState* get_current_animation_state() {
+		if (current_animation_index >= 0 && current_animation_index < animation_states.size()) {
+			return &animation_states[current_animation_index];
+		}
+		return nullptr;
+	}
+	
+	const AnimationState* get_current_animation_state() const {
+		if (current_animation_index >= 0 && current_animation_index < animation_states.size()) {
+			return &animation_states[current_animation_index];
+		}
+		return nullptr;
+	}
 };

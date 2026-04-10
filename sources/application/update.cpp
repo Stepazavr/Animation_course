@@ -9,38 +9,39 @@ void update_animations(Scene& scene, float dt) {
 	const float DISCRETE_FRAME_TIME = 1.0f / 10.0f; // x fps for discrete keyframes
 	
 	for (auto& character : scene.characters) {
-		if (character.ozz_animation && character.ozz_skeleton) {
+		auto* anim_state = character.get_current_animation_state();
+		if (anim_state && anim_state->animation && character.ozz_skeleton) {
 			// Updates animation time.
-			character.animation_time += dt;
-			if (character.animation_time > character.ozz_animation->duration()) {
-				character.animation_time = fmod(character.animation_time, character.ozz_animation->duration());
+			anim_state->animation_time += dt;
+			if (anim_state->animation_time > anim_state->animation->duration()) {
+				anim_state->animation_time = fmod(anim_state->animation_time, anim_state->animation->duration());
 			}
 			
 			// Calculate sampling time: continuous or discrete based on g_samplingEnabled
-			float sampling_time = character.animation_time;
+			float sampling_time = anim_state->animation_time;
 			if (!g_samplingEnabled) {
 				// Discretize to nearest keyframe (no interpolation)
-				sampling_time = floorf(character.animation_time / DISCRETE_FRAME_TIME) * DISCRETE_FRAME_TIME;
+				sampling_time = floorf(anim_state->animation_time / DISCRETE_FRAME_TIME) * DISCRETE_FRAME_TIME;
 			}
 			
 			// Samples animation at sampling_time.
 			ozz::animation::SamplingJob sampling_job;
-			sampling_job.animation = character.ozz_animation;
-			sampling_job.context = character.sampling_context;
-			sampling_job.ratio = sampling_time / character.ozz_animation->duration();
-			sampling_job.output = ozz::make_span(character.local_transforms);
+			sampling_job.animation = anim_state->animation;
+			sampling_job.context = anim_state->sampling_context;
+			sampling_job.ratio = sampling_time / anim_state->animation->duration();
+			sampling_job.output = ozz::make_span(anim_state->local_transforms);
 			if (!sampling_job.Run())
 				continue;
 
 			// Converts from local space to model space matrices.
 			ozz::animation::LocalToModelJob ltm_job;
 			ltm_job.skeleton = character.ozz_skeleton;
-			ltm_job.input = ozz::make_span(character.local_transforms);
-			ltm_job.output = ozz::make_span(character.model_space_matrices);
+			ltm_job.input = ozz::make_span(anim_state->local_transforms);
+			ltm_job.output = ozz::make_span(anim_state->model_space_matrices);
 			if (!ltm_job.Run())
 				continue;		
 			// Skeleton is now updated with current animation pose
-			// character.model_space_matrices contains the animated joint transforms
+			// anim_state->model_space_matrices contains the animated joint transforms
 		}
 	}
 }

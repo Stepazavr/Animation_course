@@ -53,10 +53,11 @@ void render_skeleton(const Character& character, const mat4& cameraProjView)
 
 	// Use animated model_space_matrices if available, otherwise use rest poses
 	const ozz::vector<ozz::math::Float4x4>* models = nullptr;
-	if (character.ozz_animation)
+	auto* anim_state = character.get_current_animation_state();
+	if (anim_state && anim_state->animation)
 	{
 		// Use current animation pose
-		models = &character.model_space_matrices;
+		models = &anim_state->model_space_matrices;
 	}
 	else
 	{
@@ -131,10 +132,11 @@ void render_skeleton_transforms(const Character& character, const mat4& cameraPr
 
 	// Use animated model_space_matrices if available, otherwise use rest poses
 	const ozz::vector<ozz::math::Float4x4>* models = nullptr;
-	if (character.ozz_animation)
+	auto* anim_state = character.get_current_animation_state();
+	if (anim_state && anim_state->animation)
 	{
 		// Use current animation pose
-		models = &character.model_space_matrices;
+		models = &anim_state->model_space_matrices;
 	}
 	else
 	{
@@ -213,9 +215,11 @@ void render_character(const Character &character, const mat4 &cameraProjView, ve
   shader.use();
   material.bind_uniforms_to_shader();
 
-  if (character.ozz_skeleton && !character.inverse_bind_matrices.empty() && !character.model_space_matrices.empty())
+  // Use animation state for skinning matrices
+  auto* anim_state = character.get_current_animation_state();
+  if (character.ozz_skeleton && !character.inverse_bind_matrices.empty() && anim_state && !anim_state->model_space_matrices.empty())
   {
-    const auto& ozz_matrices = character.model_space_matrices;
+    const auto& ozz_matrices = anim_state->model_space_matrices;
     const int nj = character.ozz_skeleton->num_joints();
     std::vector<glm::mat4> skinning(nj);
     

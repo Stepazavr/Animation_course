@@ -57,6 +57,31 @@ static void show_characters(Scene &scene)
         const float INDENT = 15.0f;
         ImGui::Indent(INDENT);
         ImGui::Text("Meshes: %zu", character.meshes.size());
+        ImGui::Text("Animations: %zu", character.animation_states.size());
+        
+        // Animation selector combobox
+        if (!character.animation_states.empty())
+        {
+          if (ImGui::BeginCombo("##animation_select", character.animation_states[character.current_animation_index].name.c_str()))
+          {
+            for (size_t anim_idx = 0; anim_idx < character.animation_states.size(); anim_idx++)
+            {
+              bool is_selected = (character.current_animation_index == anim_idx);
+              if (ImGui::Selectable(character.animation_states[anim_idx].name.c_str(), is_selected))
+              {
+                const_cast<Character&>(character).current_animation_index = anim_idx;
+                auto* anim_state = const_cast<Character&>(character).get_current_animation_state();
+                if (anim_state) {
+                  anim_state->animation_time = 0.f;
+                }
+              }
+              if (is_selected)
+                ImGui::SetItemDefaultFocus();
+            }
+            ImGui::EndCombo();
+          }
+        }
+        
         ImGui::Unindent(INDENT);
       }
       ImGui::PopID();

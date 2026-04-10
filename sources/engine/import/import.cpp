@@ -166,17 +166,25 @@ ModelAsset load_model(const char *path, Character& character)
 
   character.ozz_skeleton = ozz_converter::convert_skeleton(skeleton);
 
-  // Initialize animation data containers even without animation loaded
+  // Initialize animation data containers with rest pose even without animation loaded
   if (character.ozz_skeleton) {
-    character.local_transforms.resize(character.ozz_skeleton->num_joints());
-    character.model_space_matrices.resize(character.ozz_skeleton->num_joints());
+    AnimationState rest_pose_state;
+    rest_pose_state.animation = nullptr;
+    rest_pose_state.name = "Rest Pose";
+    
+    rest_pose_state.local_transforms.resize(character.ozz_skeleton->num_joints());
+    rest_pose_state.model_space_matrices.resize(character.ozz_skeleton->num_joints());
     
     // Compute and store rest pose matrices
     ozz::animation::LocalToModelJob ltm_job;
     ltm_job.skeleton = character.ozz_skeleton;
     ltm_job.input = character.ozz_skeleton->joint_rest_poses();
-    ltm_job.output = ozz::make_span(character.model_space_matrices);
-    ltm_job.Run();  // Fill model_space_matrices with rest pose
+    ltm_job.output = ozz::make_span(rest_pose_state.model_space_matrices);
+    ltm_job.Run();
+    
+    rest_pose_state.sampling_context = ozz::New<ozz::animation::SamplingJob::Context>(character.ozz_skeleton->num_joints());
+    
+    character.animation_states.push_back(rest_pose_state);
   }
 
   engine::log("Model \"%s\" loaded", path);
@@ -206,30 +214,35 @@ void load_animation(const char *path, Character& character)
 
   if (scene->mNumAnimations > 0) {
     const aiAnimation* first_animation = scene->mAnimations[0];
-    character.ozz_animation = ozz_converter::convert_animation(first_animation, *character.ozz_skeleton, &character.skeleton);
+    auto* animation = ozz_converter::convert_animation(first_animation, *character.ozz_skeleton, &character.skeleton);
     
-    if (character.ozz_animation) {
+    if (animation) {
       engine::log("Character '%s': Animation \"%s\" loaded from \"%s\" (duration: %.2fs)", 
         character.name.c_str(),
         first_animation->mName.C_Str(),
         path,
         static_cast<float>(first_animation->mDuration / first_animation->mTicksPerSecond));
       
-      // Initialize animation data containers
-      character.local_transforms.resize(character.ozz_skeleton->num_joints());
-      character.model_space_matrices.resize(character.ozz_skeleton->num_joints());
+      // Create animation state and add to character
+      AnimationState state;
+      state.animation = animation;
+      state.name = "Default";
+      
+      // Initialize animation data containers for this state
+      state.local_transforms.resize(character.ozz_skeleton->num_joints());
+      state.model_space_matrices.resize(character.ozz_skeleton->num_joints());
       
       // Initialize with rest pose so skeleton is visible even before first animation frame
       ozz::animation::LocalToModelJob ltm_job;
       ltm_job.skeleton = character.ozz_skeleton;
       ltm_job.input = character.ozz_skeleton->joint_rest_poses();
-      ltm_job.output = ozz::make_span(character.model_space_matrices);
+      ltm_job.output = ozz::make_span(state.model_space_matrices);
       ltm_job.Run();
       
-      // Create sampling context for animation (only if not already created)
-      if (!character.sampling_context) {
-        character.sampling_context = ozz::New<ozz::animation::SamplingJob::Context>(character.ozz_skeleton->num_joints());
-      }
+      // Create sampling context for this animation state
+      state.sampling_context = ozz::New<ozz::animation::SamplingJob::Context>(character.ozz_skeleton->num_joints());
+      
+      character.animation_states.push_back(state);
     }
     else {
       engine::log("Failed to convert animation \"%s\"", first_animation->mName.C_Str());
@@ -238,4 +251,45 @@ void load_animation(const char *path, Character& character)
   else {
     engine::log("No animations found in file \"%s\"", path);
   }
+}
+
+// Load animation only without initializing character data
+ozz::animation::Animation* load_animation_only(const char *path, ozz::animation::Skeleton* skeleton, const Skeleton* engine_skeleton) {
+  if (!skeleton) {
+    engine::error("Cannot load animation: skeleton is null");
+    return nullptr;
+  }
+
+  Assimp::Importer importer;
+  importer.SetPropertyBool(AI_CONFIG_IMPORT_FBX_PRESERVE_PIVOTS, false);
+  importer.SetPropertyFloat(AI_CONFIG_GLOBAL_SCALE_FACTOR_KEY, 1.f);
+
+  importer.ReadFile(path, aiPostProcessSteps::aiProcess_Triangulate | aiPostProcessSteps::aiProcess_LimitBoneWeights |
+                              aiPostProcessSteps::aiProcess_GenNormals | aiProcess_GlobalScale | aiProcess_FlipWindingOrder);
+
+  const aiScene *scene = importer.GetScene();
+  if (!scene) {
+    engine::error("Failed to read animation file \"%s\"", path);
+    return nullptr;
+  }
+
+  if (scene->mNumAnimations > 0) {
+    const aiAnimation* first_animation = scene->mAnimations[0];
+    ozz::animation::Animation* animation = ozz_converter::convert_animation(first_animation, *skeleton, engine_skeleton);
+    
+    if (animation) {
+      engine::log("Animation \"%s\" loaded from \"%s\" (duration: %.2fs)", 
+        first_animation->mName.C_Str(),
+        path,
+        static_cast<float>(first_animation->mDuration / first_animation->mTicksPerSecond));
+      return animation;
+    }
+    else {
+      engine::log("Failed to convert animation \"%s\"", first_animation->mName.C_Str());
+    }
+  }
+  else {
+    engine::log("No animations found in file \"%s\"", path);
+  }
+  return nullptr;
 }

@@ -41,16 +41,21 @@ void game_terminate()
         ozz::Delete(character.ozz_skeleton);
         character.ozz_skeleton = nullptr;
       }
-      if (character.ozz_animation)
+      // Clean up all animation states
+      for (auto& anim_state : character.animation_states)
       {
-        ozz::Delete(character.ozz_animation);
-        character.ozz_animation = nullptr;
+        if (anim_state.animation)
+        {
+          ozz::Delete(anim_state.animation);
+          anim_state.animation = nullptr;
+        }
+        if (anim_state.sampling_context)
+        {
+          ozz::Delete(anim_state.sampling_context);
+          anim_state.sampling_context = nullptr;
+        }
       }
-      if (character.sampling_context)
-      {
-        ozz::Delete(character.sampling_context);
-        character.sampling_context = nullptr;
-      }
+      character.animation_states.clear();
     }
   }
   scene.reset();
