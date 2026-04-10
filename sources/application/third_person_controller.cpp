@@ -12,8 +12,13 @@ void third_person_camera_update(
   // Get model's global position
   glm::vec3 modelPosition = characterPosition;
   
-  // Fixed camera offset from model
-  glm::vec3 cameraOffset = glm::vec3(0.f, controller.height, controller.distance);
+  // Fixed camera offset from model with pitch angle
+  float pitchRad = glm::radians(controller.pitch);
+  glm::vec3 cameraOffset = glm::vec3(
+    0.f,
+    controller.height + controller.distance * glm::sin(pitchRad),
+    controller.distance * glm::cos(pitchRad)
+  );
   
   // Calculate target camera position
   controller.targetPosition = modelPosition + cameraOffset;

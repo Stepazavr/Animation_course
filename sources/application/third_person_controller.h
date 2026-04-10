@@ -5,8 +5,9 @@
 struct ThirdPersonController
 {
   // Camera positioning
-  float distance = 3.f;      // Distance from character (behind)
-  float height = 1.5f;       // Height above character's origin
+  float distance = 2.f;      // Distance from character (behind)
+  float height = 1.7f;       // Height above character's origin
+  float pitch = 30.f;        // Initial pitch angle in degrees (rotation around X axis)
   
   // Smoothing
   float lerpSpeed = 5.f;     // Interpolation speed for smooth camera movement

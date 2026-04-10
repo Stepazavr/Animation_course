@@ -98,6 +98,7 @@ static void show_characters(Scene &scene)
       ImGui::Text("Third Person Camera Settings:");
       ImGui::SliderFloat("Camera Distance##tpc", &scene.thirdPersonController.distance, 0.5f, 10.f);
       ImGui::SliderFloat("Camera Height##tpc", &scene.thirdPersonController.height, -5.f, 5.f);
+      ImGui::SliderFloat("Camera Pitch##tpc", &scene.thirdPersonController.pitch, -89.f, 89.f);
       ImGui::SliderFloat("Lerp Speed##tpc", &scene.thirdPersonController.lerpSpeed, 0.1f, 20.f);
     }
     
