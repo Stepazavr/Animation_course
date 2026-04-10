@@ -105,15 +105,26 @@ void application_update(Scene &scene)
   // Update animations
   update_animations(scene, dt);
   
-  // Update cameras
+  // Update cameras and character rotation for third person mode
   if (scene.use_third_person_camera) {
-    // Update third person controller with first character's position
     if (!scene.characters.empty()) {
-      // Extract position from character transform (translation is in column 3)
-      scene.thirdPersonController.targetPosition = glm::vec3(scene.characters[0].transform[3]);
+      // Extract position from character transform
+      glm::vec3 characterPos = glm::vec3(scene.characters[0].transform[3]);
+      
+      // Rotate character 180 degrees around Y axis for third person camera
+      glm::mat4 rotation180Y = glm::rotate(glm::mat4(1.0f), glm::radians(180.0f), glm::vec3(0, 1, 0));
+      scene.characters[0].transform = glm::translate(glm::mat4(1.0f), characterPos) * rotation180Y;
+      
+      // Update third person controller to follow character
+      scene.thirdPersonController.targetPosition = characterPos;
     }
     third_person_controller_update(scene.thirdPersonController, scene.userCamera.transform, dt);
   } else {
+    // Reset character rotation to normal when not in third person mode
+    if (!scene.characters.empty()) {
+      glm::vec3 characterPos = glm::vec3(scene.characters[0].transform[3]);
+      scene.characters[0].transform = glm::translate(glm::mat4(1.0f), characterPos);
+    }
     // Update arcball camera
     arcball_camera_update(scene.userCamera.arcballCamera, scene.userCamera.transform, dt);
   }

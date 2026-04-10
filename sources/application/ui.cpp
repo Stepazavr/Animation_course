@@ -5,6 +5,7 @@
 
 static ImGuizmo::OPERATION mCurrentGizmoOperation(ImGuizmo::TRANSLATE);
 static ImGuizmo::MODE mCurrentGizmoMode(ImGuizmo::WORLD);
+static bool showThirdPersonSettings = false;
 
 static void show_info(const Scene& scene)
 {
@@ -46,6 +47,9 @@ static void manipulate_character(Character &character, const UserCamera &camera)
 
 static void show_characters(Scene &scene)
 {
+  // Static flag to show/hide third person camera settings
+  static bool showThirdPersonSettings = false;
+  
   if (ImGui::Begin("Scene"))
   {
     // implement showing characters when only one character can be selected
@@ -83,8 +87,13 @@ static void show_characters(Scene &scene)
     ImGui::Checkbox("T-Pose Mode", &scene.use_t_pose);
     ImGui::Checkbox("Third Person Camera", &scene.use_third_person_camera);
     
-    // Third person camera settings
+    // Show third person camera settings checkbox (only available when Third Person Camera is enabled)
     if (scene.use_third_person_camera) {
+      ImGui::Checkbox("Show TPC Settings", &showThirdPersonSettings);
+    }
+    
+    // Third person camera settings (expandable)
+    if (scene.use_third_person_camera && showThirdPersonSettings) {
       ImGui::Separator();
       ImGui::Text("Third Person Camera Settings:");
       ImGui::SliderFloat("Camera Distance##tpc", &scene.thirdPersonController.distance, 1.f, 10.f);
