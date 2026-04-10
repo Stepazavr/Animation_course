@@ -10,7 +10,6 @@ glm::mat4 third_person_controller_calculate_transform(const ThirdPersonControlle
   // Position offset relative to target
   glm::vec3 offset;
   offset.x = controller.distance * sinf(yawRad) * cosf(pitchRad);
-  // Keep camera at minimum height (don't let it go below character height when looking down)
   offset.y = controller.height + controller.distance * sinf(pitchRad);
   offset.z = controller.distance * cosf(yawRad) * cosf(pitchRad);
   

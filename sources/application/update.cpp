@@ -107,13 +107,63 @@ void application_update(Scene &scene)
   
   // Update cameras and character rotation for third person mode
   if (scene.use_third_person_camera) {
+    // Get keyboard state for WASD input
+    int num_keys = 0;
+    const uint8_t* keyboard_state = SDL_GetKeyboardState(&num_keys);
+    
+    bool w_pressed = keyboard_state[SDL_SCANCODE_W];
+    bool a_pressed = keyboard_state[SDL_SCANCODE_A];
+    bool s_pressed = keyboard_state[SDL_SCANCODE_S];
+    bool d_pressed = keyboard_state[SDL_SCANCODE_D];
+    
+    // Calculate target rotation based on WASD input
+    // W = 180°, S = 0°, A = 90°, D = 270°
+    // Combinations: W+A=135°, W+D=225°, S+A=45°, S+D=315°
+    float targetRotationY = scene.characterRotationY;  // Keep current rotation if no keys pressed
+    
+    if (w_pressed && !s_pressed) {
+      if (a_pressed && !d_pressed) {
+        targetRotationY = 135.f;  // W+A
+      } else if (d_pressed && !a_pressed) {
+        targetRotationY = 225.f;  // W+D
+      } else {
+        targetRotationY = 180.f;  // W only
+      }
+    } else if (s_pressed && !w_pressed) {
+      if (a_pressed && !d_pressed) {
+        targetRotationY = 45.f;   // S+A
+      } else if (d_pressed && !a_pressed) {
+        targetRotationY = 315.f;  // S+D (or -45)
+      } else {
+        targetRotationY = 0.f;    // S only
+      }
+    } else if (a_pressed && !d_pressed) {
+      targetRotationY = 90.f;     // A only
+    } else if (d_pressed && !a_pressed) {
+      targetRotationY = 270.f;    // D only (or -90)
+    }
+    // If no keys or opposite keys pressed, keep current rotation
+    
+    // Smooth interpolation to target rotation
+    float rotationDelta = targetRotationY - scene.characterRotationY;
+    // Handle wraparound (shortest path)
+    if (rotationDelta > 180.f) rotationDelta -= 360.f;
+    if (rotationDelta < -180.f) rotationDelta += 360.f;
+    
+    float rotationLerpSpeed = 8.f;  // Rotation speed
+    scene.characterRotationY += rotationDelta * glm::min(1.f, rotationLerpSpeed * dt);
+    
+    // Normalize rotation to 0-360 range
+    if (scene.characterRotationY < 0.f) scene.characterRotationY += 360.f;
+    if (scene.characterRotationY >= 360.f) scene.characterRotationY -= 360.f;
+    
     if (!scene.characters.empty()) {
       // Extract position from character transform
       glm::vec3 characterPos = glm::vec3(scene.characters[0].transform[3]);
       
-      // Rotate character 180 degrees around Y axis for third person camera
-      glm::mat4 rotation180Y = glm::rotate(glm::mat4(1.0f), glm::radians(180.0f), glm::vec3(0, 1, 0));
-      scene.characters[0].transform = glm::translate(glm::mat4(1.0f), characterPos) * rotation180Y;
+      // Apply rotation based on WASD input
+      glm::mat4 rotationY = glm::rotate(glm::mat4(1.0f), glm::radians(scene.characterRotationY), glm::vec3(0, 1, 0));
+      scene.characters[0].transform = glm::translate(glm::mat4(1.0f), characterPos) * rotationY;
       
       // Update third person controller to follow character
       scene.thirdPersonController.targetPosition = characterPos;
@@ -124,6 +174,7 @@ void application_update(Scene &scene)
     if (!scene.characters.empty()) {
       glm::vec3 characterPos = glm::vec3(scene.characters[0].transform[3]);
       scene.characters[0].transform = glm::translate(glm::mat4(1.0f), characterPos);
+      scene.characterRotationY = 0.f;
     }
     // Update arcball camera
     arcball_camera_update(scene.userCamera.arcballCamera, scene.userCamera.transform, dt);

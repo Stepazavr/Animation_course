@@ -21,6 +21,9 @@ struct Scene
   
   // Animation mode: true = t-pose, false = dynamic (keyboard controlled)
   bool use_t_pose = false;
+  
+  // Character rotation based on WASD input (only in third person mode)
+  float characterRotationY = 0.f;  // Current Y rotation in degrees
 };
 
 extern bool g_visualizeBoneWeights;
