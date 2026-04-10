@@ -8,7 +8,7 @@
 #include <SDL2/SDL.h>
 
 void update_animations(Scene& scene, float dt) {
-	const float DISCRETE_FRAME_TIME = 1.0f / 10.0f; // x fps for discrete keyframes
+	const float DISCRETE_FRAME_TIME = 1.0f / 30.0f; // 30 fps for discrete keyframes
 	
 	// Handle keyboard input for animation selection (on first character if not in t-pose mode)
 	if (!scene.use_t_pose && !scene.characters.empty()) {
