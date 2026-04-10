@@ -110,8 +110,8 @@ void application_init(Scene &scene)
       "resources/MotusMan_v55/MotusMan_v55.fbx",
       {
           {"resources/Animations/IPC/MOB1_Walk_F_Loop_IPC.fbx", "Walk Forward"},
-          {"resources/Animations/IPC/MOB1_Walk_F_Loop_IPC.fbx", "Walk Backward"},
-          {"resources/Animations/IPC/MOB1_Walk_F_Loop_IPC.fbx", "Idle"}
+          {"resources/Animations/IPC/MOB1_Jog_F_Loop_IPC.fbx", "Jog Forward"},
+          {"resources/Animations/IPC/MOB1_Stand_Relaxed_Idle_IPC.fbx", "Idle"}
       },
       "resources/MotusMan_v55/MCG_diff.jpg",
       glm::identity<glm::mat4>()
