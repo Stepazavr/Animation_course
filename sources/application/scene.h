@@ -18,3 +18,4 @@ struct Scene
 extern bool g_visualizeBoneWeights;
 extern bool g_visualizeSkeleton;
 extern bool g_visualizeNodeTransforms;
+extern bool g_samplingEnabled;
