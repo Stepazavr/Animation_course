@@ -29,18 +29,16 @@ void update_animations(Scene& scene, float dt) {
 			sampling_job.context = character.sampling_context;
 			sampling_job.ratio = sampling_time / character.ozz_animation->duration();
 			sampling_job.output = ozz::make_span(character.local_transforms);
-			if (!sampling_job.Run()) {
+			if (!sampling_job.Run())
 				continue;
-			}
 
 			// Converts from local space to model space matrices.
 			ozz::animation::LocalToModelJob ltm_job;
 			ltm_job.skeleton = character.ozz_skeleton;
 			ltm_job.input = ozz::make_span(character.local_transforms);
 			ltm_job.output = ozz::make_span(character.model_space_matrices);
-			if (!ltm_job.Run()) {
-				continue;
-			}		
+			if (!ltm_job.Run())
+				continue;		
 			// Skeleton is now updated with current animation pose
 			// character.model_space_matrices contains the animated joint transforms
 		}

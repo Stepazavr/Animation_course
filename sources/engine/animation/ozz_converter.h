@@ -15,5 +15,5 @@ namespace ozz {
 
 namespace ozz_converter {
 	ozz::animation::Skeleton* convert_skeleton(const Skeleton& engine_skeleton);
-	ozz::animation::Animation* convert_animation(const aiAnimation* anim, const ozz::animation::Skeleton& ozz_skeleton);
+	ozz::animation::Animation* convert_animation(const aiAnimation* anim, const ozz::animation::Skeleton& ozz_skeleton, const Skeleton* engine_skeleton = nullptr);
 }

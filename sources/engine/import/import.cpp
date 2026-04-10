@@ -8,6 +8,7 @@
 #include "glad/glad.h"
 #include "engine/animation/ozz_converter.h"
 #include <ozz/animation/runtime/sampling_job.h>
+#include <ozz/animation/runtime/local_to_model_job.h>
 
 #include "import/model.h"
 #include "application/character.h"
@@ -165,6 +166,19 @@ ModelAsset load_model(const char *path, Character& character)
 
   character.ozz_skeleton = ozz_converter::convert_skeleton(skeleton);
 
+  // Initialize animation data containers even without animation loaded
+  if (character.ozz_skeleton) {
+    character.local_transforms.resize(character.ozz_skeleton->num_joints());
+    character.model_space_matrices.resize(character.ozz_skeleton->num_joints());
+    
+    // Compute and store rest pose matrices
+    ozz::animation::LocalToModelJob ltm_job;
+    ltm_job.skeleton = character.ozz_skeleton;
+    ltm_job.input = character.ozz_skeleton->joint_rest_poses();
+    ltm_job.output = ozz::make_span(character.model_space_matrices);
+    ltm_job.Run();  // Fill model_space_matrices with rest pose
+  }
+
   engine::log("Model \"%s\" loaded", path);
 
   return model;
@@ -192,7 +206,7 @@ void load_animation(const char *path, Character& character)
 
   if (scene->mNumAnimations > 0) {
     const aiAnimation* first_animation = scene->mAnimations[0];
-    character.ozz_animation = ozz_converter::convert_animation(first_animation, *character.ozz_skeleton);
+    character.ozz_animation = ozz_converter::convert_animation(first_animation, *character.ozz_skeleton, &character.skeleton);
     
     if (character.ozz_animation) {
       engine::log("Character '%s': Animation \"%s\" loaded from \"%s\" (duration: %.2fs)", 
@@ -204,6 +218,13 @@ void load_animation(const char *path, Character& character)
       // Initialize animation data containers
       character.local_transforms.resize(character.ozz_skeleton->num_joints());
       character.model_space_matrices.resize(character.ozz_skeleton->num_joints());
+      
+      // Initialize with rest pose so skeleton is visible even before first animation frame
+      ozz::animation::LocalToModelJob ltm_job;
+      ltm_job.skeleton = character.ozz_skeleton;
+      ltm_job.input = character.ozz_skeleton->joint_rest_poses();
+      ltm_job.output = ozz::make_span(character.model_space_matrices);
+      ltm_job.Run();
       
       // Create sampling context for animation (only if not already created)
       if (!character.sampling_context) {
