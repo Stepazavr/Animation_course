@@ -187,3 +187,50 @@ ModelAsset load_model(const char *path, Character& character)
 
   return model;
 }
+
+void load_animation(const char *path, Character& character)
+{
+  if (!character.ozz_skeleton) {
+    engine::log("Cannot load animation: skeleton not initialized for character '%s'", character.name.c_str());
+    return;
+  }
+
+  Assimp::Importer importer;
+  importer.SetPropertyBool(AI_CONFIG_IMPORT_FBX_PRESERVE_PIVOTS, false);
+  importer.SetPropertyFloat(AI_CONFIG_GLOBAL_SCALE_FACTOR_KEY, 1.f);
+
+  importer.ReadFile(path, aiPostProcessSteps::aiProcess_Triangulate | aiPostProcessSteps::aiProcess_LimitBoneWeights |
+                              aiPostProcessSteps::aiProcess_GenNormals | aiProcess_GlobalScale | aiProcess_FlipWindingOrder);
+
+  const aiScene *scene = importer.GetScene();
+  if (!scene) {
+    engine::error("Failed to read animation file \"%s\"", path);
+    return;
+  }
+
+  if (scene->mNumAnimations > 0) {
+    const aiAnimation* first_animation = scene->mAnimations[0];
+    character.ozz_animation = ozz_converter::convert_animation(first_animation, *character.ozz_skeleton);
+    
+    if (character.ozz_animation) {
+      engine::log("Character '%s': Animation \"%s\" loaded from \"%s\" (duration: %.2fs)", 
+        character.name.c_str(),
+        first_animation->mName.C_Str(),
+        path,
+        static_cast<float>(first_animation->mDuration / first_animation->mTicksPerSecond));
+      
+      // Initialize animation data containers
+      character.local_transforms.resize(character.ozz_skeleton->num_joints());
+      character.model_space_matrices.resize(character.ozz_skeleton->num_joints());
+      
+      // Create sampling context for animation
+      character.sampling_context = new ozz::animation::SamplingJob::Context(character.ozz_skeleton->num_joints());
+    }
+    else {
+      engine::log("Failed to convert animation \"%s\"", first_animation->mName.C_Str());
+    }
+  }
+  else {
+    engine::log("No animations found in file \"%s\"", path);
+  }
+}

@@ -48,6 +48,8 @@ void application_init(Scene &scene)
   motusManCharacter.material = std::move(material);
   ModelAsset motusMan = load_model("resources/MotusMan_v55/MotusMan_v55.fbx", motusManCharacter);
   motusManCharacter.meshes = motusMan.meshes;
+  // Load animation from separate file
+  load_animation("resources/Animations/IPC/MOB1_Walk_F_Loop_IPC.fbx", motusManCharacter);
   scene.characters.push_back(motusManCharacter);
 
   auto white_material = make_material("character", "sources/shaders/character_vs.glsl", "sources/shaders/character_ps.glsl");

@@ -12,3 +12,4 @@ struct ModelAsset
 };
 
 ModelAsset load_model(const char *path, Character& character);
+void load_animation(const char *path, Character& character);
