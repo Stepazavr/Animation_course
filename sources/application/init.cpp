@@ -97,9 +97,37 @@ void application_init(Scene &scene)
 
   scene.userCamera.transform = calculate_transform(scene.userCamera.arcballCamera);
 
-  engine::onMouseButtonEvent += [&](const SDL_MouseButtonEvent &e) { arccam_mouse_click_handler(e, scene.userCamera.arcballCamera); };
-  engine::onMouseMotionEvent += [&](const SDL_MouseMotionEvent &e) { arccam_mouse_move_handler(e, scene.userCamera.arcballCamera, scene.userCamera.transform); };
-  engine::onMouseWheelEvent += [&](const SDL_MouseWheelEvent &e) { arccam_mouse_wheel_handler(e, scene.userCamera.arcballCamera); };
+  // Initialize third person controller for first character
+  scene.thirdPersonController.targetPosition = glm::vec3(0.f, 0.f, 0.f);
+  scene.thirdPersonController.distance = 4.f;
+  scene.thirdPersonController.height = -4.5f;
+  scene.thirdPersonController.yaw = 0.f;
+  scene.thirdPersonController.pitch = 50.f;
+  scene.thirdPersonController.lerpSpeed = 5.f;
+  scene.thirdPersonController.mouseSensitivity = 0.5f;
+  
+  // Setup event handlers for both camera systems
+  engine::onMouseButtonEvent += [&](const SDL_MouseButtonEvent &e) { 
+    if (scene.use_third_person_camera) {
+      third_person_controller_mouse_click_handler(e, scene.thirdPersonController);
+    } else {
+      arccam_mouse_click_handler(e, scene.userCamera.arcballCamera);
+    }
+  };
+  engine::onMouseMotionEvent += [&](const SDL_MouseMotionEvent &e) { 
+    if (scene.use_third_person_camera) {
+      third_person_controller_mouse_move_handler(e, scene.thirdPersonController);
+    } else {
+      arccam_mouse_move_handler(e, scene.userCamera.arcballCamera, scene.userCamera.transform);
+    }
+  };
+  engine::onMouseWheelEvent += [&](const SDL_MouseWheelEvent &e) { 
+    if (scene.use_third_person_camera) {
+      third_person_controller_mouse_wheel_handler(e, scene.thirdPersonController);
+    } else {
+      arccam_mouse_wheel_handler(e, scene.userCamera.arcballCamera);
+    }
+  };
 
   engine::onKeyboardEvent += [](const SDL_KeyboardEvent &e) { if (e.keysym.sym == SDLK_F5 && e.state == SDL_RELEASED) recompile_all_shaders(); };
 

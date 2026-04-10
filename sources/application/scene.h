@@ -3,6 +3,7 @@
 #include "engine/render/direction_light.h"
 #include "engine/import/model.h"
 #include "user_camera.h"
+#include "third_person_controller.h"
 #include "character.h"
 
 struct Scene
@@ -11,6 +12,10 @@ struct Scene
   DirectionLight light;
 
   UserCamera userCamera;
+  ThirdPersonController thirdPersonController;
+  
+  // Camera mode: true = third person, false = arcball
+  bool use_third_person_camera = false;
 
   std::vector<Character> characters;
   

@@ -81,6 +81,20 @@ static void show_characters(Scene &scene)
 
     ImGui::Separator();
     ImGui::Checkbox("T-Pose Mode", &scene.use_t_pose);
+    ImGui::Checkbox("Third Person Camera", &scene.use_third_person_camera);
+    
+    // Third person camera settings
+    if (scene.use_third_person_camera) {
+      ImGui::Separator();
+      ImGui::Text("Third Person Camera Settings:");
+      ImGui::SliderFloat("Camera Distance##tpc", &scene.thirdPersonController.distance, 1.f, 10.f);
+      ImGui::SliderFloat("Camera Height##tpc", &scene.thirdPersonController.height, -5.f, 5.f);
+      ImGui::SliderFloat("Yaw##tpc", &scene.thirdPersonController.yaw, -360.f, 360.f);
+      ImGui::SliderFloat("Pitch##tpc", &scene.thirdPersonController.pitch, -89.f, 89.f);
+      ImGui::SliderFloat("Lerp Speed##tpc", &scene.thirdPersonController.lerpSpeed, 0.1f, 20.f);
+      ImGui::SliderFloat("Mouse Sensitivity##tpc", &scene.thirdPersonController.mouseSensitivity, 0.1f, 2.f);
+    }
+    
     ImGui::Checkbox("Visualize Bone Weights", &g_visualizeBoneWeights);
     ImGui::Checkbox("Visualize Skeleton", &g_visualizeSkeleton);
     ImGui::Checkbox("Visualize Node Transforms", &g_visualizeNodeTransforms);

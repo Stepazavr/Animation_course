@@ -2,6 +2,7 @@
 #include "application/scene.h"
 #include "application/user_camera.h"
 #include "application/arcball_camera.h"
+#include "application/third_person_controller.h"
 #include <ozz/animation/runtime/sampling_job.h>
 #include <ozz/animation/runtime/local_to_model_job.h>
 #include <SDL2/SDL.h>
@@ -101,9 +102,19 @@ void application_update(Scene &scene)
 {
   float dt = engine::get_delta_time();
   
-  // Update arcball camera
-  arcball_camera_update(scene.userCamera.arcballCamera, scene.userCamera.transform, dt);
-  
   // Update animations
   update_animations(scene, dt);
+  
+  // Update cameras
+  if (scene.use_third_person_camera) {
+    // Update third person controller with first character's position
+    if (!scene.characters.empty()) {
+      // Extract position from character transform (translation is in column 3)
+      scene.thirdPersonController.targetPosition = glm::vec3(scene.characters[0].transform[3]);
+    }
+    third_person_controller_update(scene.thirdPersonController, scene.userCamera.transform, dt);
+  } else {
+    // Update arcball camera
+    arcball_camera_update(scene.userCamera.arcballCamera, scene.userCamera.transform, dt);
+  }
 }
