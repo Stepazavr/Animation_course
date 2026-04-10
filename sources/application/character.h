@@ -43,4 +43,5 @@ struct Character
 	float animation_time = 0.f;
 	ozz::vector<ozz::math::SoaTransform> local_transforms;
 	ozz::vector<ozz::math::Float4x4> model_space_matrices;
+	std::vector<glm::mat4> inverse_bind_matrices;
 };

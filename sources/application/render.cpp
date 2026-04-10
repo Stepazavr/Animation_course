@@ -213,28 +213,26 @@ void render_character(const Character &character, const mat4 &cameraProjView, ve
   shader.use();
   material.bind_uniforms_to_shader();
 
-  if (character.ozz_skeleton)
+  if (character.ozz_skeleton && !character.inverse_bind_matrices.empty() && !character.model_space_matrices.empty())
   {
-    ozz::animation::LocalToModelJob job;
-    job.skeleton = character.ozz_skeleton;
-    job.input = character.ozz_skeleton->joint_rest_poses();
+    const auto& ozz_matrices = character.model_space_matrices;
+    const int nj = character.ozz_skeleton->num_joints();
+    std::vector<glm::mat4> skinning(nj);
     
-    ozz::vector<ozz::math::Float4x4> models;
-    models.resize(character.ozz_skeleton->num_joints());
-    job.output = ozz::make_span(models);
-
-    if (job.Run())
-    {
-        std::vector<glm::mat4> bone_matrices;
-        bone_matrices.resize(character.ozz_skeleton->num_joints());
-
-        for (int i = 0; i < character.ozz_skeleton->num_joints(); ++i)
-        {
-          // For T-pose, use identity matrices (no skinning)
-          bone_matrices[i] = glm::identity<glm::mat4>();
-        }
-        shader.set_mat4x4_array("bone_matrices", bone_matrices.data(), bone_matrices.size());
+    for (int j = 0; j < nj; ++j) {
+        alignas(16) float values[16];
+        _mm_store_ps(&values[0], ozz_matrices[j].cols[0]);
+        _mm_store_ps(&values[4], ozz_matrices[j].cols[1]);
+        _mm_store_ps(&values[8], ozz_matrices[j].cols[2]);
+        _mm_store_ps(&values[12], ozz_matrices[j].cols[3]);
+        skinning[j] = glm::make_mat4(values) * character.inverse_bind_matrices[j];
     }
+    
+    GLuint ssbo;
+    glGenBuffers(1, &ssbo);
+    glBindBuffer(GL_SHADER_STORAGE_BUFFER, ssbo);
+    glBufferData(GL_SHADER_STORAGE_BUFFER, skinning.size() * sizeof(glm::mat4), skinning.data(), GL_STATIC_DRAW);
+    glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 3, ssbo);
   }
 
   shader.set_mat4x4("Transform", character.transform);

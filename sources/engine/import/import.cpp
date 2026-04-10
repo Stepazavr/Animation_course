@@ -110,7 +110,15 @@ MeshPtr create_mesh(const aiMesh *mesh, Skeleton& skeleton)
         int vertex = bone->mWeights[j].mVertexId;
         int offset = weightsOffset[vertex]++;
         weights[vertex][offset] = bone->mWeights[j].mWeight;
-        weightsIndex[vertex][offset] = i;
+        
+        for (int bone_idx = 0; bone_idx < skeleton.bones.size(); ++bone_idx)
+        {
+            if (skeleton.bones[bone_idx].name == bone->mName.C_Str())
+            {
+                weightsIndex[vertex][offset] = bone_idx;
+                break;
+            }
+        }
       }
     }
     // the sum of weights not 1
@@ -149,6 +157,11 @@ ModelAsset load_model(const char *path, Character& character)
   {
     model.meshes.push_back(create_mesh(scene->mMeshes[i], skeleton));
   }
+
+  const int nj = skeleton.bones.size();
+  character.inverse_bind_matrices.resize(nj);
+  for (int i = 0; i < nj; ++i)
+    character.inverse_bind_matrices[i] = skeleton.bones[i].offset_matrix;
 
   character.ozz_skeleton = ozz_converter::convert_skeleton(skeleton);
 

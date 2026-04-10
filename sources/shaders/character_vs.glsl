@@ -44,27 +44,67 @@ vec3 getBoneColor(uint boneIndex)
   return rgb + m;
 }
 
+layout(std430, binding = 3) readonly buffer BoneBuffer {
+    mat4 boneMatrices[];
+};
+
 void main()
 {
+    float totalWeight = BoneWeights.x + BoneWeights.y + BoneWeights.z + BoneWeights.w;
+    vec3 skinnedPos = Position;
+    vec3 skinnedNormal = Normal;
 
-  vec3 VertexPosition = (Transform * vec4(Position, 1)).xyz;
-  vsOutput.EyespaceNormal = (Transform * vec4(Normal, 0)).xyz;
+    if (totalWeight > 0.001f) {
+        vec4 sp = vec4(0, 0, 0, 0);
+        vec3 sn = vec3(0, 0, 0);
+        
+        if (BoneWeights.x > 0.0f) {
+            mat4 bm = boneMatrices[BoneIndex.x];
+            sp += BoneWeights.x * (bm * vec4(Position, 1.0));
+            sn += BoneWeights.x * (mat3(bm) * Normal);
+        }
+        if (BoneWeights.y > 0.0f) {
+            mat4 bm = boneMatrices[BoneIndex.y];
+            sp += BoneWeights.y * (bm * vec4(Position, 1.0));
+            sn += BoneWeights.y * (mat3(bm) * Normal);
+        }
+        if (BoneWeights.z > 0.0f) {
+            mat4 bm = boneMatrices[BoneIndex.z];
+            sp += BoneWeights.z * (bm * vec4(Position, 1.0));
+            sn += BoneWeights.z * (mat3(bm) * Normal);
+        }
+        if (BoneWeights.w > 0.0f) {
+            mat4 bm = boneMatrices[BoneIndex.w];
+            sp += BoneWeights.w * (bm * vec4(Position, 1.0));
+            sn += BoneWeights.w * (mat3(bm) * Normal);
+        }
+        
+        if (totalWeight != 1.0f) {
+            sp /= totalWeight;
+            sn /= totalWeight;
+        }
+        
+        skinnedPos = sp.xyz;
+        skinnedNormal = normalize(sn);
+    }
 
-  gl_Position = ViewProjection * vec4(VertexPosition, 1);
-  vsOutput.WorldPosition = VertexPosition;
+    vec3 VertexPosition = (Transform * vec4(skinnedPos, 1)).xyz;
+    vsOutput.EyespaceNormal = (Transform * vec4(skinnedNormal, 0)).xyz;
 
-  vsOutput.UV = UV;
+    gl_Position = ViewProjection * vec4(VertexPosition, 1);
+    vsOutput.WorldPosition = VertexPosition;
 
-  vec3 boneColor = vec3(0.0);
-  if (BoneWeights.x > 0.0)
-    boneColor += BoneWeights.x * getBoneColor(BoneIndex.x);
-  if (BoneWeights.y > 0.0)
-    boneColor += BoneWeights.y * getBoneColor(BoneIndex.y);
-  if (BoneWeights.z > 0.0)
-    boneColor += BoneWeights.z * getBoneColor(BoneIndex.z);
-  if (BoneWeights.w > 0.0)
-    boneColor += BoneWeights.w * getBoneColor(BoneIndex.w);
-  
-  vsOutput.BoneColor = boneColor;
+    vsOutput.UV = UV;
 
+    vec3 boneColor = vec3(0.0);
+    if (BoneWeights.x > 0.0)
+        boneColor += BoneWeights.x * getBoneColor(BoneIndex.x);
+    if (BoneWeights.y > 0.0)
+        boneColor += BoneWeights.y * getBoneColor(BoneIndex.y);
+    if (BoneWeights.z > 0.0)
+        boneColor += BoneWeights.z * getBoneColor(BoneIndex.z);
+    if (BoneWeights.w > 0.0)
+        boneColor += BoneWeights.w * getBoneColor(BoneIndex.w);
+    
+    vsOutput.BoneColor = boneColor;
 }
