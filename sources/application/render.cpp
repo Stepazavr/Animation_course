@@ -1,4 +1,5 @@
 #include "scene.h"
+#include "character.h"
 #include "engine/render/shader.h"
 #include "engine/render/material.h"
 #include <ozz/animation/runtime/local_to_model_job.h>

@@ -6,18 +6,28 @@
 #include <ozz/animation/runtime/local_to_model_job.h>
 
 void update_animations(Scene& scene, float dt) {
+	const float DISCRETE_FRAME_TIME = 1.0f / 10.0f; // x fps for discrete keyframes
+	
 	for (auto& character : scene.characters) {
-		if (character.ozz_animation && character.ozz_skeleton && g_samplingEnabled) {
+		if (character.ozz_animation && character.ozz_skeleton) {
 			// Updates animation time.
 			character.animation_time += dt;
 			if (character.animation_time > character.ozz_animation->duration()) {
 				character.animation_time = fmod(character.animation_time, character.ozz_animation->duration());
 			}
-			// Samples animation at t = animation_time.
+			
+			// Calculate sampling time: continuous or discrete based on g_samplingEnabled
+			float sampling_time = character.animation_time;
+			if (!g_samplingEnabled) {
+				// Discretize to nearest keyframe (no interpolation)
+				sampling_time = floorf(character.animation_time / DISCRETE_FRAME_TIME) * DISCRETE_FRAME_TIME;
+			}
+			
+			// Samples animation at sampling_time.
 			ozz::animation::SamplingJob sampling_job;
 			sampling_job.animation = character.ozz_animation;
 			sampling_job.context = character.sampling_context;
-			sampling_job.ratio = character.animation_time / character.ozz_animation->duration();
+			sampling_job.ratio = sampling_time / character.ozz_animation->duration();
 			sampling_job.output = ozz::make_span(character.local_transforms);
 			if (!sampling_job.Run()) {
 				continue;
