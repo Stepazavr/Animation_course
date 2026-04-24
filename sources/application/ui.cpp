@@ -71,7 +71,7 @@ static void show_characters(Scene &scene)
         const float INDENT = 15.0f;
         ImGui::Indent(INDENT);
         ImGui::Text("Meshes: %zu", character.meshes.size());
-        ImGui::Text("Animations: %zu", character.animation_states.size());
+        ImGui::Text("Animations: %zu", character.animation_states.size() - 1);
         
         ImGui::Unindent(INDENT);
       }
