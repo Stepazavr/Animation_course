@@ -56,6 +56,14 @@ struct Character
 	
 	std::vector<glm::mat4> inverse_bind_matrices;
 	
+	// Movement speed constants
+	static constexpr float speed_idle = 0.f;
+	static constexpr float speed_wasd = 2.f;
+	static constexpr float speed_wasd_shift = 3.f;
+	
+	// Current speed (interpolated)
+	float current_speed = 0.f;
+	
 	// Helper to get current animation state
 	AnimationState* get_current_animation_state() {
 		if (current_animation_index >= 0 && current_animation_index < animation_states.size()) {

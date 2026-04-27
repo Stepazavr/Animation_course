@@ -165,16 +165,54 @@ void application_update(Scene &scene)
     if (scene.characterRotationY >= 360.f) scene.characterRotationY -= 360.f;
     
     if (!scene.characters.empty()) {
-      // Extract position from character transform
-      glm::vec3 characterPos = glm::vec3(scene.characters[0].transform[3]);
+      auto& character = scene.characters[0];
       
-      // Calculate movement based on WASD input
+      // Extract position from character transform
+      glm::vec3 characterPos = glm::vec3(character.transform[3]);
+      
+      // Calculate target speed based on WASD input
       // Movement is always forward in local character space (local +Z)
       bool anyKeyPressed = w_pressed || a_pressed || s_pressed || d_pressed;
-      float baseSpeed = 2.f;  // Base movement speed (units per second)
       bool shift_pressed = keyboard_state[SDL_SCANCODE_LSHIFT] || keyboard_state[SDL_SCANCODE_RSHIFT];
-      float speedMultiplier = shift_pressed ? 1.5f : 1.f;
-      float speed = baseSpeed * speedMultiplier;
+      
+      float targetSpeed = Character::speed_idle;  // Default: idle
+      if (anyKeyPressed) {
+        if (shift_pressed) {
+          targetSpeed = Character::speed_wasd_shift;  // WASD + Shift
+        } else {
+          targetSpeed = Character::speed_wasd;  // WASD only
+        }
+      }
+      
+      // Interpolate current speed to target speed
+      float speedDifference = targetSpeed - character.current_speed;
+      float interpolationTime = 0.f;
+      
+      if (speedDifference > 0.f) {
+        // Speed up: 0->2 takes 1.0s, 2->3 takes 0.5s
+        if (character.current_speed < Character::speed_wasd) {
+          interpolationTime = 1.0f;  // 0->2 over 1 second
+        } else {
+          interpolationTime = 0.5f;  // 2->3 over 0.5 seconds
+        }
+      } else if (speedDifference < 0.f) {
+        // Slow down: instant or smooth?
+        interpolationTime = 0.f;  // Instant deceleration
+      }
+      
+      if (interpolationTime > 0.f) {
+        float speedChangePerSecond = speedDifference / interpolationTime;
+        character.current_speed += speedChangePerSecond * dt;
+        
+        // Clamp to target speed
+        if (speedDifference > 0.f) {
+          character.current_speed = glm::min(character.current_speed, targetSpeed);
+        } else {
+          character.current_speed = glm::max(character.current_speed, targetSpeed);
+        }
+      } else {
+        character.current_speed = targetSpeed;
+      }
       
       if (anyKeyPressed) {
         // Movement is always forward in local space (rotate to world space)
@@ -184,13 +222,13 @@ void application_update(Scene &scene)
         glm::mat4 rotationMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(scene.characterRotationY), glm::vec3(0, 1, 0));
         glm::vec3 worldMovement = glm::vec3(rotationMatrix * glm::vec4(localMovement, 0.f));
         
-        // Apply movement
-        characterPos += worldMovement * speed * dt;
+        // Apply movement with current speed
+        characterPos += worldMovement * character.current_speed * dt;
       }
       
       // Apply rotation based on WASD input
       glm::mat4 rotationY = glm::rotate(glm::mat4(1.0f), glm::radians(scene.characterRotationY), glm::vec3(0, 1, 0));
-      scene.characters[0].transform = glm::translate(glm::mat4(1.0f), characterPos) * rotationY;
+      character.transform = glm::translate(glm::mat4(1.0f), characterPos) * rotationY;
       
       // Update third person camera to follow character
       third_person_camera_update(
