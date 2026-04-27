@@ -5,7 +5,11 @@
 #include "application/third_person_controller.h"
 #include <ozz/animation/runtime/sampling_job.h>
 #include <ozz/animation/runtime/local_to_model_job.h>
+#include <ozz/animation/runtime/blending_job.h>
 #include <SDL2/SDL.h>
+
+extern bool g_blending_enabled;
+extern bool g_samplingEnabled;
 
 void update_animations(Scene& scene, float dt) {
 	const float DISCRETE_FRAME_TIME = 1.0f / 30.0f; // 30 fps for discrete keyframes
@@ -65,41 +69,136 @@ void update_animations(Scene& scene, float dt) {
 		// In t-pose mode, use rest pose (index 0), otherwise use current_animation_index
 		int pose_index = scene.use_t_pose ? 0 : character.current_animation_index;
 		
-		if (pose_index >= 0 && pose_index < character.animation_states.size()) {
-			auto* anim_state = &character.animation_states[pose_index];
+		// Blending logic: if blending is enabled and character is blending
+		if (g_blending_enabled && character.is_blending && !scene.use_t_pose && character.ozz_skeleton && character.animation_states.size() >= 4) {
+			// We have at least 4 animations: Index 0: Rest Pose, Index 1: Idle, Index 2: Walk, Index 3: Jog
 			
-			if (anim_state->animation && character.ozz_skeleton) {
-				// Updates animation time.
-				anim_state->animation_time += dt;
-				if (anim_state->animation_time > anim_state->animation->duration()) {
-					anim_state->animation_time = fmod(anim_state->animation_time, anim_state->animation->duration());
+			// All three animations are sampled with the same time ratio (synchronized playback)
+			// Idle, Walk, and Jog animations need to be sampled and blended
+			
+			// First, sample all three animations (indices 1, 2, 3)
+			for (int i = 1; i <= 3; ++i) {
+				if (i < character.animation_states.size()) {
+					auto* anim_state = &character.animation_states[i];
+					
+					if (anim_state->animation && character.ozz_skeleton) {
+						// Updates animation time.
+						anim_state->animation_time += dt;
+						if (anim_state->animation_time > anim_state->animation->duration()) {
+							anim_state->animation_time = fmod(anim_state->animation_time, anim_state->animation->duration());
+						}
+						
+						// Calculate sampling time
+						float sampling_time = anim_state->animation_time;
+						if (!g_samplingEnabled) {
+							sampling_time = floorf(anim_state->animation_time / DISCRETE_FRAME_TIME) * DISCRETE_FRAME_TIME;
+						}
+						
+						// Sample animation
+						ozz::animation::SamplingJob sampling_job;
+						sampling_job.animation = anim_state->animation;
+						sampling_job.context = anim_state->sampling_context;
+						sampling_job.ratio = sampling_time / anim_state->animation->duration();
+						sampling_job.output = ozz::make_span(anim_state->local_transforms);
+						if (!sampling_job.Run())
+							continue;
+					}
+				}
+			}
+			
+			// Ensure blended_locals buffer is properly sized
+			if (character.blended_locals.empty() && !character.animation_states[1].local_transforms.empty()) {
+				character.blended_locals.resize(character.animation_states[1].local_transforms.size());
+			}
+			
+			if (!character.blended_locals.empty()) {
+				// Calculate blend weights based on current_speed
+				// Speed range: [MIN_SPEED=0, MAX_SPEED=3] with DIVIDE_SPEED=2
+				// Idle-Walk: [0, 2], Walk-Jog: [2, 3]
+				
+				float weight_idle = 0.f, weight_walk = 0.f, weight_jog = 0.f;
+				
+				if (character.current_speed < Character::DIVIDE_SPEED) {
+					// Blending between Idle and Walk
+					float t = character.current_speed / Character::DIVIDE_SPEED;  // [0, 1]
+					weight_idle = 1.f - t;
+					weight_walk = t;
+					weight_jog = 0.f;
+				} else {
+					// Blending between Walk and Jog
+					float t = (character.current_speed - Character::DIVIDE_SPEED) / 
+						      (Character::MAX_SPEED - Character::DIVIDE_SPEED);  // [0, 1]
+					weight_idle = 0.f;
+					weight_walk = 1.f - t;
+					weight_jog = t;
 				}
 				
-				// Calculate sampling time: continuous or discrete based on g_samplingEnabled
-				float sampling_time = anim_state->animation_time;
-				if (!g_samplingEnabled) {
-					// Discretize to nearest keyframe (no interpolation)
-					sampling_time = floorf(anim_state->animation_time / DISCRETE_FRAME_TIME) * DISCRETE_FRAME_TIME;
-				}
+				// Prepare blending layers
+				ozz::animation::BlendingJob::Layer layers[3];
+				layers[0].transform = ozz::make_span(character.animation_states[1].local_transforms);  // Idle
+				layers[0].weight = weight_idle;
+				layers[1].transform = ozz::make_span(character.animation_states[2].local_transforms);  // Walk
+				layers[1].weight = weight_walk;
+				layers[2].transform = ozz::make_span(character.animation_states[3].local_transforms);  // Jog
+				layers[2].weight = weight_jog;
 				
-				// Samples animation at sampling_time.
-				ozz::animation::SamplingJob sampling_job;
-				sampling_job.animation = anim_state->animation;
-				sampling_job.context = anim_state->sampling_context;
-				sampling_job.ratio = sampling_time / anim_state->animation->duration();
-				sampling_job.output = ozz::make_span(anim_state->local_transforms);
-				if (!sampling_job.Run())
-					continue;
+				// Setup blending job
+				ozz::animation::BlendingJob blend_job;
+				blend_job.threshold = ozz::animation::BlendingJob().threshold;  // Use default threshold
+				blend_job.layers = layers;
+				blend_job.rest_pose = character.ozz_skeleton->joint_rest_poses();
+				blend_job.output = ozz::make_span(character.blended_locals);
+				
+				// Run blending
+				if (blend_job.Run()) {
+					// Convert from local space to model space matrices using blended result
+					ozz::animation::LocalToModelJob ltm_job;
+					ltm_job.skeleton = character.ozz_skeleton;
+					ltm_job.input = ozz::make_span(character.blended_locals);
+					ltm_job.output = ozz::make_span(character.animation_states[pose_index].model_space_matrices);
+					
+					if (!ltm_job.Run())
+						continue;
+				}
+			}
+		} else {
+			// Regular sampling without blending
+			if (pose_index >= 0 && pose_index < character.animation_states.size()) {
+				auto* anim_state = &character.animation_states[pose_index];
+				
+				if (anim_state->animation && character.ozz_skeleton) {
+					// Updates animation time.
+					anim_state->animation_time += dt;
+					if (anim_state->animation_time > anim_state->animation->duration()) {
+						anim_state->animation_time = fmod(anim_state->animation_time, anim_state->animation->duration());
+					}
+					
+					// Calculate sampling time: continuous or discrete based on g_samplingEnabled
+					float sampling_time = anim_state->animation_time;
+					if (!g_samplingEnabled) {
+						// Discretize to nearest keyframe (no interpolation)
+						sampling_time = floorf(anim_state->animation_time / DISCRETE_FRAME_TIME) * DISCRETE_FRAME_TIME;
+					}
+					
+					// Samples animation at sampling_time.
+					ozz::animation::SamplingJob sampling_job;
+					sampling_job.animation = anim_state->animation;
+					sampling_job.context = anim_state->sampling_context;
+					sampling_job.ratio = sampling_time / anim_state->animation->duration();
+					sampling_job.output = ozz::make_span(anim_state->local_transforms);
+					if (!sampling_job.Run())
+						continue;
 
-				// Converts from local space to model space matrices.
-				ozz::animation::LocalToModelJob ltm_job;
-				ltm_job.skeleton = character.ozz_skeleton;
-				ltm_job.input = ozz::make_span(anim_state->local_transforms);
-				ltm_job.output = ozz::make_span(anim_state->model_space_matrices);
-				if (!ltm_job.Run())
-					continue;		
-				// Skeleton is now updated with current animation pose
-				// anim_state->model_space_matrices contains the animated joint transforms
+					// Converts from local space to model space matrices.
+					ozz::animation::LocalToModelJob ltm_job;
+					ltm_job.skeleton = character.ozz_skeleton;
+					ltm_job.input = ozz::make_span(anim_state->local_transforms);
+					ltm_job.output = ozz::make_span(anim_state->model_space_matrices);
+					if (!ltm_job.Run())
+						continue;		
+					// Skeleton is now updated with current animation pose
+					// anim_state->model_space_matrices contains the animated joint transforms
+				}
 			}
 		}
 	}
@@ -186,6 +285,8 @@ void application_update(Scene &scene)
       
       // Interpolate current speed to target speed
       float speedDifference = targetSpeed - character.current_speed;
+
+			character.is_blending = speedDifference != 0.f;
       
       if (speedDifference > 0.f) {
         if (targetSpeed == Character::speed_wasd) {
@@ -205,9 +306,11 @@ void application_update(Scene &scene)
 
 				if (glm::abs(character.current_speed - targetSpeed) < 0.1f) {
 					character.current_speed = targetSpeed; // Snap to target if close enough
+					character.is_blending = false;
 				}
 			} else {
 				character.current_speed = targetSpeed;
+				character.is_blending = false;
       }
 
 

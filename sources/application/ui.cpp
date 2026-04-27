@@ -3,6 +3,12 @@
 
 #include "scene.h"
 
+extern bool g_visualizeBoneWeights;
+extern bool g_visualizeSkeleton;
+extern bool g_visualizeNodeTransforms;
+extern bool g_samplingEnabled;
+extern bool g_blending_enabled;
+
 static ImGuizmo::OPERATION mCurrentGizmoOperation(ImGuizmo::TRANSLATE);
 static ImGuizmo::MODE mCurrentGizmoMode(ImGuizmo::WORLD);
 static bool showThirdPersonSettings = false;
@@ -106,6 +112,7 @@ static void show_characters(Scene &scene)
     ImGui::Checkbox("Visualize Skeleton", &g_visualizeSkeleton);
     ImGui::Checkbox("Visualize Node Transforms", &g_visualizeNodeTransforms);
     ImGui::Checkbox("Sampling", &g_samplingEnabled);
+    ImGui::Checkbox("Blending", &g_blending_enabled);
     
     // Display character speed
     ImGui::Separator();

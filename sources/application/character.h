@@ -60,9 +60,18 @@ struct Character
 	static constexpr float speed_idle = 0.f;
 	static constexpr float speed_wasd = 2.f;
 	static constexpr float speed_wasd_shift = 3.f;
-	
+
+	static constexpr float MIN_SPEED = speed_idle;
+	static constexpr float DIVIDE_SPEED = speed_wasd;
+	static constexpr float MAX_SPEED = speed_wasd_shift;
+
 	// Current speed (interpolated)
 	float current_speed = 0.f;
+
+	bool is_blending = false;
+
+	// Blending buffer for animation blending results
+	ozz::vector<ozz::math::SoaTransform> blended_locals;
 	
 	// Helper to get current animation state
 	AnimationState* get_current_animation_state() {

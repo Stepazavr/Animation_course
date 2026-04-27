@@ -11,6 +11,7 @@ bool g_visualizeBoneWeights = false;
 bool g_visualizeSkeleton = false;
 bool g_visualizeNodeTransforms = false;
 bool g_samplingEnabled = true;
+bool g_blending_enabled = true;
 
 // Helper function to extract position from ozz::math::Float4x4
 inline glm::vec3 extract_position(const ozz::math::Float4x4& matrix) {
