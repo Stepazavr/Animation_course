@@ -53,17 +53,15 @@ static void update_animation_index_from_keyboard(Scene& scene) {
 	}
 }
 
-static void update_blended_animation(Character& character, float dt) {
-	const float DISCRETE_FRAME_TIME = 1.0f / 30.0f;
-	
+static void update_blending_parameters(Character& character) {
 	float blend_ratio = (character.current_speed - Character::MIN_SPEED) / 
 		               (Character::MAX_SPEED - Character::MIN_SPEED);
 	blend_ratio = glm::clamp(blend_ratio, 0.f, 1.f);
 	
 	const float kNumIntervals = 2.f;
 	const float kInterval = 1.f / kNumIntervals;
-	float weight_idle = 0.f, weight_walk = 0.f, weight_jog = 0.f;
 	
+	float weight_idle = 0.f, weight_walk = 0.f, weight_jog = 0.f;
 	for (int i = 0; i < 3; ++i) {
 		const float med = i * kInterval;
 		const float x = blend_ratio - med;
@@ -90,14 +88,18 @@ static void update_blended_animation(Character& character, float dt) {
 	const float loop_duration = duration_l * weight_l + duration_r * weight_r;
 	const float inv_loop_duration = (loop_duration > 0.f) ? (1.f / loop_duration) : 1.f;
 	
-	float speed_idle = character.animation_states[1].animation ? 
-		(character.animation_states[1].animation->duration() * inv_loop_duration) : 1.f;
-	float speed_walk = character.animation_states[2].animation ? 
-		(character.animation_states[2].animation->duration() * inv_loop_duration) : 1.f;
-	float speed_jog = character.animation_states[3].animation ? 
-		(character.animation_states[3].animation->duration() * inv_loop_duration) : 1.f;
+	character.animation_states[1].animation_time = fmod(character.animation_states[1].animation_time, 
+		character.animation_states[1].animation ? character.animation_states[1].animation->duration() : 1.f);
+	character.animation_states[2].animation_time = fmod(character.animation_states[2].animation_time, 
+		character.animation_states[2].animation ? character.animation_states[2].animation->duration() : 1.f);
+	character.animation_states[3].animation_time = fmod(character.animation_states[3].animation_time, 
+		character.animation_states[3].animation ? character.animation_states[3].animation->duration() : 1.f);
+}
+
+static void sample_animations(Character& character, float dt, int start_idx = 1, int end_idx = 3) {
+	const float DISCRETE_FRAME_TIME = 1.0f / 30.0f;
 	
-	for (int i = 1; i <= 3; ++i) {
+	for (int i = start_idx; i <= end_idx; ++i) {
 		if (i >= character.animation_states.size())
 			continue;
 			
@@ -105,9 +107,7 @@ static void update_blended_animation(Character& character, float dt) {
 		if (!anim_state->animation || !character.ozz_skeleton)
 			continue;
 		
-		float speed_coeff = (i == 1) ? speed_idle : (i == 2) ? speed_walk : speed_jog;
-		
-		anim_state->animation_time += dt * speed_coeff;
+		anim_state->animation_time += dt;
 		if (anim_state->animation_time > anim_state->animation->duration()) {
 			anim_state->animation_time = fmod(anim_state->animation_time, anim_state->animation->duration());
 		}
@@ -124,12 +124,33 @@ static void update_blended_animation(Character& character, float dt) {
 		sampling_job.output = ozz::make_span(anim_state->local_transforms);
 		sampling_job.Run();
 	}
-	
+}
+
+static void blend_animations(Character& character) {
 	if (character.blended_locals.empty() && !character.animation_states[1].local_transforms.empty()) {
 		character.blended_locals.resize(character.animation_states[1].local_transforms.size());
 	}
 	
 	if (!character.blended_locals.empty()) {
+		float blend_ratio = (character.current_speed - Character::MIN_SPEED) / 
+			               (Character::MAX_SPEED - Character::MIN_SPEED);
+		blend_ratio = glm::clamp(blend_ratio, 0.f, 1.f);
+		
+		const float kNumIntervals = 2.f;
+		const float kInterval = 1.f / kNumIntervals;
+		
+		float weight_idle = 0.f, weight_walk = 0.f, weight_jog = 0.f;
+		for (int i = 0; i < 3; ++i) {
+			const float med = i * kInterval;
+			const float x = blend_ratio - med;
+			const float y = ((x < 0.f ? x : -x) + kInterval) * kNumIntervals;
+			float weight = glm::max(0.f, y);
+			
+			if (i == 0) weight_idle = weight;
+			else if (i == 1) weight_walk = weight;
+			else if (i == 2) weight_jog = weight;
+		}
+		
 		ozz::animation::BlendingJob::Layer layers[3];
 		layers[0].transform = ozz::make_span(character.animation_states[1].local_transforms);
 		layers[0].weight = weight_idle;
@@ -155,41 +176,6 @@ static void update_blended_animation(Character& character, float dt) {
 	}
 }
 
-static void update_single_animation(Character& character, int pose_index, float dt) {
-	const float DISCRETE_FRAME_TIME = 1.0f / 30.0f;
-	
-	if (pose_index < 0 || pose_index >= character.animation_states.size())
-		return;
-		
-	auto* anim_state = &character.animation_states[pose_index];
-	if (!anim_state->animation || !character.ozz_skeleton)
-		return;
-	
-	anim_state->animation_time += dt;
-	if (anim_state->animation_time > anim_state->animation->duration()) {
-		anim_state->animation_time = fmod(anim_state->animation_time, anim_state->animation->duration());
-	}
-	
-	float sampling_time = anim_state->animation_time;
-	if (!g_samplingEnabled) {
-		sampling_time = floorf(anim_state->animation_time / DISCRETE_FRAME_TIME) * DISCRETE_FRAME_TIME;
-	}
-	
-	ozz::animation::SamplingJob sampling_job;
-	sampling_job.animation = anim_state->animation;
-	sampling_job.context = anim_state->sampling_context;
-	sampling_job.ratio = sampling_time / anim_state->animation->duration();
-	sampling_job.output = ozz::make_span(anim_state->local_transforms);
-	if (!sampling_job.Run())
-		return;
-
-	ozz::animation::LocalToModelJob ltm_job;
-	ltm_job.skeleton = character.ozz_skeleton;
-	ltm_job.input = ozz::make_span(anim_state->local_transforms);
-	ltm_job.output = ozz::make_span(anim_state->model_space_matrices);
-	ltm_job.Run();
-}
-
 void update_animations(Scene& scene, float dt) {
 	update_animation_index_from_keyboard(scene);
 	
@@ -199,9 +185,22 @@ void update_animations(Scene& scene, float dt) {
 			character.ozz_skeleton && character.animation_states.size() >= 4;
 		
 		if (should_blend) {
-			update_blended_animation(character, dt);
+			update_blending_parameters(character);
+			sample_animations(character, dt);
+			blend_animations(character);
 		} else {
-			update_single_animation(character, pose_index, dt);
+			sample_animations(character, dt, pose_index, pose_index);
+			
+			if (pose_index >= 0 && pose_index < character.animation_states.size()) {
+				auto* anim_state = &character.animation_states[pose_index];
+				if (anim_state->animation && character.ozz_skeleton) {
+					ozz::animation::LocalToModelJob ltm_job;
+					ltm_job.skeleton = character.ozz_skeleton;
+					ltm_job.input = ozz::make_span(anim_state->local_transforms);
+					ltm_job.output = ozz::make_span(anim_state->model_space_matrices);
+					ltm_job.Run();
+				}
+			}
 		}
 	}
 }
