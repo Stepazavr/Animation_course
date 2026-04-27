@@ -61,7 +61,7 @@ static void update_animation_index_from_keyboard(Scene& scene) {
 	}
 }
 
-static void update_blending_parameters(Character& character) {
+static void update_blending_parameters(Character& character, int& inv_loop_duration) {
 	float blend_ratio = (character.current_speed - Character::MIN_SPEED) / 
 		               (Character::MAX_SPEED - Character::MIN_SPEED);
 	blend_ratio = glm::clamp(blend_ratio, 0.f, 1.f);
@@ -94,7 +94,7 @@ static void update_blending_parameters(Character& character) {
 		character.animation_states[sampler_r_idx].animation->duration() : 1.f;
 	
 	const float loop_duration = duration_l * weight_l + duration_r * weight_r;
-	const float inv_loop_duration = (loop_duration > 0.f) ? (1.f / loop_duration) : 1.f;
+	inv_loop_duration = (loop_duration > 0.f) ? (1.f / loop_duration) : 1.f;
 	
 	character.animation_states[1].animation_time = fmod(character.animation_states[1].animation_time, 
 		character.animation_states[1].animation ? character.animation_states[1].animation->duration() : 1.f);
@@ -104,7 +104,7 @@ static void update_blending_parameters(Character& character) {
 		character.animation_states[3].animation ? character.animation_states[3].animation->duration() : 1.f);
 }
 
-static void sample_animations(Character& character, float dt, int start_idx = 1, int end_idx = 3) {
+static void sample_animations(Character& character, float dt, int inv_loop_duration, int start_idx = 1, int end_idx = 3) {
 	const float DISCRETE_FRAME_TIME = 1.0f / 30.0f;
 	
 	for (int i = start_idx; i <= end_idx; ++i) {
@@ -115,7 +115,10 @@ static void sample_animations(Character& character, float dt, int start_idx = 1,
 		if (!anim_state->animation || !character.ozz_skeleton)
 			continue;
 		
-		anim_state->animation_time += dt;
+
+		float sync_factor = character.animation_states[i].animation->duration() * inv_loop_duration;
+		sync_factor = (inv_loop_duration != -1.f) ? sync_factor : 1.f;
+		anim_state->animation_time += dt * sync_factor;
 		if (anim_state->animation_time > anim_state->animation->duration()) {
 			anim_state->animation_time = fmod(anim_state->animation_time, anim_state->animation->duration());
 		}
@@ -202,13 +205,14 @@ void update_animations(Scene& scene, float dt) {
 		if (should_blend) {
 			character.was_blending_previous_frame = true;
 		}
-		
+
+		int inv_loop_duration = -1.f;
 		if (should_blend) {
-			update_blending_parameters(character);
-			sample_animations(character, dt);
+			update_blending_parameters(character, inv_loop_duration);
+			sample_animations(character, dt, inv_loop_duration);
 			blend_animations(character);
 		} else {
-			sample_animations(character, dt, pose_index, pose_index);
+			sample_animations(character, dt, inv_loop_duration, pose_index, pose_index);
 			
 			if (pose_index >= 0 && pose_index < character.animation_states.size()) {
 				auto* anim_state = &character.animation_states[pose_index];
@@ -288,8 +292,7 @@ void application_update(Scene &scene)
       character.is_blending = speedDifference != 0.f;
       
       if (speedDifference != 0.f) {
-        float speedChangePerSecond = 2.0f;
-        speedChangePerSecond = (speedDifference > 0.f) ? speedChangePerSecond : -speedChangePerSecond; 
+        float speedChangePerSecond = (speedDifference > 0.f) ? character.speedChangePerSecond : -character.speedChangePerSecond; 
         character.current_speed += speedChangePerSecond * dt;
 
         if (glm::abs(character.current_speed - targetSpeed) < 0.01f) {
