@@ -61,7 +61,7 @@ struct Character
 	static constexpr float speed_wasd = 1.4f;
 	static constexpr float speed_wasd_shift = 3.f;
 
-	static constexpr float speedChangePerSecond = 16.0f;
+	static constexpr float speedChangePerSecond = 6.0f;
 
 	static constexpr float MIN_SPEED = speed_idle;
 	static constexpr float DIVIDE_SPEED = speed_wasd;

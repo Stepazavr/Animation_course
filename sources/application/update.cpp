@@ -304,12 +304,10 @@ void application_update(Scene &scene)
         character.is_blending = false;
       }
       
-      if (anyKeyPressed) {
         glm::vec3 localMovement = glm::vec3(0.f, 0.f, 1.f);
         glm::mat4 rotationMatrix = glm::rotate(glm::mat4(1.0f), glm::radians(scene.characterRotationY), glm::vec3(0, 1, 0));
         glm::vec3 worldMovement = glm::vec3(rotationMatrix * glm::vec4(localMovement, 0.f));
         characterPos += worldMovement * character.current_speed * dt;
-      }
       
       glm::mat4 rotationY = glm::rotate(glm::mat4(1.0f), glm::radians(scene.characterRotationY), glm::vec3(0, 1, 0));
       character.transform = glm::translate(glm::mat4(1.0f), characterPos) * rotationY;
