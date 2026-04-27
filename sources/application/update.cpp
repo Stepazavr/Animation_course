@@ -22,6 +22,14 @@ extern bool g_samplingEnabled;
 // WASD only -> Walk (index 2)
 // Nothing -> Idle (index 1)
 
+static void reset_animation_time(Character& character, int start_idx = 1, int end_idx = 3) {
+	for (int i = start_idx; i <= end_idx; ++i) {
+		if (i >= character.animation_states.size())
+			continue;
+		character.animation_states[i].animation_time = 0.f;
+	}
+}
+
 static void update_animation_index_from_keyboard(Scene& scene) {
 	if (scene.use_t_pose || scene.characters.empty())
 		return;
@@ -183,6 +191,17 @@ void update_animations(Scene& scene, float dt) {
 		int pose_index = scene.use_t_pose ? 0 : character.current_animation_index;
 		bool should_blend = g_blending_enabled && character.is_blending && !scene.use_t_pose && 
 			character.ozz_skeleton && character.animation_states.size() >= 4;
+		
+		// Reset animation time when blending ends
+		if (character.was_blending_previous_frame && !should_blend) {
+			reset_animation_time(character, pose_index, pose_index);
+			character.was_blending_previous_frame = false;
+		}
+		
+		// Mark blending state for next frame
+		if (should_blend) {
+			character.was_blending_previous_frame = true;
+		}
 		
 		if (should_blend) {
 			update_blending_parameters(character);

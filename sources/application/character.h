@@ -69,6 +69,7 @@ struct Character
 	float current_speed = 0.f;
 
 	bool is_blending = false;
+	bool was_blending_previous_frame = false;
 
 	// Blending buffer for animation blending results
 	ozz::vector<ozz::math::SoaTransform> blended_locals;
