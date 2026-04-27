@@ -186,33 +186,31 @@ void application_update(Scene &scene)
       
       // Interpolate current speed to target speed
       float speedDifference = targetSpeed - character.current_speed;
-      float interpolationTime = 0.f;
       
       if (speedDifference > 0.f) {
-        // Speed up: 0->2 takes 1.0s, 2->3 takes 0.5s
-        if (character.current_speed < Character::speed_wasd) {
-          interpolationTime = 1.0f;  // 0->2 over 1 second
-        } else {
-          interpolationTime = 0.5f;  // 2->3 over 0.5 seconds
+        if (targetSpeed == Character::speed_wasd) {
+        } else if (targetSpeed == Character::speed_wasd_shift) {
         }
       } else if (speedDifference < 0.f) {
-        // Slow down: instant or smooth?
-        interpolationTime = 0.f;  // Instant deceleration
-      }
-      
-      if (interpolationTime > 0.f) {
-        float speedChangePerSecond = speedDifference / interpolationTime;
-        character.current_speed += speedChangePerSecond * dt;
-        
-        // Clamp to target speed
-        if (speedDifference > 0.f) {
-          character.current_speed = glm::min(character.current_speed, targetSpeed);
-        } else {
-          character.current_speed = glm::max(character.current_speed, targetSpeed);
+        if (targetSpeed == Character::speed_wasd) {
+				} else if (targetSpeed == Character::speed_idle) {
+        } else if (targetSpeed == Character::speed_idle) {
         }
-      } else {
-        character.current_speed = targetSpeed;
+		  }
+      
+      if (speedDifference != 0.f) {
+        float speedChangePerSecond = 2.0f;
+				speedChangePerSecond = (speedDifference > 0.f) ? speedChangePerSecond : -speedChangePerSecond; 
+        character.current_speed += speedChangePerSecond * dt;
+
+				if (glm::abs(character.current_speed - targetSpeed) < 0.1f) {
+					character.current_speed = targetSpeed; // Snap to target if close enough
+				}
+			} else {
+				character.current_speed = targetSpeed;
       }
+
+
       
       if (anyKeyPressed) {
         // Movement is always forward in local space (rotate to world space)

@@ -106,6 +106,13 @@ static void show_characters(Scene &scene)
     ImGui::Checkbox("Visualize Skeleton", &g_visualizeSkeleton);
     ImGui::Checkbox("Visualize Node Transforms", &g_visualizeNodeTransforms);
     ImGui::Checkbox("Sampling", &g_samplingEnabled);
+    
+    // Display character speed
+    ImGui::Separator();
+    if (!scene.characters.empty()) {
+      Character &character = scene.characters[0];
+      ImGui::Text("Character Speed: %.2f units/s", character.current_speed);
+    }
   }
   ImGui::End();
 }
