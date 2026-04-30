@@ -9,3 +9,7 @@
 # Third-Person Camera Controller
 
 ![Пример визуализации](pictures/gif_2.gif)
+
+# Blending
+
+![Пример визуализации](pictures/blending.gif)
